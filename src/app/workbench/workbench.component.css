@@ -3,12 +3,18 @@
     height: 100%;
     overflow: hidden;
     cursor: grab;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .blive-workbench-box {
     position: relative;
     transform: translate(0);
     overflow: hidden;
+    max-width: 2000px;
+    display: inline-grid;
 }
 
 .blive-workbench-box * {
@@ -25,19 +31,25 @@
     height: 0;
 }
 
-.blive-fluoroscopy-selectors {
+.blive-fluoroscopy-selectors,
+.blive-fluoroscopy-preview-selectors{
     position: relative;
-    background: rgba(0,0,0,.1);
-    /*width: 100px;*/
-    /*height: 20px;*/
 }
 
-.blive-fluoroscopy-selectors .span-angle {
+.blive-fluoroscopy-selectors .span-angle,
+.blive-fluoroscopy-preview-selectors .span-angle{
+    border-radius: 100px;
+    border: 1px solid #039be5;
     width: 5px;
     height: 5px;
-    background: #039be5;
+    background-color: #fff;
     display: block;
     position: absolute;
+    z-index: 2;
+}
+
+.blive-fluoroscopy-preview-selectors .span-angle {
+    background: #039be5 !important;
 }
 
 .span-angle-lt {
@@ -57,9 +69,14 @@
     bottom: 0;
 }
 
-.blive-fluoroscopy-selectors .span-line {
+.blive-fluoroscopy-selectors .span-line,
+.blive-fluoroscopy-preview-selectors .span-line {
     background: #039be5;
     position: absolute;
+}
+
+.blive-fluoroscopy-preview-selectors .span-line {
+    background: rgba(3, 155, 229, 0.4) !important;
 }
 
 .span-line-t {

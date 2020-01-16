@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 // @ts-ignore
 import $ from "jquery";
 
@@ -11,8 +11,26 @@ import $ from "jquery";
 
 export class WorkbenchComponent implements OnInit {
   workbenchInfo;
+
+  // 选择器
   fluoroscopy;
+
+  // [预选]选择器
+  previewFluoroscopy;
+
+  // [预选]选择器属性
+  workbenchPreviewSelectorController = {
+    'width': 0,
+    'height': 0
+  };
+
+  // 是否可见选择器
   fluoroscopeShowState = false;
+
+  // 是否可见[预选]选择器
+  fluoroscopePreviewShowState = false;
+
+  // 工作台
   workbenchData = {
 	  's': 1,
 	  'top': 0,
@@ -31,8 +49,8 @@ export class WorkbenchComponent implements OnInit {
 
   async ngOnInit() {
 	this.workbenchInfo = $($('#blive-workbench')[0]);
-    this.fluoroscopy = $('#blive-fluoroscopy > div');
-
+    this.fluoroscopy = $('#blive-fluoroscopy > div.d1');
+    this.previewFluoroscopy = $('#blive-fluoroscopy > div.d2')
     await this.setWorkbenchReady();
     await this.onEventProxy();
   }
@@ -127,14 +145,35 @@ export class WorkbenchComponent implements OnInit {
       self.workbenchInfo.left = 0;
       self.fluoroscopeShowState = true;
       this.onWithUpdataFluoroscopy(event);
+    }).mouseover(event => {
+      this.onWithUpdataPreviewFluoroscopy(event);
     });
 
-    ///
     $('.blive-workbench').on('click', (event) => {
+      // if (event.target.className == "blive-workbench") {
+      //   self.fluoroscopeShowState = false;
+      // }
+    }).mouseover(event => {
       if (event.target.className == "blive-workbench") {
-        self.fluoroscopeShowState = false;
+        console.log(event)
+        self.fluoroscopePreviewShowState = false;
       }
     });
+  }
+
+  /**
+   * 预览视图
+   */
+  onWithUpdataPreviewFluoroscopy (event) {
+    const self = this;
+    self.workbenchPreviewSelectorController.width = event.target.clientWidth;
+    self.workbenchPreviewSelectorController.height = event.target.clientHeight;
+    self.fluoroscopePreviewShowState = true;
+    self.previewFluoroscopy
+        .css({
+          'top': `${self.workbenchData.top + event.target.offsetTop}px`,
+          'left': `${self.workbenchData.left + event.target.offsetLeft}px`,
+        });
   }
 
   /**
@@ -143,9 +182,6 @@ export class WorkbenchComponent implements OnInit {
    */
   onWithUpdataFluoroscopy (event) {
     const self = this;
-
-    console.log(event)
-
     self.workbenchSelectorController.left += event.target.offsetLeft;
     self.workbenchSelectorController.top += event.target.offsetTop;
     self.workbenchSelectorController.width = event.target.clientWidth;
@@ -160,6 +196,7 @@ export class WorkbenchComponent implements OnInit {
 
   setWid (item, data, type) {
     const self = this;
+    const num = 3;
     switch (type.toString()) {
       case 'top':
       case 'button':
@@ -181,11 +218,11 @@ export class WorkbenchComponent implements OnInit {
         switch (item.toString()) {
           case 'lt':
           case 'rt':
-            return this._sanitizer.bypassSecurityTrustStyle( '-2.5px');
+            return this._sanitizer.bypassSecurityTrustStyle( `-${num}px`);
             break;
           case 'lb':
           case 'rb':
-            return this._sanitizer.bypassSecurityTrustStyle(data.height - 2.5 + 'px');
+            return this._sanitizer.bypassSecurityTrustStyle(data.height - num + 'px');
             break;
         }
         break;
@@ -193,11 +230,11 @@ export class WorkbenchComponent implements OnInit {
         switch (item.toString()) {
           case 'lt':
           case 'lb':
-            return this._sanitizer.bypassSecurityTrustStyle( '-1.5px');
+            return this._sanitizer.bypassSecurityTrustStyle( `-${num}px`);
             break;
           case 'rt':
           case 'rb':
-            return  this._sanitizer.bypassSecurityTrustStyle(data.width - 1.5 + 'px');
+            return  this._sanitizer.bypassSecurityTrustStyle(data.width - num + 'px');
             break;
         }
         break;

@@ -15,6 +15,8 @@ import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 
 import { WorkbenchComponent }   from './workbench/workbench.component';
+import { StaffgaugeComponent } from './workbench/staffgauge/staffgauge/staffgauge.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,11 @@ import { WorkbenchComponent }   from './workbench/workbench.component';
     HeroDetailComponent,
     HeroSearchComponent,
 
-    WorkbenchComponent
+    WorkbenchComponent,
+
+    StaffgaugeComponent,
+
+    MenuComponent
   ],
   bootstrap: [ AppComponent ]
 })
