@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent {
-    title = 'Tour of Heroes';
+    data: any = {};
+
+    ngOnInit() {
+    }
+
+    ngOnChanges() {
+    }
+
+    checkedBack (event: any) {
+        this.data = event;
+        console.log('event', event)
+    }
 }
 
 

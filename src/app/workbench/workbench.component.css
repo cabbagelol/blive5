@@ -95,3 +95,27 @@
     width: 1px;
     height: 100%;
 }
+
+/*外边*/
+
+.span-margin {
+    position: absolute;
+    background: rgba(255, 152, 0, 0.18);
+}
+
+/*内边*/
+
+.span-padding {
+    position: absolute;
+    background-color: rgba(76, 175, 80, 0.18);
+}
+
+.span-padding-left {
+    top: 0;
+    left: 0;
+}
+
+/*编辑器*/
+*[contenteditable="true"] {
+    outline: none;
+}
