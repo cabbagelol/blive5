@@ -1,0 +1,31 @@
+.blive-menu {
+    position: fixed;
+    top: 50px;
+    left: 30px;
+    z-index: 10;
+}
+
+.blive-menu-content {
+    color: #6E747D;
+    padding: 10px 0;
+    border-radius: 0 8px 8px 0;
+    position: fixed;
+    left: 0;
+    top: 54px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
+}
+
+.blive-menu-content nz-divider {
+    margin: 10px 0;
+}
+
+.blive-menu-content .blive-menu-content-item {
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.blive-menu-content > div:hover{
+    color: #039be5;
+}

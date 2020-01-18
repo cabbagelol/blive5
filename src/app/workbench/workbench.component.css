@@ -1,12 +1,24 @@
 .blive-workbench {
-    background-color: #f2f2f2;
+    background-blend-mode: hard-light;
     height: 100%;
     overflow: hidden;
     cursor: grab;
     position: absolute;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
+}
+
+.blive-workbench-bk {
+    background-color: #f2f2f2;
+    background-image: url(https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg);
+    background-size: 15px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: .2;
 }
 
 .blive-workbench-box {
@@ -15,6 +27,7 @@
     overflow: hidden;
     max-width: 2000px;
     display: inline-grid;
+    transition: width .25s;
 }
 
 .blive-workbench-box * {
@@ -107,7 +120,8 @@
 
 .span-padding {
     position: absolute;
-    background-color: rgba(76, 175, 80, 0.18);
+    background: linear-gradient( 45deg, rgba(0, 153, 68, .1) 0, rgba(0, 153, 68, .1) 25%, transparent 25%, transparent 50%, rgba(0, 153, 68, .1) 50%, rgba(0, 153, 68, .1) 75%, transparent 75%, transparent );
+    background-size: 10px 10px;
 }
 
 .span-padding-left {

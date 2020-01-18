@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter,Input  } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 // @ts-ignore
 import $ from "jquery";
+import api from 'src/public/api';
 
 @Component({
   selector: 'blive-workbench',
@@ -14,7 +15,7 @@ export class WorkbenchComponent implements OnInit {
   @Output('checked') checkedBack = new EventEmitter<any>();
 
   // windows
-  windows = $('window, document');
+  windows;
   // 工作台
   workbenchInfo;
   // 选择器
@@ -57,9 +58,11 @@ export class WorkbenchComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer) {}
 
   async ngOnInit() {
-	this.workbenchInfo = $('#blive-workbench');
+    this.windows = $(window);
+    this.workbenchInfo = $('#blive-workbench');
     this.fluoroscopy = $('#blive-fluoroscopy > div.d1');
     this.previewFluoroscopy = $('#blive-fluoroscopy > div.d2')
+
     await this.setWorkbenchReady();
     await this.onEventProxy();
   }
@@ -69,16 +72,22 @@ export class WorkbenchComponent implements OnInit {
     const box = $('.blive-workbench');
 
     self.workbenchData = Object.assign(self.workbenchData, {
-      left: (box.width() / 2) - (self.workbenchInfo.width() / 2),
-      top: (box.height() / 2) -  (self.workbenchInfo.height() / 2),
-      width: self.workbenchInfo.width(),
-      height: self.workbenchInfo.height(),
+      left: (box.width() / 2) - (api.blankSize[1].width / 2 ||  self.workbenchInfo.width() / 2),
+      top: (box.height() / 2) - (api.blankSize[1].height / 2 || self.workbenchInfo.height() / 2),
+      width: api.blankSize[1].width || self.workbenchInfo.width(),
+      height: api.blankSize[1].height || self.workbenchInfo.height(),
     });
 
     self.workbenchInfo.attr(
         "style",
-        `left: calc(50% - ${self.workbenchInfo.width() / 2}px); top: calc(50% - ${self.workbenchInfo.height() / 2}px)`
+        `left: calc(50% - ${api.blankSize[1].width / 2 || self.workbenchInfo.width() / 2}px); top: calc(50% - ${api.blankSize[1].height / 2 || self.workbenchInfo.height() / 2}px)`
     );
+
+    /**
+     * 初始设置的画布大小
+     * 具体看api.blankSize配置
+     */
+    this.setWhiteboardsizeSize(api.blankSize[1]);
 
     /**
      * 监听窗口变动
@@ -110,8 +119,8 @@ export class WorkbenchComponent implements OnInit {
             "cursor": "grabbing",
           });
 
-          $(document).mousemove(function(e){
-            const target = self.workbenchSelectorController.event['target'];
+          $(document).mousemove(e => {
+            var borderBottomWidth = 0;
             var x = e.pageX - distenceX;
             var y = e.pageY - distenceY;
 
@@ -119,12 +128,16 @@ export class WorkbenchComponent implements OnInit {
               return;
             }
 
+            if ( self.workbenchSelectorController.event == '{}') {
+              borderBottomWidth = self.workbenchSelectorController.event['target'].style.borderBottomWidth || 0;
+            }
+
             self.workbenchData.top = y;
             self.workbenchData.left = x;
 
             self.fluoroscopy.css({
-              'top': `${self.workbenchData.top + self.workbenchSelectorController.top + parseInt(target.style.borderBottomWidth || 0)}px`,
-              'left': `${self.workbenchData.left + self.workbenchSelectorController.left + parseInt(target.style.borderBottomWidth || 0)}px`,
+              'top': `${self.workbenchData.top + self.workbenchSelectorController.top + borderBottomWidth}px`,
+              'left': `${self.workbenchData.left + self.workbenchSelectorController.left + borderBottomWidth}px`,
             });
 
             self.workbenchInfo.css({
@@ -223,12 +236,35 @@ export class WorkbenchComponent implements OnInit {
    */
   onWithUpdataFluoroscopy (event) {
     const self = this;
-    const target = self.workbenchSelectorController.event['target'];
+    var borderBottomWidth = 0;
+    var target;
 
-    self.workbenchSelectorController.left = event.target.offsetLeft;
-    self.workbenchSelectorController.top = event.target.offsetTop;
-    self.workbenchSelectorController.width = event.target.clientWidth;
-    self.workbenchSelectorController.height = event.target.clientHeight;
+    console.log(event)
+
+    if ( self.workbenchSelectorController.event == '{}') {
+      borderBottomWidth = self.workbenchSelectorController.event['target'].style.borderBottomWidth || 0;
+    }
+
+    if (!event.target) {
+      target = {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0,
+      }
+    } else {
+      target = {
+        left: event.target.offsetLeft,
+        top: event.target.offsetTop,
+        width: event.target.clientWidth,
+        height: event.target.clientHeight,
+      }
+    }
+
+    self.workbenchSelectorController.left = target.left;
+    self.workbenchSelectorController.top = target.top;
+    self.workbenchSelectorController.width = target.width;
+    self.workbenchSelectorController.height = target.height;
 
     /**
      * 影响top因素:
@@ -236,8 +272,8 @@ export class WorkbenchComponent implements OnInit {
      */
     self.fluoroscopy
         .css({
-      'top': `${self.workbenchData.top + self.workbenchSelectorController.top + parseInt(target.style.borderBottomWidth || 0)}px`,
-      'left': `${self.workbenchData.left + self.workbenchSelectorController.left + parseInt(target.style.borderBottomWidth || 0)}px`,
+      'top': `${self.workbenchData.top + self.workbenchSelectorController.top + borderBottomWidth}px`,
+      'left': `${self.workbenchData.left + self.workbenchSelectorController.left + borderBottomWidth}px`,
     });
   }
 
@@ -367,5 +403,26 @@ export class WorkbenchComponent implements OnInit {
       })
       return false;
     });
+  }
+
+  /**
+   * 设置画布大小
+   * 由staffgauge内提供
+   */
+  async setWhiteboardsizeSize (data: any) {
+    const self = this;
+    self.workbenchInfo.css({
+      'width': `${data.width}px`,
+      'height': `${data.height}px`
+    });
+
+    /**
+     * 延迟更新
+     * 否则获取的是动画执行中属性
+     * 动画时间为250ms
+     */
+    setTimeout(_ => {
+      self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
+    }, 250)
   }
 }

@@ -1,0 +1,28 @@
+<div class="staffgauge-nav">
+    <div class="staffgauge-nav-flex-1"></div>
+    <div class="staffgauge-nav-flex-1"></div>
+    <div class="staffgauge-nav-box">
+        <a nz-dropdown nzTrigger="click" nzPlacement="bottomCenter" [nzDropdownMenu]="menu"
+           class="staffgauge-whiteboardsize-btn">
+            简介比例
+            <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="setWhiteboardsizeSize(radioValue)">
+                <ul nz-menu>
+                    <li nz-menu-item *ngFor="let item of whiteboardsizeList">
+                        <label nz-radio nzValue="{{item.name}}" >{{item.width}}px * {{item.height}}px | {{item.name}}</label>
+                    </li>
+                    <li nz-menu-divider></li>
+                    <div class="staffgauge-whiteboardsize-down">
+                        了解简介比例 <i nz-icon nzType="question-circle" nzTheme="outline"></i>
+                    </div>
+                </ul>
+            </nz-radio-group>
+        </nz-dropdown-menu>
+        <nz-divider nzType="vertical"></nz-divider>
+        重置
+    </div>
+    <div class="staffgauge-nav-flex-1"></div>
+    <div class="staffgauge-nav-flex-1"></div>
+</div>
