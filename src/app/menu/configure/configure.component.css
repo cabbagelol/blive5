@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 
-.blive-moban-window {
+.blive-configure-window {
     padding: 20px 100px;
     position: absolute;
     height: 100%;
@@ -23,20 +23,20 @@
     right: 0;
 }
 
-.blive-moban-window-box {
+.blive-configure-window-box {
     height: 100%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
-    animation: blivemobanwindowbox .25s;
+    animation: bliveconfigurewindowbox .25s;
     overflow: hidden;
 }
 
-.blive-moban-window-overflow {
+.blive-configure-window-overflow {
     overflow: auto;
 }
 
-@keyframes blivemobanwindowbox {
+@keyframes bliveconfigurewindowbox {
     0% {
         transform: scale(1);
     }
@@ -46,11 +46,4 @@
     100% {
         transform: scale(1);
     }
-}
-
-/*模板系列福标题*/
-.blive-moban-window-title-h {
-    display: block;
-    font-size: 12px;
-    color: #999;
 }

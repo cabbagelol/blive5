@@ -1,0 +1,13 @@
+.blive-foundationPanel {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.blive-foundationPanel-panel {
+    background-color: #fff;
+    border-radius: 5px;
+}

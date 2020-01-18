@@ -1,8 +1,12 @@
-import { Component, OnInit, Output, EventEmitter,Input  } from '@angular/core';
+import {Component, OnInit, OnChanges , Output, EventEmitter, Input, SimpleChange} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+
 // @ts-ignore
 import $ from "jquery";
 import api from 'src/public/api';
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'blive-workbench',
@@ -10,20 +14,20 @@ import api from 'src/public/api';
   styleUrls: ['./workbench.component.css']
 })
 
-export class WorkbenchComponent implements OnInit {
+export class WorkbenchComponent implements OnInit  {
   @Input() data: any;
   @Output('checked') checkedBack = new EventEmitter<any>();
 
-  // windows
-  windows;
+  // panel
+  private windows;
   // 工作台
-  workbenchInfo;
+  private workbenchInfo;
   // 选择器
-  fluoroscopy;
+  private fluoroscopy;
   // [预选]选择器
-  previewFluoroscopy;
+  private previewFluoroscopy;
   // [预选]选择器属性
-  workbenchPreviewSelectorController = {
+  private workbenchPreviewSelectorController = {
     'nodeName': '',
     'width': 0,
     'height': 0,
@@ -35,11 +39,11 @@ export class WorkbenchComponent implements OnInit {
     }
   };
   // 是否可见选择器
-  fluoroscopeShowState = false;
+  private fluoroscopeShowState = false;
   // 是否可见[预选]选择器
-  fluoroscopePreviewShowState = false;
+  private fluoroscopePreviewShowState = false;
   // 工作台
-  workbenchData = {
+  private workbenchData = {
 	  's': 1,
 	  'top': 0,
 	  'left': 0,
@@ -55,7 +59,8 @@ export class WorkbenchComponent implements OnInit {
     'event': {},
   };
 
-  constructor(private _sanitizer: DomSanitizer) {}
+  constructor(private _sanitizer: DomSanitizer,private notification: NzNotificationService, private http: HttpClient) {
+  }
 
   async ngOnInit() {
     this.windows = $(window);
@@ -238,8 +243,6 @@ export class WorkbenchComponent implements OnInit {
     const self = this;
     var borderBottomWidth = 0;
     var target;
-
-    console.log(event)
 
     if ( self.workbenchSelectorController.event == '{}') {
       borderBottomWidth = self.workbenchSelectorController.event['target'].style.borderBottomWidth || 0;
@@ -424,5 +427,46 @@ export class WorkbenchComponent implements OnInit {
     setTimeout(_ => {
       self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
     }, 250)
+  }
+
+  /**
+   * 更新工作台内简介数据
+   */
+  async  onUpdataWorkbenchMoban () {
+    const self = this;
+    await $.ajax(`../../assets/moban/${self.data.moban.name}.txt`).then(res => {
+      self.workbenchInfo.html(res);
+      self.data.editorCode = res;
+    }).catch(err => {
+      self.notification.warning(
+          '模板丢失',
+          '哭唧唧,很遗憾的告诉你简介姬找不到这简介，要不你联系下作者吧'
+      );
+    });
+
+    await this.setWorkbenchReady();
+    await this.onEventProxy();
+  }
+
+  /**
+   * 代码视图变动
+   * 代码变动需要重新获取树节 重新绑定事件代理
+   */
+  async  onWindowSizeChange (event: any) {
+    const self = this;
+    self.workbenchInfo.codeHeigth = event.y;
+
+    await self.setWorkbenchReady();
+    await self.onResetPosition();
+    await self.onEventProxy();
+    await self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
+  }
+
+  /**
+   * 工作台视图高度获取
+   */
+  getWindowSizeChange () {
+    const self = this;
+    return self._sanitizer.bypassSecurityTrustStyle(`${self.workbenchInfo.codeHeigth}px`);
   }
 }

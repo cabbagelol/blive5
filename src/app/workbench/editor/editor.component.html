@@ -1,0 +1,26 @@
+<!--
+    * 编辑器
+    ** by https://github.com/atularen/ngx-monaco-editor
+-->
+
+<div class="blive-editor" [style.height]="getIdeHeight() || ''">
+    <div class="blive-editor-line" (mousedown)="onEditorLineMouseDow($event)">
+        <div class="blive-editor-controller">
+            <div class="blive-editor-controller-icon">
+                <svg width="14" height="6" viewBox="0 0 14 6">
+                    <circle cx="1" cy="1" r="1" fill="#fff"></circle>
+                    <circle cx="5" cy="1" r="1" fill="#fff"></circle>
+                    <circle cx="9" cy="1" r="1" fill="#fff"></circle>
+                    <circle cx="13" cy="1" r="1" fill="#fff"></circle>
+                    <circle cx="1" cy="5" r="1" fill="#fff"></circle>
+                    <circle cx="5" cy="5" r="1" fill="#fff"></circle>
+                    <circle cx="9" cy="5" r="1" fill="#fff"></circle>
+                    <circle cx="13" cy="5" r="1" fill="#fff"></circle>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div style="overflow: hidden;height: calc(100% - 2px);">
+        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code" (ngModelChange)="onInput($event)"></ngx-monaco-editor>
+    </div>
+</div>

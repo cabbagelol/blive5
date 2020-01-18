@@ -1,4 +1,4 @@
 <!--  <router-outlet></router-outlet>-->
-<blive-menu></blive-menu>
-<blive-workbench [data]="data" (checked)="checkedBack($event)"></blive-workbench>
+<blive-menu (mobanToggle)="setMobanToggle($event)"></blive-menu>
+<blive-workbench [data]="data" (checked)="checkedBack($event)" #workbench></blive-workbench>
 <blive-footer></blive-footer>

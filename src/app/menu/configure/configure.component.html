@@ -1,0 +1,49 @@
+<!--
+    * 模板
+    ** 模板商城
+-->
+<div class="blive-configure-window" (click)="close($event)">
+    <div class="blive-configure-window-box">
+        <nz-layout style="height: 100%;">
+            <nz-header style="color: #fff;text-align: center; background: #1890ff;">
+                设置中心
+            </nz-header>
+            <nz-layout>
+                <nz-sider nzTheme="light">
+                    <ul nz-menu nzMode="inline">
+                        <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item nzSelected>
+                            首页
+                        </li>
+                        <ul>
+                            <li nz-menu-group nzTitle="筛选">
+                                <ul>
+                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
+                                        账户配置
+                                    </li>
+                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
+                                        工作台样式
+                                    </li>
+                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
+                                        简介信息
+                                    </li>
+                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
+                                        代码视图
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ul>
+                </nz-sider>
+
+                <!--S 首页-->
+                <nz-content class="blive-configure-window-overflow">
+                    <div style="padding: 30px">
+
+                    </div>
+                </nz-content>
+                <!--E 首页-->
+            </nz-layout>
+        </nz-layout>
+    </div>
+</div>
+

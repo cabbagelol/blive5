@@ -10,6 +10,8 @@ import { AppRoutingModule }     from './app-routing.module';
 import { NgZorroAntdModule} from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { httpInterceptorProviders } from '../public/http';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppComponent }         from './app.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
@@ -21,6 +23,9 @@ import { StaffgaugeComponent } from './workbench/staffgauge/staffgauge.component
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobanComponent } from './moban/moban.component';
+import { FoundationPanelComponent } from './workbench/panel/foundation-panel/foundation-panel.component';
+import { EditorComponent } from './workbench/editor/editor.component';
+import { ConfigureComponent } from './menu/configure/configure.component';
 
 @NgModule({
   imports: [
@@ -29,6 +34,7 @@ import { MobanComponent } from './moban/moban.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MonacoEditorModule.forRoot(), // use forRoot() in main app module only.
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -46,16 +52,17 @@ import { MobanComponent } from './moban/moban.component';
     HeroesComponent,
     HeroDetailComponent,
     HeroSearchComponent,
-
     WorkbenchComponent,
-
     StaffgaugeComponent,
-
     MenuComponent,
-
     FooterComponent,
-
-    MobanComponent
+    MobanComponent,
+    FoundationPanelComponent,
+    EditorComponent,
+    ConfigureComponent
+  ],
+  providers: [
+    httpInterceptorProviders
   ],
   bootstrap: [ AppComponent ]
 })

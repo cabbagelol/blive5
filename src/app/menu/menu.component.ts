@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'blive-menu',
@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  @Output('mobanToggle') mobanToggle_ = new EventEmitter<any>();
+
   menu: object = {
-    'moban': false
+    'moban': false,
+    'configure': false,
   }
 
   constructor() { }
@@ -18,8 +21,15 @@ export class MenuComponent implements OnInit {
   /**
    * 菜单窗口开关
    */
-  onShowWindow (name) {
+  onShowWindow (name: any) {
     this.menu[name] = this.menu[name] != true;
   }
 
+  /**
+   * 获取模板
+   * 模板对象信息
+   */
+  setMobanData (data: any) {
+    this.mobanToggle_.emit(data || {});
+  }
 }

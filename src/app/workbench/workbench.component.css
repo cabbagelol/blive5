@@ -1,6 +1,6 @@
 .blive-workbench {
     background-blend-mode: hard-light;
-    height: 100%;
+    height: 66.66666666666667%;
     overflow: hidden;
     cursor: grab;
     position: absolute;
@@ -17,7 +17,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 66.66666666666667%;
     opacity: .2;
 }
 
@@ -32,6 +32,10 @@
 
 .blive-workbench-box * {
     cursor: auto !important;
+}
+
+.blive-workbench-box *[contenteditable=true] {
+    cursor: text !important;
 }
 
 /*选择器*/
