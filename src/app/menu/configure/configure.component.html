@@ -10,35 +10,33 @@
             </nz-header>
             <nz-layout>
                 <nz-sider nzTheme="light">
-                    <ul nz-menu nzMode="inline">
-                        <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item nzSelected>
-                            首页
-                        </li>
-                        <ul>
-                            <li nz-menu-group nzTitle="筛选">
-                                <ul>
-                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
-                                        账户配置
-                                    </li>
-                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
-                                        工作台样式
-                                    </li>
-                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
-                                        简介信息
-                                    </li>
-                                    <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item>
-                                        代码视图
-                                    </li>
-                                </ul>
+                    <ul nz-menu nzMode="inline" (nzClick)="onSelectMuen($event)">
+                        <div *ngFor="let i of configureMuen">
+                            <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item nzSelected="{{i.nzSelected || false}}" *ngIf="i.list.length == 0">
+                                首页
                             </li>
-                        </ul>
+                            <ul *ngIf="i.list.length > 0">
+                                <li nz-menu-group nzTitle="{{i.name}}">
+                                    <ul>
+                                        <li nzTitle="Navigation One" nzIcon="mail" nz-menu-item *ngFor="let t of i.list">
+                                            {{t.name}}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </ul>
                 </nz-sider>
 
                 <!--S 首页-->
                 <nz-content class="blive-configure-window-overflow">
                     <div style="padding: 30px">
-
+                        <blive-configure-account *ngIf="configureMuenSele == '账户配置'"></blive-configure-account>
+                        <blive-configure-workbenchstyle *ngIf="configureMuenSele == '工作台颜色'"></blive-configure-workbenchstyle>
+                        <blive-configure-profileinformation *ngIf="configureMuenSele == '简介信息'"></blive-configure-profileinformation>
+                        <blive-configure-codeview *ngIf="configureMuenSele == '代码视图'"></blive-configure-codeview>
+                        <blive-configure-shortcutkeys *ngIf="configureMuenSele == '快捷键'"></blive-configure-shortcutkeys>
+                        <blive-configure-about *ngIf="configureMuenSele == '关于Blive'"></blive-configure-about>
                     </div>
                 </nz-content>
                 <!--E 首页-->

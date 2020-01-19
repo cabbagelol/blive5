@@ -2,7 +2,16 @@
     * 工作台
     ** 工作台部件
 -->
-<div class="blive-workbench-bk" [style.height]="getWindowSizeChange()"></div>
+
+<div class="blive-workbench-bk" [style.height]="getWindowSizeChange()" *ngIf="workbenchData.isData"></div>
+<!--S 引导-->
+<div class="blive-workbench-guide" [style.height]="getWindowSizeChange()" *ngIf="!workbenchData.isData">
+    <div>
+        <div>从触摸<i nz-icon nzType="appstore" nzTheme="outline"></i>开始您的第一个简介</div>
+        <span>把目光移动到左侧, 紧贴游览器左侧, 看到了吗.</span>
+    </div>
+</div>
+<!--E 引导-->
 <div class="blive-workbench" [style.height]="getWindowSizeChange()">
     <blive-staffgauge [data]="data" (whiteboardsizeSize)="setWhiteboardsizeSize($event)"></blive-staffgauge>
 
@@ -10,37 +19,73 @@
 
     <div id="blive-fluoroscopy">
         <!--选择器-->
-        <div class="blive-fluoroscopy-selectors d1"  [style.display]="fluoroscopeShowState ? 'block' : 'none'">
-            <span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['lt','lb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>
-            <span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['rt','rb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']" [style.top]="setWid(item,workbenchSelectorController, 'top')" [style.width]="setWid(item,workbenchSelectorController, 'width')"></span>
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['l','r']" [style.left]="setWid(item,workbenchSelectorController, 'left')" [style.height]="setWid(item,workbenchSelectorController, 'height')"></span>
-            
-           <!--S 外 距离容器-->
-                <span class="span-margin span-margin-top" [style.top]="getDistanceRecognitionArea('-top')"  [style.height]="getDistanceRecognitionArea('+top')" [style.width]="setWid(item,workbenchSelectorController, 'width')" *ngIf="getDistanceRecognitionArea('+top')"></span>
-                <span class="span-margin span-margin-left" [style.left]="getDistanceRecognitionArea('-left')" [style.height]="setWid(item,workbenchSelectorController, 'height')"  [style.width]="getDistanceRecognitionArea('+left')" *ngIf="getDistanceRecognitionArea('+left')"></span>
-                <span class="span-margin span-margin-botton" [style.top]="setWid(item,workbenchSelectorController, 'height')"  [style.height]="getDistanceRecognitionArea('+top')" [style.width]="setWid(item,workbenchSelectorController, 'width')" *ngIf="getDistanceRecognitionArea('+bottom')"></span>
-                <span class="span-margin span-margin-right" [style.left]="setWid(item,workbenchSelectorController, 'width')" [style.height]="setWid(item,workbenchSelectorController, 'height')" [style.width]="getDistanceRecognitionArea('+right')" *ngIf="getDistanceRecognitionArea('+right')"></span>
+        <div class="blive-fluoroscopy-selectors d1" [style.display]="fluoroscopeShowState ? 'block' : 'none'">
+            <span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['rb']"
+                  [style.top]="setWid(item,workbenchSelectorController, 'angle-top')"
+                  [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>
+
+            <!--<span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['lt','lb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>-->
+            <!--<span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['rt','rb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>-->
+            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']"
+                  [style.top]="setWid(item,workbenchSelectorController, 'top')"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')"></span>
+            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['l','r']"
+                  [style.left]="setWid(item,workbenchSelectorController, 'left')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"></span>
+
+            <!--S 外 距离容器-->
+            <span class="span-margin span-margin-top" [style.top]="getDistanceRecognitionArea('-top')"
+                  [style.height]="getDistanceRecognitionArea('+top')"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
+                  *ngIf="getDistanceRecognitionArea('+top')"></span>
+            <span class="span-margin span-margin-left" [style.left]="getDistanceRecognitionArea('-left')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
+                  [style.width]="getDistanceRecognitionArea('+left')"
+                  *ngIf="getDistanceRecognitionArea('+left')"></span>
+            <span class="span-margin span-margin-botton"
+                  [style.top]="setWid(item,workbenchSelectorController, 'height')"
+                  [style.height]="getDistanceRecognitionArea('+top')"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
+                  *ngIf="getDistanceRecognitionArea('+bottom')"></span>
+            <span class="span-margin span-margin-right" [style.left]="setWid(item,workbenchSelectorController, 'width')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
+                  [style.width]="getDistanceRecognitionArea('+right')"
+                  *ngIf="getDistanceRecognitionArea('+right')"></span>
             <!--E 外 距离容器-->
-            
+
             <!--S 内 距离容器-->
-                <span class="span-padding span-padding-left" [style.width]="getDistanceRecognitionArea('p-left')" [style.height]="setWid(item,workbenchSelectorController, 'height')" title="{{'内边距-左:' + workbenchSelectorController.event['target']?.style.paddingLeft}}"></span>
-                <span class="span-padding span-padding-top" [style.width]="setWid(item,workbenchSelectorController, 'width')" [style.height]="getDistanceRecognitionArea('p-top')" title="{{'内边距-上:' + workbenchSelectorController.event['target']?.style.paddingTop}}"></span>
-                <span class="span-padding span-padding-right" [style.left]="getDistanceRecognitionArea('p-width-right')" [style.height]="setWid(item,workbenchSelectorController, 'height')" [style.width]="getDistanceRecognitionArea('p-right')" title="{{'内边距-右:' + workbenchSelectorController.event['target']?.style.paddingRight}}"></span>
-                <span class="span-padding span-padding-bottom" [style.top]="getDistanceRecognitionArea('p-height-bottom')"  [style.height]="getDistanceRecognitionArea('p-bottom')" [style.width]="setWid(item,workbenchSelectorController, 'width')" title="{{'内边距-下:' + workbenchSelectorController.event['target']?.style.paddingBottom}}"></span>
+            <span class="span-padding span-padding-left" [style.width]="getDistanceRecognitionArea('p-left')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
+                  title="{{'内边距-左:' + workbenchSelectorController.event['target']?.style.paddingLeft}}"></span>
+            <span class="span-padding span-padding-top"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
+                  [style.height]="getDistanceRecognitionArea('p-top')"
+                  title="{{'内边距-上:' + workbenchSelectorController.event['target']?.style.paddingTop}}"></span>
+            <span class="span-padding span-padding-right" [style.left]="getDistanceRecognitionArea('p-width-right')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
+                  [style.width]="getDistanceRecognitionArea('p-right')"
+                  title="{{'内边距-右:' + workbenchSelectorController.event['target']?.style.paddingRight}}"></span>
+            <span class="span-padding span-padding-bottom" [style.top]="getDistanceRecognitionArea('p-height-bottom')"
+                  [style.height]="getDistanceRecognitionArea('p-bottom')"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
+                  title="{{'内边距-下:' + workbenchSelectorController.event['target']?.style.paddingBottom}}"></span>
             <!--E 内 距离容器-->
         </div>
-        
+
         <!--预选器-->
-        <div class="blive-fluoroscopy-preview-selectors d2" [style.display]="fluoroscopePreviewShowState ? 'block' : 'none'">
+        <div class="blive-fluoroscopy-preview-selectors d2"
+             [style.display]="fluoroscopePreviewShowState ? 'block' : 'none'">
             <span style="position:absolute;top: -15px;left: 0; padding: 0px 10px; height: 15px; background: rgba(3, 155, 229, 0.4); color: #fff;font-size: 10px">{{workbenchPreviewSelectorController.nodeName}}</span>
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']" [style.top]="setWid(item,workbenchPreviewSelectorController, 'top')" [style.width]="setWid(item,workbenchPreviewSelectorController, 'width')"></span>
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['l','r']" [style.left]="setWid(item,workbenchPreviewSelectorController, 'left')" [style.height]="setWid(item,workbenchPreviewSelectorController, 'height')"></span>
+            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']"
+                  [style.top]="setWid(item,workbenchPreviewSelectorController, 'top')"
+                  [style.width]="setWid(item,workbenchPreviewSelectorController, 'width')"></span>
+            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['l','r']"
+                  [style.left]="setWid(item,workbenchPreviewSelectorController, 'left')"
+                  [style.height]="setWid(item,workbenchPreviewSelectorController, 'height')"></span>
         </div>
     </div>
 
     <!--面板-->
     <blive-foundation-panel [data]="data"></blive-foundation-panel>
 </div>
-
 <blive-code-editor [code]="data.editorCode" (change)="onWindowSizeChange($event)"></blive-code-editor>

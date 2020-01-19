@@ -9,8 +9,48 @@ import {NzTreeComponent} from "ng-zorro-antd";
 export class ConfigureComponent implements OnInit {
   @Output('close') close_ = new EventEmitter<any>();
   @Output('mobanData') mobanData_ = new EventEmitter<any>();
-
   @ViewChild('nzTreeComponent', {static: false}) nzTreeComponent: NzTreeComponent;
+
+  // 菜单列表
+  configureMuen: Array<object> = [
+    {
+      name: '首页',
+      nzSelected: true,
+      list: [],
+    },
+    {
+      name: '筛选',
+      t: true,
+      list: [
+        {
+          name: '账户配置'
+        },
+        {
+          name: '工作台颜色'
+        },
+        {
+          name: '简介信息'
+        },
+        {
+          name: '代码视图'
+        },
+        {
+          name: '快捷键'
+        },
+      ]
+    },
+    {
+      name: '其他',
+      t: true,
+      list: [
+        {
+          name: '关于Blive'
+        },
+      ]
+    }
+  ];
+  // 选择的菜单
+  configureMuenSele: any = "";
 
   constructor() { }
 
@@ -27,11 +67,12 @@ export class ConfigureComponent implements OnInit {
   }
 
   /**
-   * 选择模板
+   * 选择简介模板
    */
-  onSelectTemplate(data) {
-    this.close('event');
-    this.mobanData_.emit(data);
+  onSelectMuen(data) {
+    // this.close('event');
+    console.log(data.el.innerText)
+    this.configureMuenSele = data.el.innerText;
   }
 
 }

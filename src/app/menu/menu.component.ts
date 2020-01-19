@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   menu: object = {
     'moban': false,
     'configure': false,
+    'history': false,
   }
 
   constructor() { }

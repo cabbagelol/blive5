@@ -10,47 +10,37 @@ import {NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions} from "ng-zorro-an
 export class MobanComponent implements OnInit, AfterViewInit {
     @Output('close') close_ = new EventEmitter<any>();
     @Output('mobanData') mobanData_ = new EventEmitter<any>();
-
     @ViewChild('nzTreeComponent', {static: false}) nzTreeComponent: NzTreeComponent;
-
-    defaultCheckedKeys = ['10020'];
-    defaultSelectedKeys = ['10010'];
-    defaultExpandedKeys = ['100', '1001'];
 
     // 模板列表
     mobanlist: any;
+    // 筛选选择keys
+    defaultCheckedKeys = [];
+    // 筛选归类
+    nodes: NzTreeNodeOptions[] = [];
 
-    nodes: NzTreeNodeOptions[] = [
-        {
-            title: 'parent 1',
-            key: '100',
-            children: [
-                {
-                    title: 'parent 1-0',
-                    key: '1001',
-                    disabled: true,
-                    children: [
-                        {title: 'leaf 1-0-0', key: '10010', disableCheckbox: true, isLeaf: true},
-                        {title: 'leaf 1-0-1', key: '10011', isLeaf: true}
-                    ]
-                },
-                {
-                    title: 'parent 1-1',
-                    key: '1002',
-                    children: [
-                        {title: 'leaf 1-1-0', key: '10020', isLeaf: true},
-                        {title: 'leaf 1-1-1', key: '10021', isLeaf: true}
-                    ]
-                }
-            ]
-        }
-    ];
-
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
-        this.mobanlist = moban.getMobanList();
+        const self = this;
+        let tagList: Array<string> = [];
+        self.mobanlist = moban.getMobanList();
+        self.mobanlist.forEach(i => {
+           i.list.forEach(t => {
+
+               // 标签列表查询
+               t.tag.forEach(tagitem => {
+                   tagList.push(tagitem);
+               });
+           });
+        });
+        Array.from(new Set(tagList)).forEach(i => {
+            self.nodes.push({
+                title: i,
+                key: i,
+                isLeaf: true,
+            });
+        });
     }
 
     /**
@@ -70,17 +60,10 @@ export class MobanComponent implements OnInit, AfterViewInit {
         this.mobanData_.emit(data);
     }
 
-    nzClick(event: NzFormatEmitEvent): void {
-        console.log(event);
-    }
-
+    // 筛选勾选列表
     nzCheck(event: NzFormatEmitEvent): void {
-        console.log(event);
-    }
-
-    // nzSelectedKeys change
-    nzSelect(keys: string[]): void {
-        console.log(keys, this.nzTreeComponent.getSelectedNodeList());
+        console.log('nzCheck', event);
+        this.defaultCheckedKeys = event.keys;
     }
 
     ngAfterViewInit(): void {

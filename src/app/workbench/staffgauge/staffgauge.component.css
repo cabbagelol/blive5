@@ -8,7 +8,6 @@
     height: 20px;
     display: -webkit-box;
     display: flex;
-    z-index: 5;
     background: rgba(255, 255, 255, 0.55);
 }
 

@@ -9,7 +9,9 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { NgZorroAntdModule} from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { NzIconModule, NZ_ICON_DEFAULT_TWOTONE_COLOR, NZ_ICONS } from 'ng-zorro-antd/icon';
+import * as AllIcons from '@ant-design/icons-angular/icons';
 import { httpInterceptorProviders } from '../public/http';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
@@ -26,6 +28,18 @@ import { MobanComponent } from './moban/moban.component';
 import { FoundationPanelComponent } from './workbench/panel/foundation-panel/foundation-panel.component';
 import { EditorComponent } from './workbench/editor/editor.component';
 import { ConfigureComponent } from './menu/configure/configure.component';
+import { ConfigureCodeviewComponent } from './menu/configure/configure-codeview/configure-codeview.component';
+import { AboutComponent } from './menu/configure/about/about.component';
+import { AccountComponent } from './menu/configure/account/account.component';
+import { WorkbenchstyleComponent } from './menu/configure/workbenchstyle/workbenchstyle.component';
+import { ProfileinformationComponent } from './menu/configure/profileinformation/profileinformation.component';
+import { ShortcutkeysComponent } from './menu/configure/shortcutkeys/shortcutkeys.component';
+import { HistoryComponent } from './menu/history/history.component';
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
   imports: [
@@ -59,10 +73,19 @@ import { ConfigureComponent } from './menu/configure/configure.component';
     MobanComponent,
     FoundationPanelComponent,
     EditorComponent,
-    ConfigureComponent
+    ConfigureComponent,
+    ConfigureCodeviewComponent,
+    AboutComponent,
+    AccountComponent,
+    WorkbenchstyleComponent,
+    ProfileinformationComponent,
+    ShortcutkeysComponent,
+    HistoryComponent
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    { provide: NZ_ICON_DEFAULT_TWOTONE_COLOR, useValue: '#00ff00' }, // 不提供的话，即为 Ant Design 的主题蓝色
+    { provide: NZ_ICONS, useValue: icons }
   ],
   bootstrap: [ AppComponent ]
 })

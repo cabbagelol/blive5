@@ -1,8 +1,3 @@
-[nz-button] {
-    margin-right: 8px;
-    margin-bottom: 12px;
-}
-
 .carousel-content {
     text-align: center;
     height: 160px;
@@ -12,7 +7,7 @@
     overflow: hidden;
 }
 
-.blive-moban-window {
+.blive-history-window {
     padding: 20px 100px;
     position: absolute;
     height: 100%;
@@ -23,20 +18,20 @@
     right: 0;
 }
 
-.blive-moban-window-box {
+.blive-history-window-box {
     height: 100%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
-    animation: blivemobanwindowbox .25s;
+    animation: blivehistorywindowbox .25s;
     overflow: hidden;
 }
 
-.blive-moban-window-overflow {
+.blive-history-window-overflow {
     overflow: auto;
 }
 
-@keyframes blivemobanwindowbox {
+@keyframes blivehistorywindowbox {
     0% {
         transform: scale(1);
     }
@@ -48,22 +43,22 @@
     }
 }
 
-/*模板系列福标题*/
-.blive-moban-window-title-h {
+/*列表*/
+.title {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 24px;
     display: block;
-    font-size: 12px;
-    color: #999;
+    margin-bottom: 16px;
 }
-
-.blive-moban-window-card {
-    width: calc(25% - 20px);
-    min-width: 200px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    float: left
+.item-wrap {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 7px;
+    color: rgba(0, 0, 0, 0.65);
 }
-
-/*tag*/
-.blive-moban-window-title-tag {
-    margin: 10px 10px 10px 0;
+.label {
+    margin-right: 8px;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.85);
 }

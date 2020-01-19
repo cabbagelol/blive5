@@ -1,0 +1,22 @@
+<nz-card>
+    <div nz-row>
+        <div nz-col nzMd="16">
+            代码视图
+        </div>
+        <div nz-col nzMd="8" style="text-align: right">
+            <nz-switch [ngModel]="switchValue" (click)="onClickSwitch()"></nz-switch>
+        </div>
+    </div>
+</nz-card>
+
+<div class="blive-codeview-style">
+    <nz-divider nzText="编译器颜色" nzOrientation="left"></nz-divider>
+    <ngx-monaco-editor [(options)]="editorOptions" [(ngModel)]="editorOptions.code" class="blive-codeview-style-item" disabled ></ngx-monaco-editor>
+    <nz-radio-group [(ngModel)]="editorOptions.theme">
+        <div  class="blive-codeview-style-itme-box" *ngFor="let item of editorOptions.themes">
+            <label nz-radio nzValue="{{item.theme}}">
+                {{item.theme}}
+            </label>
+        </div>
+    </nz-radio-group>
+</div>

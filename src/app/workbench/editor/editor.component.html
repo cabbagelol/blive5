@@ -2,8 +2,7 @@
     * 编辑器
     ** by https://github.com/atularen/ngx-monaco-editor
 -->
-
-<div class="blive-editor" [style.height]="getIdeHeight() || ''">
+<div class="blive-editor" [style.height]="getIdeHeight()" *ngIf="editor.height > 0">
     <div class="blive-editor-line" (mousedown)="onEditorLineMouseDow($event)">
         <div class="blive-editor-controller">
             <div class="blive-editor-controller-icon">

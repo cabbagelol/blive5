@@ -21,11 +21,7 @@
                                     [nzData]="nodes"
                                     nzCheckable
                                     [nzCheckedKeys]="defaultCheckedKeys"
-                                    [nzExpandedKeys]="defaultExpandedKeys"
-                                    [nzSelectedKeys]="defaultSelectedKeys"
-                                    (nzClick)="nzClick($event)"
                                     (nzCheckBoxChange)="nzCheck($event)"
-                                    (nzExpandChange)="nzCheck($event)"
                                 >
                                 </nz-tree>
                             </li>
@@ -45,12 +41,13 @@
                             </nz-divider>
                             <div *ngFor="let i of item.list" (click)="onSelectTemplate(i)">
                                 <nz-card nzHoverable
-                                         style="width:calc(25% - 30px);min-width: 200px ;margin-bottom: 20px;margin-right: 20px; float: left"
+                                         class="blive-moban-window-card"
                                          [nzCover]="coverTemplate">
                                     <nz-card-meta nzTitle="{{i.name}}"></nz-card-meta>
-                                    <nz-tag [nzColor]="'magenta'" style="margin-top: 10px" *ngIf="i.level == 1">
+                                    <nz-tag [nzColor]="'magenta'" *ngIf="i.level == 1" class="blive-moban-window-title-tag">
                                         扩展
                                     </nz-tag>
+                                    <nz-tag *ngFor="let f of i.tag" class="blive-moban-window-title-tag">{{f}}</nz-tag>
                                 </nz-card>
                                 <ng-template #coverTemplate>
                                     <img alt="example" src="{{i.img}}"/>
