@@ -1,7 +1,8 @@
-import {Component, OnInit, OnChanges, Output, EventEmitter, Input, SimpleChange} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {HttpClient} from '@angular/common/http';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {Shortcutkeys} from './shortcutkeys';
+import {NzContextMenuService, NzDropdownMenuComponent} from "ng-zorro-antd";
 
 // @ts-ignore
 import $ from "jquery";
@@ -10,7 +11,8 @@ import api from 'src/public/api';
 @Component({
     selector: 'blive-workbench',
     templateUrl: './workbench.component.html',
-    styleUrls: ['./workbench.component.css']
+    styleUrls: ['./workbench.component.css'],
+    providers: [Shortcutkeys]
 })
 
 export class WorkbenchComponent implements OnInit {
@@ -59,14 +61,17 @@ export class WorkbenchComponent implements OnInit {
         'event': {},
     };
 
-    constructor(private _sanitizer: DomSanitizer, private notification: NzNotificationService, private http: HttpClient) {
+    constructor(private _sanitizer: DomSanitizer,
+                private notification: NzNotificationService,
+                private shortcutkeys: Shortcutkeys,
+                private nzContextMenuService: NzContextMenuService) {
     }
 
     async ngOnInit() {
         this.windows = $(window);
         this.workbenchInfo = $('#blive-workbench');
         this.fluoroscopy = $('#blive-fluoroscopy > div.d1');
-        this.previewFluoroscopy = $('#blive-fluoroscopy > div.d2')
+        this.previewFluoroscopy = $('#blive-fluoroscopy > div.d2');
 
         /**
          * 检查工作台内容
@@ -79,6 +84,15 @@ export class WorkbenchComponent implements OnInit {
         } else {
             /// 显性工作台引导
         }
+
+        this.onShortcutkeys();
+    }
+
+    /**
+     * 全局事件
+     */
+    onShortcutkeys () {
+        this.shortcutkeys.readonly();
     }
 
     /**
@@ -509,5 +523,13 @@ export class WorkbenchComponent implements OnInit {
                 'state': false,
             }
         }
+    }
+
+    contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
+        this.nzContextMenuService.create($event, menu);
+    }
+
+    closeMenu(): void {
+        this.nzContextMenuService.close();
     }
 }
