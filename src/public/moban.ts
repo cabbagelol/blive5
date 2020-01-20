@@ -27,6 +27,76 @@ let list = [
                 path: '',
                 level: 0,
                 tag: ['官方','免费']
+            },
+            {
+                name: '空白简介',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-unll.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '樱花',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/yinghuai.png',
+                path: '',
+                level: 0,
+                tag: ['官方','VIP']
+            },
+            {
+                name: '油漆',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/youqi.png',
+                path: '',
+                level: 0,
+                tag: ['官方','VIP']
+            },
+            {
+                name: '倾城花开',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-qingchenghuakai.png',
+                path: '',
+                level: 0,
+                tag: ['官方','VIP']
+            },
+            {
+                name: '满世繁花',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-manshifanhua.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '深海鱼群A',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-shenhaiyuqun-a.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '深海鱼群B',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-shenhaiyuqun-b.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '爵士黑',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-huijus.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '火种',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-huozhon.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
+            },
+            {
+                name: '星海一尘',
+                img: 'https://www.cabbagelol.net/blive/Blive-4.0/img/moban/Cabb-xinghai.png',
+                path: '',
+                level: 0,
+                tag: ['官方','免费']
             }
         ],
     },

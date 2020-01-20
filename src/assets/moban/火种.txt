@@ -1,0 +1,33 @@
+<div id="Blive" style="position: absolute; overflow: hidden; display: block; border-radius: 4px; top: -75px; left: -18px; background-image: url(http://www.5xge.com/images/2017/08/05/a1d5fed82d74bb2c5fb9ac75f593380e.jpg);width: 1189px; height: 300px;" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 300px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 300px;overflow: hidden">
+			<div style="float: left;position: relative;height:100%;width:100%;top:0px">
+				<!--a-->
+				<div id="Paging_one" style="float: left; width: 100%; height: 300px">
+					<div style="background-color: rgba(0, 0, 0, 0.32);margin: 10px 0 0 0;color:#fff;height:280px">
+						<div style="float: left; height: 100%; width: 350px; word-wrap: break-word;">
+							<div style="font-size: 15px; background-color: rgba(255, 255, 255, 0.117647); margin: 80px 113px; width: 120px; padding: 6px; text-align: center; word-wrap: break-word;">N E W V I D S
+								<br>WEDNESDAY
+								<br><span style="font-size: 18px;"><span style="word-wrap: break-word;"><strong>MON  DAT</strong></span></span>
+								<br><span style="font-size: 14px; word-wrap: break-word;">S  U  N  D  A  Y</span></div>
+						</div>
+						<div style="position: relative;float: left;height:100%;width: 489px;">
+							<div style="position: absolute;text-align: center;top: 50%;margin: -50px 0 0 0;font-size: 60px;text-shadow: 0 1px 10px rgba(255, 255, 255, 0.61);padding: 7px 20px;height: 100px;width: 100%;"><strong>Cabbagelol</strong></div>
+						</div>
+						<div style="float: left;height:100%;width: 350px;">
+							<div style="margin: 99px 34px;font-size: 24px;background-color: rgba(255, 255, 255, 0.188235);padding: 10px 20px;">
+
+								<p>SEND YOUR CLIPS: </p><span style="font-size: 18px;">nickmiku@foxmail.com</span></div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 300px; ">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

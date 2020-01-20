@@ -1,0 +1,85 @@
+<div id="Blive" style="overflow:hidden;display:block;border-radius:4px;width: 100%;height: 230px;background-color: rgba(27, 27, 27, 0.1);" title="简介由生成器生成：http://blive.Cabbagelol.net(丸子http://www.uid75.com/)">
+	<!--bj-->
+	<div style="float: left;width: 100%;height: 230px;">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 230px;overflow: hidden;">
+			<div style="float: left;position: relative;height:100%;width:100%;top:0px">
+				<!--a-->
+				<div id="Paging_one" style="float: left;width: 100%;height: 230px;overflow: hidden;">
+					<div style="width:100%;color:#FFF;text-shadow:0 0 5px #222;line-height:1.45;height:100%;display: inline-flex;">
+						<div style="height: 230px;width: 20%;z-index:3;">
+							<div style="overflow:hidden;margin: 39px auto 0 auto;width:160px;height:160px;border-radius:50%;background-color: #fff;">
+								<!--头像-->
+								<div id="Blive-Tox" style="width: 100%;height: 100%;color: rgba(0, 0, 0, 0);">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="width: 30%;height:100%;margin: 0 5px 0 0;">
+						<div style="margin:5px 0 0 0;font-size:14px;padding: 10px;border-radius:2px;background-color:rgba(255,255,255,.3);box-shadow:1px 1px 5px rgba(51,51,51,.1);height: 88px;">
+							<div style="text-shadow:0 0 0 #000;color:#FFF;border-radius:2px;box-shadow:1px 1px 15px rgba(51,51,51,.5);background-color:#FF5999;font-size:16px;margin:0 15px 0 0;padding:3px 5px;display: initial;">
+								【主播介绍】
+							</div>
+
+							<p style="padding:5px 0 0 0;text-indent:15px">
+								输入你需要写的内容
+							</p>
+						</div>
+						<div style="margin:5px 0 0 0;padding: 10px;font-size:14px;border-radius:2px;background-color:rgba(255,255,255,.2);box-shadow:1px 1px 5px rgba(51,51,51,.1);height: 88px;">
+							<div style="text-shadow:0 0 0 #000;color:#FFF;border-radius:2px;background-color:#09F;box-shadow:1px 1px 15px rgba(51,51,51,.5);font-size:16px;margin:0 15px 0 0;padding:3px 5px;display: initial;">
+								【直播时间】
+							</div>
+
+							<p style="padding:5px 0 0 0;text-indent:15px">
+								输入你需要写的内容
+							</p>
+						</div>
+					</div>
+					<div style="width: 30%;height:100%;">
+						<div style="margin: 5px 0 0 1px;font-size:14px;padding: 10px;border-radius:2px;background-color:rgba(255,255,255,.2);box-shadow:1px 1px 5px rgba(51,51,51,.1);height: 88px;">
+							<div style="text-shadow:0 0 0 #000;color:#FFF;border-radius:2px;background-color:#61B509;box-shadow:1px 1px 15px rgba(51,51,51,.5);font-size:16px;margin:0 15px 0 0;padding:3px 5px;display: initial;">
+								【直播介绍】
+							</div>
+
+							<p style="padding:5px 0 0 0;text-indent:15px">
+								输入你需要写的内容
+							</p>
+						</div>
+						<div style="margin: 5px 0 0 1px;padding: 10px;line-height:1.25;font-size:14px;border-radius:2px;background-color:rgba(255,255,255,.2);box-shadow:1px 1px 5px rgba(51,51,51,.1);height: 88px;">
+							<div style="text-shadow:0 0 0 #000;color:#FFF;border-radius:2px;background-color:#7860FF;box-shadow:1px 1px 15px rgba(51,51,51,.5);font-size:16px;margin:0 15px 0 0;padding:3px 5px;display: initial;">
+								【联系方式】
+							</div>
+
+							<p style="padding:5px 0 0 0;text-indent:15px">
+								输入你需要写的内容
+							</p>
+						</div>
+					</div>
+					<div style="width: 20%;text-align:center;margin: 5px 0 0 0;">
+						<div style="width:140px;display:block;border-radius:5%;border:#FFF 6PX SOLID;box-shadow:1px 1px 10px rgba(51,51,51,.5);background:url() no-repeat 0 0;margin: 0 auto;height:140px;">
+							<img src="http://usr.im/140x140?bg=2F60A3&text=%E4%BA%8C%E7%BB%B4%E7%A0%81" style="width:100%">
+						</div>
+						<div style="color:#FFF;border-radius:2px;box-shadow:1px 1px 5px rgba(51,51,51,.5);background-color:#FF910C;font-size: 16px;text-shadow:0 0 0 #000;display:block;margin: 5px 28px;">
+							扫描赞助主播
+						</div>
+
+						<p style="text-align:center;text-shadow:1px 1px 1px #333;color:#FFF;height:16px;border-radius:2px;font-size:12px;margin: 0 auto;">
+							感谢各位的支持
+						</p>
+
+						<p style="width:100%;text-align:center;text-shadow:1px 1px 1px #333;color:#FFF;height:16px;border-radius:2px;font-size:12px;margin: 0 auto;">
+							请带上自己的B站ID哦
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--b-->
+			<div id="Paging_two" style="float: left;width: 100%;height: 230px;overflow: hidden;">
+				<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 70px auto;">
+					+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

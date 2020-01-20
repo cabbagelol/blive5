@@ -1,0 +1,49 @@
+<div id="Blive" style="overflow: hidden;margin:0;background-image:url(http://www.5xge.com/images/2017/06/13/cedd24b72cb77b43d77832e58b381970.png);background-size: cover;border-radius:8px;height: 230px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 278px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float: left; position: relative; height: 230px; width: 100%; top: 0px;">
+				<!--a-->
+				<div id="Paging_one" style="float: left;width: 100%;height: 230px;display: inline-flex;">
+					<div style="width: 100%;height: 230px;display: inline-flex;">
+						<div style="min-width: 320px;width: 15%;height: 100%;">
+							<div style="margin: 0px auto; word-wrap: break-word; width: 230px; height: 230px;">
+								<div style="position: absolute;margin: 50px auto;border: 2px solid #fff;background-color: rgba(0, 0, 0, 0.17);font-size: 21px;color: #fff;z-index: 3;width: 200px;height: 150px;">
+									<div style="padding: 25px;">
+
+										<p style="margin: 0">你若赐我一段浮华,我便许你满世繁花</p>
+									</div>
+								</div>
+								<div style="position: absolute;width: 200px;height: 150px;margin: 40px auto;border: 2px solid rgba(255, 255, 255, 0.41);color: #fff;top: 26px;left: 66px;z-index: 2;">
+								</div>
+							</div>
+						</div>
+						<div style="display: flex;margin: 23px 0;width: 80%;">
+							<div style="margin: 0 10px 0 0;height: 100%;width: 100%;">
+								<div style=" color: #fff; padding: 0 0 5px 0; margin: 0 0 5px 0; border-bottom: 3px solid #fff; ">
+									<b>标题一</b>
+								</div>
+
+								<p style=" color: #fff;">请在这里输入内容</p>
+							</div>
+							<div style="margin: 0 10px 0 0;height: 100%;width: 100%;">
+								<div style=" color: #fff; padding: 0 0 5px 0; margin: 0 0 5px 0; border-bottom: 3px solid #fff; ">
+									<b>标题二</b>
+								</div>
+
+								<p style=" color: #fff; ">请在这里输入内容</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 230px; ">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

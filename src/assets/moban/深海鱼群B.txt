@@ -1,0 +1,56 @@
+<div id="Blive" style="overflow: hidden;margin:-24px -23px -23px -24px;background-size: cover;background-position-y:-170px;background-image: url(http://www.5xge.com/images/2017/08/07/0b8fb26819c6e214f79748c79d68ce56.png);border-radius:8px;height: 278px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 278px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float:left;position: relative;height:278px;width: 100%;top:0px">
+				<!--a-->
+				<div id="Paging_one" style="overflow: hidden;display: inline-flex;width: 100%;">
+					<div style="width: 45%;height:278px;">
+						<div style="margin: 46px auto;width: 200px;height: 200px;overflow: hidden;">
+							<!--头像-->
+							<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%;border-radius:50%;background-color: #357296;">
+							
+							</div>
+						</div>
+					</div>
+					<div style="display: inline-flex;width: 100%;">
+						<div style="margin: 20px 10px 20px 20px;background-color: rgba(255, 255, 255, 0.23);box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);width: 33.333%;height: 240px;">
+							<div style="border: 1px solid #ffffff;background-color: rgba(255, 255, 255, 0.77);color: #277ab0;height:100%;">
+								<div style="text-align:center;padding:10px 0 8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+									标题
+								</div>
+
+								<p style="font-size:12px;color: #277ab0;margin:4px 20px;">输入内容</p>
+							</div>
+						</div>
+						<div style="margin: 20px 10px 20px 7px;background-color: rgba(255, 255, 255, 0.23);box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);width: 33.333%;height: 240px;">
+							<div style="border: 1px solid #ffffff;background-color: rgba(255, 255, 255, 0.77);color: #277ab0;height: 100%;">
+								<div style="text-align:center;padding:10px 0 8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+									标题
+								</div>
+
+								<p style="font-size:12px;color: #277ab0;margin:4px 20px;">输入内容</p>
+							</div>
+						</div>
+						<div style="margin: 20px 10px 20px 7px;background-color: rgba(255, 255, 255, 0.23);box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);width: 33.333%;height: 240px;">
+							<div style="border: 1px solid #ffffff;background-color: rgba(255, 255, 255, 0.77);color: #277ab0;height: 100%;">
+								<div style="text-align:center;padding:10px 0 8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+									标题
+								</div>
+
+								<p style="font-size:12px;color: #277ab0;margin:4px 20px;">输入内容</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 278px; overflow: hidden;">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

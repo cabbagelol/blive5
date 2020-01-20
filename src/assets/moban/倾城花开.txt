@@ -1,0 +1,82 @@
+<div id="Blive" style="overflow: hidden;margin:-24px -23px -23px -24px;background-image:url(http://www.5xge.com/images/2017/06/19/ee693333fc3456366ebe8ad8b12e30ab.png);background-size: cover;border-radius:8px;height: 278px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style="height: 278px;">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float:left;position: relative;height:278px;width: 100%">
+				<!--a-->
+				<div id="Paging_one" style="height: calc(278px - 20px);border: 10px solid #9d696e;">
+					<div style="display: inline-flex;width: 100%;height: 258px;">
+						<div blive-bjcolor="0" style="float: left;width: 20%;min-width: 300px;height: 100%;">
+						</div>
+						<div blive-bjcolor="0" style="overflow: hidden;display: inline-flex;height: 258px;">
+							<div blive-bjcolor="0" style="padding: 30px 10px;border-right: 1px solid rgba(181, 120, 127, 0.48);border-left: 1px solid rgba(181, 120, 127, 0.48);width: 150px;">
+								<div blive-bjcolor="0" style="background-color: rgba(160, 101, 108, 0.74);color: rgb(255, 255, 255);font-size: 47px;text-align: center;margin: 34px auto;line-height: 2;border-radius: 50%;height: 100px;width: 100px;">
+									倾
+								</div>
+
+								<p blive-bjcolor="0" style="color: rgb(255, 255, 255); text-align: center; word-wrap: break-word;"> qing | <a href="{[Row]}Paging_two{[Rend]}" style="color: rgb(255, 255, 255);" target="_self">介绍</a> </p>
+							</div>
+							<div blive-bjcolor="0" style='padding: 30px 10px;border-right: 1px solid rgba(181, 120, 127, 0.48);background-image: url("https://static.wixstatic.com/media/0da768_5810e2bd76f64c77a67904ad2b073444.png");width: 150px;'>
+								<div blive-bjcolor="0" style='background-color: rgba(160, 101, 108, 0.74);background-image: url("https://static.wixstatic.com/media/0da768_2729bfbce3874276a7dd057098f93949.png");color: rgb(255, 255, 255);font-size: 47px;text-align: center;margin: 34px auto;line-height: 2;border-radius: 50%;height: 100px;width: 100px;'>
+									城
+								</div>
+
+								<p blive-bjcolor="0" style="color: rgb(255, 255, 255); text-align: center; word-wrap: break-word;"> cheng | <a href="{[Row]}Paging_three{[Rend]}" style="color: rgb(255, 255, 255);" target="_self">联系</a> </p>
+							</div>
+							<div style="padding: 30px 10px;border-right: 1px solid rgba(181, 120, 127, 0.48);width: 150px;">
+								<div blive-bjcolor="0" style="background-color: rgba(160, 101, 108, 0.74);color: rgb(255, 255, 255);font-size: 47px;text-align: center;margin: 34px auto;line-height: 2;border-radius: 50%;height: 100px;width: 100px;">
+									花
+								</div>
+
+								<p blive-bjcolor="0" style="color: #fff;text-align: center;">hua | 直播时间</p>
+							</div>
+							<div blive-bjcolor="0" style='padding: 30px 10px;border-right: 1px solid rgba(181, 120, 127, 0.48);background-image: url("https://static.wixstatic.com/media/0da768_5810e2bd76f64c77a67904ad2b073444.png");width: 150px;'>
+								<div blive-bjcolor="0" style='background-color: rgba(160, 101, 108, 0.74);background-image: url("https://static.wixstatic.com/media/0da768_2729bfbce3874276a7dd057098f93949.png");color: rgb(255, 255, 255);font-size: 47px;text-align: center;margin: 34px auto;line-height: 2;border-radius: 50%;height: 100px;width: 100px;'>
+									开
+								</div>
+
+								<p blive-bjcolor="0" style="color: #fff;text-align: center;">kai | 礼物</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style="height: calc(278px - 20px);border: 10px solid #9d696e;">
+					<div style="overflow: hidden;display: inline-flex;width: 100%;height: 259px;">
+						<div style="width: 20%;height: 100%;">
+							<br>
+						</div>
+						<div style="height: 100%;display: inline-flex;">
+							<div style="width: 150px;padding: 30px 10px;float: left;border-right: 1px solid rgba(181, 120, 127, 0.48);border-left: 1px solid rgba(181, 120, 127, 0.48);">
+								<div style="background-color:rgba(160, 101, 108, 0.74);color:rgb(255, 255, 255);font-size:47px;text-align:center;margin: 34px auto;border-radius:50%;height:100px;width:100px">
+									倾
+								</div>
+
+								<p style="color: #fff;text-align: center;"> <a href="{[Row]}Paging_one{[Rend]}" style="color: rgb(255, 255, 255);" target="_self">返回首页</a> </p>
+							</div>
+							<div blive-bjcolor="0" style="padding: 30px 10px;float: left;border-right: 1px solid rgba(181, 120, 127, 0.48);word-wrap: break-word;width: 550px;">
+								<div blive-bjcolor="0" style="background-image: url(https://static.wixstatic.com/media/0da768_2729bfbce3874276a7dd057098f93949.png);color: rgb(255, 255, 255);font-size: 29px;padding: 0 10px;">
+									标题一
+								</div>
+								<div style="background-color: rgba(160, 101, 108, 0.74);background-image: url(https://static.wixstatic.com/media/0da768_2729bfbce3874276a7dd057098f93949.png);border-radius: 5px;color:rgba(0,0,0,0);height: 4px;width: 100%">
+									-
+								</div>
+								<div style="color: #fff;">
+
+									<p blive-bjcolor="0" style="padding: 4px 0;">请输入内容</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--c-->
+				<div id="Paging_three" style="height: calc(278px - 20px);border: 10px solid #9d696e;">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 79px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

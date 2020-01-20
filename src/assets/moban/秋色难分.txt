@@ -1,0 +1,52 @@
+<div id="Blive" style="position:absolute;overflow:hidden;display:block;border-radius:4px;top:-75px;left:-18px;background-image: url(http://www.5xge.com/images/2017/08/05/2e73f98dade10b0b5db1c32f06039c2c.jpg);background-size:cover;width:1189px;height:300px;color:#fff;" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 300px; background-image:url(http://www.5xge.com/cabb/moban/inns/cabb-tm/moban-tm.png);">
+		<!--bor-->
+
+		<div id="div" style="height: 100%;max-height: 300px;overflow: hidden">
+			<div style="float: left;position: relative;height:100%;width: 100%;top:0px ">
+
+				<!--a-->
+				<div id="Paging_one" style=" float: left;background-color:rgba(91,78,12,.49);height:300px">
+					<div style="float:left;border:2px solid rgba(255,255,255,.7);width:calc(100% - 44px);height:275px;margin:10px;overflow:hidden">
+						<div style="height:280px;width:500px;margin:0">
+							<div style="position:absolute;font-size:60px;color:#fff;text-shadow:-1px 2px 1px #000;margin:0 0 0 27px;width:400px;max-width:400px">
+
+								<p style="white-space: initial;">Individual Resume</p>
+								<div style="background-color:rgba(11,11,11,.81);padding:10px 0 10px 30px;font-size:16px;margin:20px 0 0 0;width:200px;border-radius:0 20px">Cabbagelol</div>
+							</div>
+						</div>
+						<div style="word-wrap:break-word;word-break:normal;margin:-280px 0 0 500px;height:276px;width:685px;overflow-y:auto;overflow-x:hidden;border-left:1px solid rgba(255,255,255,.32);z-index:2">
+							<div style="float:left;border-right:1px solid rgba(255,255,255,.17);width:200px;max-width:200px;height:275px">
+								<div style="margin:20px 0 0 10px;font-weight:bold">标题</div>
+
+								<p style="font-size:14px;margin:5px 0 0 10px;width:185px;max-width:300px">输入你需要写的内容</p>
+							</div>
+							<div style="float:left;border-right:1px solid rgba(255,255,255,.17);width:200px;max-width:200px;height:275px">
+								<div style="margin:20px 0 0 10px;font-weight:bold">标题</div>
+
+								<p style="font-size:14px;margin:5px 0 0 10px">输入你需要写的内容</p>
+							</div>
+							<div style="float:left;border-right:1px solid rgba(255,255,255,.17);width:200px;max-width:200px;height:275px">
+								<div style="margin:20px 0 0 10px;font-weight:bold">标题</div>
+
+								<p style="font-size:14px;margin:5px 0 0 10px">输入你需要写的内容</p>
+							</div>
+						</div>
+					</div>
+					<div style="position:absolute;background-color:rgba(255,255,255,.46);border-radius:40px;height:62px;width:23px;padding:9px 0;margin:195px 0 0 1136px;text-align:center;color:#e1e1e1;z-index:1">
+						<div>&uarr;</div>
+						<div>▬</div>
+						<div>&darr;</div>
+					</div>
+				</div>
+
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 300px; ">
+					<div blive-pagings="+" style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">+</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
