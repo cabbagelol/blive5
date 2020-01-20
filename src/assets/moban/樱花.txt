@@ -1,0 +1,122 @@
+<div id="Blive" style="overflow: hidden;margin:-24px -23px -23px -24px;background-image:linear-gradient(#fc829f,#e34771);border-radius:8px;height: 278px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style="float: left; width: 100%; height: 278px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float: left;position: relative;height:100%;width: 100%;top:0px ">
+				<!--a-->
+				<div id="Paging_one" style=" float: left; width: 100%; height: 278px; overflow: hidden;display: inline-flex;">
+					<div style="position: relative;float: left;overflow: hidden;height: 278px;width: 250px;">
+						<div>
+							<img src="http://5xge.com/cabb/2017032522500271479498.png" style=" transform: rotatey(180deg); width: 100%; ">
+						</div>
+						<div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: right; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="{[Row]}Paging_one{[Rend]}" style=" color: #fff;">首页</a>
+							</div>
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: right; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="{[Row]}Paging_two{[Rend]}" style=" color: #fff;">介绍</a>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;float: left;top: 0px;height: 278px;width: 401px;margin: 0 auto;">
+						<div style="position: inherit;margin: 0 auto;padding: 39px 0;width: 200px;z-index: 2;">
+							<div style="margin: 0 auto;width: 160px;height: 160px;background-color: #ffffff;border-radius: 50%;overflow: hidden;">
+								<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%">
+									<!--头像-->
+								</div>
+							</div>
+							<div style="text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.69);color: #fff;text-align: center;font-size: 32px;margin: 10px 0;">
+								You name
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;float: left;overflow: hidden;height: 278px;width: 250px;">
+						<div>
+							<img src="http://5xge.com/cabb/2017032522500271479498.png" style=" width: 100%; ">
+						</div>
+						<div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: left; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="#sing" style="color: #fff;">微博</a>
+							</div>
+							<div style=" float: left; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: left; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="#email" style="color: #fff;">邮箱</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 278px; overflow: hidden;display: inline-flex;">
+					<div style="position: relative;float: left;overflow: hidden;height: 278px;width: 250px;">
+						<div style="margin: 20px 40px;">
+							<div style="font-size: 18px;color: #fff;">
+								标题
+							</div>
+
+							<p style="color: #fff;">请在这里输入内容</p>
+						</div>
+						<div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: right; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="{[Row]}Paging_one{[Rend]}" style=" color: #fff;">首页</a>
+							</div>
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: right; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="{[Row]}Paging_two{[Rend]}" style=" color: #fff;">介绍</a>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;float: left;top: 0px;height: 278px;width: 401px;margin: 0 auto;">
+						<div style="position: inherit;margin: 0 auto;padding: 39px 0;width: 200px;z-index: 2;">
+							<div style="margin: 0 auto;width: 160px;height: 160px;background-color: #ffffff;border-radius: 50%;overflow: hidden;">
+								<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%">
+									<!--头像-->
+								</div>
+							</div>
+							<div style="text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.69);color: #fff;text-align: center;font-size: 32px;margin: 10px 0;">
+								You name
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;float: left;overflow: hidden;height: 278px;width: 250px;">
+						<div style="margin: 20px 40px;">
+							<div style="font-size: 18px;color: #fff;">
+								标题
+							</div>
+
+							<p style="color: #fff;">请在这里输入内容</p>
+						</div>
+						<div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+							<div style=" float: right; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: left; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="#sing" style="color: #fff;">微博</a>
+							</div>
+							<div style=" float: left; font-size: 14px; width: 1px; height: 42px; background: linear-gradient(#e34771,#fc829f); ">
+							</div>
+							<div style="float: left; padding: 10px 30px; font-size: 14px; color: #fff;">
+								<a href="#email" style="color: #fff;">邮箱</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--c-->
+				<div id="Paging_three" style=" float: left; width: 100%; height: 278px; overflow: hidden;">
+					<div blive-pagings="+" style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

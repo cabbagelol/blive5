@@ -1,0 +1,54 @@
+<div id="Blive" style="overflow: hidden;margin:-24px -23px -23px -24px;background-image:url(http://www.5xge.com/images/2017/06/29/8ccba3be5bc918b94b9227010dd17b20.png);background-size: cover;border-radius:8px;height: 278px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 278px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float: left;position: relative;height:100%;width: 100%;top:0px ">
+				<!--a-->
+				<div id="Paging_one" style=" float: left; width: 100%; height: 278px;overflow: hidden;display: inline-flex;">
+					<div style="float: left;height: 278px;min-width: 400px;width: 20%;margin: 0 10% 0 0;">
+						<div style="margin: 32px auto;width: 200px;">
+							<div style=" margin: 0 auto; width: 160px; height: 160px; background-color: #252525; border-radius: 50%; overflow: hidden; ">
+								<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%">
+									<!--头像-->
+								</div>
+							</div>
+							<div style=" text-align: center; font-size: 32px; margin: 10px 0; ">
+								You name
+							</div>
+						</div>
+					</div>
+					<div style="padding: 20px;display: inline-flex;width: 80%;">
+						<div style="width: 33.333%;color: #ffeb3b;">
+							<div style=" font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+								标题
+							</div>
+
+							<p style=" font-size: 15px; ">内容</p>
+						</div>
+						<div style="width: 33.333%;color: #ffeb3b;">
+							<div style=" font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+								标题
+							</div>
+
+							<p style=" font-size: 15px; ">内容</p>
+						</div>
+						<div style="width: 33.333%;color: #ffeb3b;">
+							<div style=" font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+								标题
+							</div>
+
+							<p style=" font-size: 15px; ">内容</p>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 278px;overflow: hidden;display: inline-flex;">
+					<div blive-pagings="+" style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

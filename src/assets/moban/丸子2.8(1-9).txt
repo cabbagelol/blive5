@@ -1,0 +1,92 @@
+<div id="Blive" style="position: absolute;display: block;top: -75px;left: -18px;border-radius: 2px;overflow: hidden;width: 1189px;height: 300px;" title="简介由生成器生成：http://blive.Cabbagelol.net(丸子http://www.uid75.com/)">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 300px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 300px;overflow: hidden">
+			<div style="float: left; position: relative; height: 100%; width: 100%; top: 0px;">
+				<!--a-->
+				<div id="Paging_one" style=" float: left; width: 100%; height: 300px;overflow: hidden;">
+					<div style=" float: left; width: 200px; height: 300px; ">
+						<div style=" border-radius: 0 6px 6px 0; margin: 120px 0 0 0; overflow: hidden; position: absolute; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.29); width: 140px; height: auto; ">
+							<a href="{[Row]}Paging_one{[Rend]}" style="color:#fff">
+								<div style=" background-color: #2196F3; color: #fff; font-size: 15px; padding: 5px 20px; ">分页一</div>
+							</a>
+							<a href="{[Row]}Paging_one{[Rend]}" style="color:#fff">
+								<div style=" background-color: rgba(233, 30, 99, 0.53); color: #fff; font-size: 15px; padding: 5px 20px; ">分页二</div>
+							</a>
+						</div>
+					</div>
+					<div style=" float: left; width: 789px; height: 300px; ">
+						<div style=" float: left; width: calc(50% - 2.5px); height: 300px; ">
+							<div style=" margin: 10px 0 0 0; background-color: rgba(255, 255, 255, 0.38); padding: 10px; width: calc(100% - 20px); height: 259px; ">
+								<div style=" background-color: #03a9f4; padding: 4px 16px; width: 130px; color: #fff; border-radius: 5px; font-size: 15px; ">【标题】</div>
+
+								<p style=" color: #fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.58); padding: 5px 0; ">请在这里输入内容</p>
+
+							</div>
+						</div>
+						<div style=" float: left; width: calc(50% - 2.5px); height: 300px; margin: 0 0 0 5px">
+							<div style=" margin: 10px 0 0 0; background-color: rgba(255, 255, 255, 0.38); padding: 10px; width: calc(100% - 20px); height: 259px; ">
+								<div style=" background-color: #8BC34A; padding: 4px 16px; width: 130px; color: #fff; border-radius: 5px; font-size: 15px; ">【标题】</div>
+
+								<p style=" color: #fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.58); padding: 5px 0; ">请在这里输入内容</p>
+
+							</div>
+						</div>
+					</div>
+					<div style=" float: left; width: 200px; height: 300px; ">
+						<div style="overflow:hidden;margin: 70px auto;width:160px;height:160px;border-radius:50%;background-color: #fff;">
+							<!--头像-->
+							<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%;color: rgba(0, 0, 0, 0);">
+								&eamp;
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 300px;overflow: hidden;">
+					<div style=" float: left; width: 200px; height: 300px; ">
+						<div style=" border-radius: 0 6px 6px 0; margin: 120px 0 0 0; overflow: hidden; position: absolute; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.29); width: 140px; height: auto; ">
+							<a href="{[Row]}Paging_one{[Rend]}" style="color:#fff">
+								<div style=" background-color: rgba(3, 169, 244, 0.53); color: #fff; font-size: 15px; padding: 5px 20px; ">分页一</div>
+							</a>
+							<a href="{[Row]}Paging_one{[Rend]}" style="color:#fff">
+								<div style=" background-color: #E91E63; color: #fff; font-size: 15px; padding: 5px 20px; ">分页二</div>
+							</a>
+						</div>
+					</div>
+					<div style=" float: left; width: 789px; height: 300px; ">
+						<div style=" float: left; width: calc(50% - 2.5px); height: 300px; ">
+							<div style=" margin: 10px 0 0 0; background-color: rgba(255, 255, 255, 0.38); padding: 10px; width: calc(100% - 20px); height: 259px; ">
+								<div style=" background-color: #03a9f4; padding: 4px 16px; width: 130px; color: #fff; border-radius: 5px; font-size: 15px; ">【标题】</div>
+
+								<p style=" color: #fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.58); padding: 5px 0; ">请在这里输入内容</p>
+
+							</div>
+						</div>
+						<div style=" float: left; width: calc(50% - 2.5px); height: 300px; margin: 0 0 0 5px">
+							<div style=" margin: 10px 0 0 0; background-color: rgba(255, 255, 255, 0.38); padding: 10px; width: calc(100% - 20px); height: 259px; ">
+								<div style=" background-color: #8BC34A; padding: 4px 16px; width: 130px; color: #fff; border-radius: 5px; font-size: 15px; ">【标题】</div>
+
+								<p style=" color: #fff; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.58); padding: 5px 0; ">请在这里输入内容</p>
+
+							</div>
+						</div>
+					</div>
+					<div style=" float: left; width: 200px; height: 300px; ">
+						<div style="overflow:hidden;margin: 70px auto;width:160px;height:160px;border-radius:50%;background-color: #fff;">
+							<!--头像-->
+							<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%;color: rgba(0, 0, 0, 0);">
+								&eamp;
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--c-->
+				<div id="Paging_three" style=" float: left; width: 100%; height: 300px;overflow: hidden;">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,55 @@
+<div id="Blive" style="overflow: hidden;margin:-24px -23px -23px -24px;background-size: cover;background-position-y:-170px;background-image: url(http://www.5xge.com/images/2017/08/07/389d8de4a64a902743fbded6c4fe4568.png);border-radius:8px;height: 278px" title="简介由生成器生成：http://blive.Cabbagelol.net">
+	<!--bj-->
+	<div style=" float: left; width: 100%; height: 278px; ">
+		<!--bor-->
+		<div id="div" style="height: 100%;max-height: 278px;overflow: hidden">
+			<div style="float: left;position: relative;height:100%;width:100%;top:0px">
+				<!--a-->
+				<div id="Paging_one" style="overflow: hidden;display: inline-flex;width: 100%;height: 278px;">
+					<div style="width: 70%;max-width: 690px;display: inline-flex;padding: 15px;">
+						<div blive-bjcolor="0" style="padding: 10px;width: 40%;background-color: rgba(38, 121, 175, 0.65);">
+							<div style="background-color: rgba(37, 116, 172, 0.7);color:#fff;height:100%;">
+								<div style="text-align:center;padding:10px 0 8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+									标题
+								</div>
+
+								<p style="font-size:12px;color: #fff;margin:4px 20px;">输入内容</p>
+							</div>
+						</div>
+						<div blive-bjcolor="0" style="width: 20%;">
+						</div>
+						<div style="padding:10px;width: 40%;background-color: rgba(255, 255, 255, 0.66);">
+							<div style="background-color: rgba(255, 255, 255, 0.66);color: #277ab0;height:100%;">
+								<div style="text-align:center;padding:10px 0 8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+									标题
+								</div>
+
+								<p style="font-size:12px;color: #277ab0;margin:4px 20px;">输入内容</p>
+							</div>
+						</div>
+					</div>
+					<div style="width: 30%;">
+						<div style="margin: 20px auto 0 auto;width: 200px;height: 200px;overflow: hidden;border-radius:50%;background-color:#fff;">
+							<!--头像-->
+							<div blive-tox="-1" id="Blive-Tox" style="width: 100%;height: 100%">
+							
+							</div>
+						</div>
+
+						<p style="
+    text-align: center;
+    font-size: 31px;
+    color: #fff;
+">You Name</p>
+					</div>
+				</div>
+				<!--b-->
+				<div id="Paging_two" style=" float: left; width: 100%; height: 278px; overflow: hidden;">
+					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 100px auto;">
+						+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
