@@ -91,8 +91,18 @@ export class WorkbenchComponent implements OnInit {
     /**
      * 全局事件
      */
-    onShortcutkeys () {
-        this.shortcutkeys.readonly();
+    async onShortcutkeys () {
+        const self = this;
+        self.shortcutkeys.readonly({
+            resolve: (keys) => {
+
+                switch (keys.codekey) {
+                    case 0:
+                        console.log("保存");
+                    break;
+                }
+            }
+        });
     }
 
     /**
