@@ -9,71 +9,109 @@
                 历史
             </nz-header>
             <nz-layout>
+                <nz-card>
+                    <div nz-row>
+                        <div nz-col nzMd="16">
+                            自动保存
+                        </div>
+                        <div nz-col nzMd="8" style="text-align: right">
+                            <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关"
+                                       disabled></nz-switch>
+                        </div>
+                    </div>
+                </nz-card>
+
                 <!--S 列表-->
                 <nz-content class="blive-history-window-overflow">
-                    <nz-card>
-                        <div nz-row>
-                            <div nz-col nzMd="16">
-                                自动保存
-                            </div>
-                            <div nz-col nzMd="8" style="text-align: right">
-                                <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关" disabled></nz-switch>
-                            </div>
-                        </div>
-                    </nz-card>
-                    <div style="padding: 30px">
-                        <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
-                            <ng-template #item let-item>
-                                <nz-list-item [nzActions]="[viewAction]">
-                                    <ng-template #viewAction>
-                                        <a (click)="drawerSwitch()">查看</a>
-                                    </ng-template>
-                                    <nz-list-item-meta
-                                            [nzTitle]="nzTitle"
-                                            nzAvatar="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
-                                            nzDescription="Progresser AFX"
-                                    >
-                                        <ng-template #nzTitle>
-                                            <a href="https://ng.ant.design">{{ item.name }}</a>
-                                        </ng-template>
-                                    </nz-list-item-meta>
-                                </nz-list-item>
-                            </ng-template>
-                        </nz-list>
-                        <nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="drawerSwitch()">
-                            <p class="title" style=" margin-bottom: 24px;">User Profile</p>
-                            <nz-descriptions [nzColumn]="2" nzTitle="Personal">
-                                <nz-descriptions-item nzTitle="Full Name" [nzSpan]="1">Lily</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Account" [nzSpan]="1">AntDesign@example.com</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="City" [nzSpan]="1">HangZhou</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Country" [nzSpan]="1">China🇨🇳</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Birthday" [nzSpan]="1">February 2,1900</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Website" [nzSpan]="1"> - </nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Message" [nzSpan]="2">
-                                    Make things as simple as possible but no simpler.
-                                </nz-descriptions-item>
-                            </nz-descriptions>
-                            <nz-divider></nz-divider>
-                            <nz-descriptions [nzColumn]="2" nzTitle="Company">
-                                <nz-descriptions-item nzTitle="Position" [nzSpan]="1">Programmer</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Responsibilities" [nzSpan]="1">Coding</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Department" [nzSpan]="1">AFX</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Supervisor" [nzSpan]="1">Lin</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Skills" [nzSpan]="2">
-                                    C / C + +, data structures, software engineering, operating systems, computer networks, databases, compiler
-                                    theory, computer architecture, Microcomputer Principle and Interface Technology, Computer English, Java, ASP,
-                                    etc.
-                                </nz-descriptions-item>
-                            </nz-descriptions>
-                            <nz-divider></nz-divider>
-                            <nz-descriptions [nzColumn]="2" nzTitle="Contacts">
-                                <nz-descriptions-item nzTitle="Email" [nzSpan]="1">AntDesign@example.com</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Phone Number" [nzSpan]="1">+86 181 0000 0000</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Github" [nzSpan]="2">
-                                    <a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank">github.com/NG-ZORRO/ng-zorro-antd</a>
-                                </nz-descriptions-item>
-                            </nz-descriptions>
-                        </nz-drawer>
+                    <div style="padding: 30px;">
+                        <nz-page-header>
+                            <nz-page-header-extra>
+                                <a nz-dropdown [nzDropdownMenu]="menu">
+                                    更多 <i nz-icon nzType="ellipsis" nzTheme="outline"></i>
+                                </a>
+                                <nz-dropdown-menu #menu="nzDropdownMenu">
+                                    <ul nz-menu>
+                                        <li nz-menu-item>导出所有历史列表 <nz-tag [nzColor]="'#999'">不可用</nz-tag></li>
+                                        <li nz-menu-item>导出选中的简介 <nz-tag [nzColor]="'#999'">不可用</nz-tag></li>
+                                        <li nz-menu-item>导入 <nz-tag [nzColor]="'#999'">不可用</nz-tag></li>
+                                    </ul>
+                                </nz-dropdown-menu>
+                            </nz-page-header-extra>
+                            <nz-page-header-content>
+                                <nz-row nzType="flex">
+                                    <nz-statistic nzTitle="剩余可用储存" nzPrefix="份"
+                                                  nzValue="{{20 - listLength}}"></nz-statistic>
+                                    <nz-statistic nzTitle="总量" [nzValue]="568.08" nzPrefix="kb"
+                                                  style="margin: 0 32px"></nz-statistic>
+                                </nz-row>
+                            </nz-page-header-content>
+                        </nz-page-header>
+
+                        <nz-divider></nz-divider>
+
+                        <!--<div class="operate">-->
+                        <!--<button-->
+                        <!--nz-button-->
+                        <!--[disabled]="numberOfChecked === 0"-->
+                        <!--[nzType]="'primary'"-->
+                        <!--[nzLoading]="isOperating"-->
+                        <!--(click)="operateData()"-->
+                        <!--&gt;-->
+                        <!--Reload-->
+                        <!--</button>-->
+                        <!--<span *ngIf="numberOfChecked">Selected {{ numberOfChecked }} items</span>-->
+                        <!--</div>-->
+                        <nz-table
+                            #rowSelectionTable
+                            nzShowPagination
+                            nzShowSizeChanger
+                            [nzData]="historyList"
+                            (nzCurrentPageDataChange)="currentPageDataChange($event)">
+                            <thead>
+                            <tr>
+                                <th
+                                        nzShowCheckbox
+                                        [(nzChecked)]="isAllDisplayDataChecked"
+                                        [nzIndeterminate]="isIndeterminate"
+                                        (nzCheckedChange)="checkAll($event)"></th>
+                                <th>简要信息</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let data of historyList">
+                                <td
+                                        nzShowCheckbox
+                                        [(nzChecked)]="mapOfCheckedId[data.id]"
+                                        [nzDisabled]="data.disabled"
+                                        (nzCheckedChange)="refreshStatus()"
+                                ></td>
+                                <td>
+                                    <nz-descriptions nzLayout="vertical">
+                                        <nz-descriptions-item nzTitle="名称">
+                                            <p nz-paragraph nzEditable [nzEllipsisRows]="1" [nzEllipsis]="true" [(nzContent)]="data.name" (nzContentChange)="onUpDataList(data)"></p>
+                                        </nz-descriptions-item>
+                                        <nz-descriptions-item nzTitle="原始模板"> 未知</nz-descriptions-item>
+                                        <nz-descriptions-item nzTitle="容量">
+                                            <nz-progress [nzPercent]="(19.53 / (data.html.toString().length / 1024)).toFixed(2)" style="width: 200px; display: block"></nz-progress>
+                                        </nz-descriptions-item>
+                                        <nz-descriptions-item nzTitle="系统序列">
+                                            <span nz-tooltip
+                                                  nzTooltipTitle="这是blive生成的简介id,它是由什么组成并不重要,得益于此id工具才能通过它加载简介数据">{{data.id}}</span>
+                                        </nz-descriptions-item>
+                                        <nz-descriptions-item nzTitle="创建时间">{{ data.time }}</nz-descriptions-item>
+                                    </nz-descriptions>
+                                </td>
+                                <td style="width: 200px">
+                                    <button nz-button nzType="primary" (click)="open(data)">使用</button>
+                                    <nz-divider nzType="vertical"></nz-divider>
+                                    <button nz-popconfirm
+                                            nzPopconfirmTitle="删除该简介"
+                                            nzPopconfirmPlacement="bottom" nz-button nzType="danger" (nzOnConfirm)="delete(data)">删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </nz-table>
                     </div>
                 </nz-content>
                 <!--E 列表-->

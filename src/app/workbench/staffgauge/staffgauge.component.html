@@ -2,7 +2,7 @@
     <div class="staffgauge-nav-flex-1"></div>
     <div class="staffgauge-nav-flex-1"></div>
     <div class="staffgauge-nav-box">
-        <a nz-dropdown nzTrigger="click" nzPlacement="bottomCenter" [nzDropdownMenu]="menu"
+        <a nz-dropdown nzTrigger="hover" nzPlacement="bottomCenter" [nzDropdownMenu]="menu"
            class="staffgauge-whiteboardsize-btn">
             简介比例
             <i nz-icon nzType="down"></i>
@@ -11,7 +11,28 @@
             <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="setWhiteboardsizeSize(radioValue)">
                 <ul nz-menu>
                     <li nz-menu-item *ngFor="let item of whiteboardsizeList">
-                        <label nz-radio nzValue="{{item.name}}" >{{item.width}}px * {{item.height}}px | {{item.name}}</label>
+                        <label nz-radio nzValue="{{item.name}}">
+                            <span *ngIf="item.company != 'auto'">{{item.width}}px * {{item.height}}
+                                px |</span>{{item.name}}
+                        </label>
+                    </li>
+                    <li nz-menu-item>
+                        <label nz-radio nzValue="-1">
+                            <span>自定义 <nz-tag>px</nz-tag></span>
+                        </label>
+                        <nz-input-group nzCompact nzCompact="true" nzSize="small" style="margin-top: 10px">
+                            <input type="number" nz-input nzPrefix="宽" placeholder="宽" nzSuffix="px"
+                                   style="width:100px; text-align: center;"
+                                   (ngModelChange)="setWhiteboardsizeSize(-1)" [ngModel]="radioCustomValue[0]"/>
+                            <input type="text"
+                                   disabled
+                                   nz-input
+                                   placeholder="*"
+                                   style="width: 30px; border-left: 0px; pointer-events: none; background-color: rgb(255, 255, 255);"/>
+                            <input type="number" nz-input nzPrefix="高" placeholder="高" nzSuffix="px"
+                                   style="width: 100px; text-align: center; border-left: 0px;"
+                                   (ngModelChange)="setWhiteboardsizeSize(-1)" [ngModel]="radioCustomValue[1]"/>
+                        </nz-input-group>
                     </li>
                     <li nz-menu-divider></li>
                     <div class="staffgauge-whiteboardsize-down">
@@ -25,4 +46,57 @@
     </div>
     <div class="staffgauge-nav-flex-1"></div>
     <div class="staffgauge-nav-flex-1"></div>
+</div>
+
+
+<!--:class="{'Ruler-right': Ruler.direction}"-->
+<div id="App">
+    <div class="Ruler">
+        <div class="Ruler-Guides">
+            <ng-container *ngFor="let item of Ruler.Guides.value; let key = index;">
+                <div class="Ruler-Guides-top" *ngIf="item.standard" [ngStyle]="{'top': item.distance + 'px'}"
+                     (mousedown)="_Ruler_Guides_dolly(key)" (mouseup)="_Ruler_Guides_dolly(false)"></div>
+                <div class="Ruler-Guides-left" *ngIf="!item.standard" [ngStyle]="{'left':item.distance + 'px'}"
+                     (mousedown)="_Ruler_Guides_dolly(key)" (mouseup)="_Ruler_Guides_dolly(false)"></div>
+            </ng-container>
+            <!-- 参考线 z-index = 200 -->
+        </div>
+        <!-- 主体 -->
+        <div class="Ruler-body">
+            <div class="Ruler-div"><!-- 方块 --></div>
+            <!-- 上标尺 -->
+            <div class="Ruler-top" (mousedown)="_Ruler_Guides_(true)">
+                <div *ngIf="Ruler.Mouse" class="Ruler-top-mouse" [ngStyle]="{'left':Ruler.Mouse.x + 'px'}"></div>
+                <!-- X 鼠标位 -->
+                <div class="Ruler-top-body">
+                    <div [ngStyle]="{'width' : Ruler.Top.w + 'px','transform':'translateX(-'+ Ruler.Top.t +'px)'}">
+                        <div class="Ruler-top-body-75" *ngFor="let item of Ruler.Top.v_; let key = index;">
+                            <span>{{key * 50 - (Ruler.Top.w / 3)}}</span>
+                            <div [ngClass]="{'in': 4 === key_}"
+                                 *ngFor="let item_ of length9_; let key_ = index"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 标尺 -->
+            </div>
+            <!-- 左/右 标尺 -->
+            <div class="Ruler-auto" (mousedown)="_Ruler_Guides_(false)">
+                <div *ngIf="Ruler.Mouse" class="Ruler-auto-mouse" [ngStyle]="{'top':Ruler.Mouse.y + 'px'}"></div>
+                <!-- Y 鼠标位 -->
+                <div class="Ruler-auto-body">
+                    <div [ngStyle]="{'height' : Ruler.Auto.w + 'px','transform':'translateY(-'+ Ruler.Auto.t +'px)'}">
+                        <div class="Ruler-auto-body-75" *ngFor="let item of Ruler.Auto.v_; let key = index">
+                            <span>{{key * 50 - Ruler.Auto.w / 3}}</span>
+                            <div [ngClass]="{'in': 4 === key_}" *ngFor="let item_ of length9_; let key_ = index"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 标尺 -->
+            </div>
+            <!--标尺 z-index = 100-->
+        </div>
+    </div>
+    <!--<div class="Blive" @mouseover="_Ruler_Mouse(true)" @mouseout="_Ruler_Mouse(false)">-->
+    <!--&lt;!&ndash; 容器 z-index  = 110 &ndash;&gt;-->
+    <!--</div>-->
 </div>

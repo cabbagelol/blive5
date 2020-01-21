@@ -7,34 +7,34 @@
 <!--S 引导-->
 <div class="blive-workbench-guide" [style.height]="getWindowSizeChange()" *ngIf="!workbenchData.isData">
     <div>
-        <div>从触摸<i nz-icon nzType="appstore" nzTheme="outline"></i>开始您的第一个简介</div>
-        <span>把目光移动到左侧, 紧贴游览器左侧, 看到了吗.</span>
+        <div *ngIf="!workbenchData.isNull">
+            <div>从触摸<i nz-icon nzType="appstore" nzTheme="outline"></i>开始您的第一个简介</div>
+            <span>把目光移动到左侧, 紧贴游览器左侧, 看到了吗.</span>
+        </div>
+
+        <nz-empty
+                [nzNotFoundImage]="'https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original'"
+                [nzNotFoundContent]="contentTpl"
+                [nzNotFoundFooter]="footerTpl"
+                *ngIf="workbenchData.isNull">
+            <ng-template #contentTpl>
+                <span> 抱歉, 系统无法读取简介ID, 它可能已经不存在了 <a>了解更多</a> </span>
+            </ng-template>
+        </nz-empty>
     </div>
 </div>
+
+<blive-staffgauge [data]="data" (whiteboardsizeSize)="setWhiteboardsizeSize($event)"></blive-staffgauge>
+
 <!--E 引导-->
 <div class="blive-workbench" [style.height]="getWindowSizeChange()" (contextmenu)="contextMenu($event, menu)">
-    <blive-staffgauge [data]="data" (whiteboardsizeSize)="setWhiteboardsizeSize($event)"></blive-staffgauge>
-
     <div id="blive-workbench" class="blive-workbench-box"></div>
 
     <!--S 右键-->
     <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-            <li nz-menu-item>1st menu item</li>
-            <li nz-menu-item>2nd menu item</li>
-            <li nz-menu-item nzDisabled>disabled menu item</li>
-            <li nz-submenu nzTitle="sub menu">
-                <ul>
-                    <li nz-menu-item>3rd menu item</li>
-                    <li nz-menu-item>4th menu item</li>
-                </ul>
-            </li>
-            <li nz-submenu nzDisabled nzTitle="disabled sub menu">
-                <ul>
-                    <li nz-menu-item>3rd menu item</li>
-                    <li nz-menu-item>4th menu item</li>
-                </ul>
-            </li>
+            <li nz-menu-item>拷贝</li>
+            <li nz-menu-item>粘贴</li>
         </ul>
     </nz-dropdown-menu>
     <!--E 右键-->

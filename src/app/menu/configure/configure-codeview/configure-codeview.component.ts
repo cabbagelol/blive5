@@ -30,11 +30,9 @@ export class ConfigureCodeviewComponent implements OnInit {
   // 配置名称
   storageName: string = 'blive_configure';
 
-  constructor(private mLocalStorage: LocalStorage) { }
-
   ngOnInit() {
     const self = this;
-    var codeviewState = self.mLocalStorage.getObject(self.storageName);
+    var codeviewState = LocalStorage.getObject(self.storageName);
 
     /**
      * 当首次配置时
@@ -43,7 +41,7 @@ export class ConfigureCodeviewComponent implements OnInit {
      */
     if (Object.keys(codeviewState).length == 0) {
       // 1
-      self.mLocalStorage.setObject(self.storageName, Object.assign(self.mLocalStorage.getObject(self.storageName), {
+      LocalStorage.setObject(self.storageName, Object.assign(LocalStorage.getObject(self.storageName), {
         'codeview': {
           'switch': false,
         }
@@ -61,7 +59,7 @@ export class ConfigureCodeviewComponent implements OnInit {
     const self = this;
 
     self.switchValue = self.switchValue != true;
-    self.mLocalStorage.setObject(self.storageName, Object.assign(self.mLocalStorage.getObject(self.storageName), {
+    LocalStorage.setObject(self.storageName, Object.assign(LocalStorage.getObject(self.storageName), {
       'codeview': {
         'switch': self.switchValue
       }

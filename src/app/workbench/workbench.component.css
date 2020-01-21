@@ -10,6 +10,10 @@
     right: 0;
 }
 
+.blive-workbench a {
+    -webkit-touch-callout: none;
+}
+
 .blive-workbench-bk {
     background-color: #f2f2f2;
     background-image: url(https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg);
@@ -24,7 +28,8 @@
 .blive-workbench-box {
     position: relative;
     transform: translate(0);
-    overflow: hidden;
+    /*overflow: hidden;*/
+    /*overflow-y: auto;*/
     max-width: 2000px;
     display: inline-grid;
     transition: width .25s;
@@ -34,10 +39,14 @@
     cursor: auto !important;
 }
 
-.blive-workbench-box *[contenteditable=true] {
+.blive-workbench-box * {
     cursor: text !important;
 }
 
+.blive-workbench-box *::selection {
+    color: #fff;
+    background: #088;
+}
 
 /*工作台引导层*/
 .blive-workbench-guide {
@@ -75,7 +84,7 @@
     display: block;
     font-size: 12px;
     color: #999;
-    margin: 10px 0 ;
+    margin: 10px 0;
 }
 
 /*选择器*/
@@ -89,12 +98,12 @@
 }
 
 .blive-fluoroscopy-selectors,
-.blive-fluoroscopy-preview-selectors{
+.blive-fluoroscopy-preview-selectors {
     position: relative;
 }
 
 .blive-fluoroscopy-selectors .span-angle,
-.blive-fluoroscopy-preview-selectors .span-angle{
+.blive-fluoroscopy-preview-selectors .span-angle {
     border-radius: 100px;
     border: 1px solid #039be5;
     width: 5px;
@@ -113,14 +122,17 @@
     left: 0;
     top: 0;
 }
+
 .span-angle-rt {
     right: 0;
     top: 0;
 }
+
 .span-angle-lb {
     left: 0;
     bottom: 0;
 }
+
 .span-angle-rb {
     right: 0;
     bottom: 0;
@@ -140,14 +152,17 @@
     width: 100%;
     height: 1px;
 }
+
 .span-line-b {
     width: 100%;
     height: 1px;
 }
+
 .span-line-l {
     width: 1px;
     height: 100%;
 }
+
 .span-line-r {
     width: 1px;
     height: 100%;
@@ -164,18 +179,13 @@
 
 .span-padding {
     position: absolute;
-    background: linear-gradient( 45deg, rgba(0, 153, 68, .1) 0, rgba(0, 153, 68, .1) 25%, transparent 25%, transparent 50%, rgba(0, 153, 68, .1) 50%, rgba(0, 153, 68, .1) 75%, transparent 75%, transparent );
+    background: linear-gradient(45deg, rgba(0, 153, 68, .1) 0, rgba(0, 153, 68, .1) 25%, transparent 25%, transparent 50%, rgba(0, 153, 68, .1) 50%, rgba(0, 153, 68, .1) 75%, transparent 75%, transparent);
     background-size: 10px 10px;
 }
 
 .span-padding-left {
     top: 0;
     left: 0;
-}
-
-/*编辑器*/
-*[contenteditable="true"] {
-    outline: none;
 }
 
 .context-area {

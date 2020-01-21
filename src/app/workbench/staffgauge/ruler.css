@@ -1,0 +1,237 @@
+/**
+ * 标尺样式
+ * by 2048412928
+ */
+
+#App {
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 0;
+  height: 0;
+  position: fixed;
+}
+.Ruler {
+  top: 20px;
+  left: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  /** end #参考线 */
+  /** end #方块 */
+}
+.Ruler-Guides-top,
+.Ruler-Guides-left {
+  top: 20px;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 200;
+  position: fixed;
+  cursor: row-resize;
+}
+.Ruler-Guides-top:hover,
+.Ruler-Guides-left:hover {
+  box-shadow: 0 0 3px #000;
+}
+.Ruler-Guides-top {
+  width: 100%;
+  border-top: 1px solid #006bfd;
+}
+.Ruler-Guides-left {
+  height: 100%;
+  cursor: col-resize;
+  border-left: 1px solid #006bfd;
+}
+.Ruler-div {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  background-color: #aaa;
+}
+.Ruler-div::after {
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  content: "";
+  position: absolute;
+  border-bottom: 1px dashed #ddd;
+}
+.Ruler-div::before {
+  top: 0;
+  right: 1px;
+  content: "";
+  height: 100%;
+  position: absolute;
+  border-left: 1px dashed #ddd;
+}
+.Ruler-top,
+.Ruler-auto {
+  top: 45px;
+  left: 25px;
+  width: 25px;
+  height: 25px;
+  z-index: 100;
+  position: fixed;
+  border-color: #aaa;
+  border-style: solid;
+  background-color: #ddd;
+  box-sizing: border-box;
+  /** end #鼠标位 */
+}
+.Ruler-top-mouse,
+.Ruler-auto-mouse {
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  background-color: #000;
+}
+.Ruler-top-body,
+.Ruler-auto-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+.Ruler-top-body > div,
+.Ruler-auto-body > div {
+  width: 300%;
+  height: 300%;
+  display: flex;
+}
+.Ruler-top-body-75,
+.Ruler-auto-body-75 {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.Ruler-top-body-75 > div,
+.Ruler-auto-body-75 > div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.Ruler-top-body-75 > span,
+.Ruler-auto-body-75 > span {
+  top: 0;
+  left: 1px;
+  color: #aaa;
+  user-select: none;
+  line-height: 10px;
+  position: absolute;
+}
+.Ruler-top {
+  top: 20px;
+  border-width: 0 0 1px 0;
+  width: calc(100% - 25px);
+}
+.Ruler-top-mouse {
+  width: 1px;
+}
+.Ruler-top-body > div {
+  height: 100%;
+}
+.Ruler-top-body-75 {
+  height: 100%;
+}
+.Ruler-top-body-75::before,
+.Ruler-top-body-75 > div::before {
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 75%;
+  content: "";
+  position: absolute;
+  border-right: 1px solid #000;
+}
+.Ruler-top-body-75 > div {
+  width: 5px;
+  float: left;
+  position: relative;
+}
+.Ruler-top-body-75 > div::before {
+  height: 25%;
+}
+.Ruler-top-body-75 > div[class="in"]::before {
+  height: 50%;
+}
+.Ruler-auto {
+  left: 0;
+  border-width: 0 1px 0 0;
+  height: calc(100% - 25px);
+}
+.Ruler-auto-mouse {
+  height: 1px;
+}
+.Ruler-auto-body > div {
+  width: 100%;
+  flex-direction: column;
+}
+.Ruler-auto-body-75 {
+  width: 100%;
+}
+.Ruler-auto-body-75::before,
+.Ruler-auto-body-75 > div::before {
+  right: 0;
+  bottom: 0;
+  width: 75%;
+  content: "";
+  position: absolute;
+  border-bottom: 1px solid #000;
+}
+.Ruler-auto-body-75 > div {
+  height: 5px;
+  position: relative;
+}
+.Ruler-auto-body-75 > div::before {
+  width: 25%;
+}
+.Ruler-auto-body-75 > div[class="in"]::before {
+  width: 50%;
+}
+.Ruler-auto-body-75 > span {
+  top: -8px;
+  transform: rotate(90deg);
+  transform-origin: left bottom;
+}
+.Ruler-right .Ruler-div {
+  top: 0;
+  right: 0;
+  position: fixed;
+  transform: rotate(90deg);
+}
+.Ruler-right .Ruler-top {
+  left: 0;
+}
+.Ruler-right .Ruler-auto {
+  right: 0;
+  left: auto;
+  border-width: 0 0 0 1px;
+}
+.Ruler-right .Ruler-auto-mouse {
+  right: 0;
+  left: auto;
+}
+.Ruler-right .Ruler-auto-body-75::before,
+.Ruler-right .Ruler-auto-body-75 > div::before {
+  left: 0;
+}
+.Ruler-right .Ruler-auto-body-75 > span {
+  top: 2px;
+  left: 100%;
+  transform-origin: left top;
+}
+.Ruler-right .Blive {
+  left: 0;
+}
+.Blive {
+  top: 25px;
+  left: 25px;
+  z-index: 110;
+  position: fixed;
+  width: calc(100% - 25px);
+  height: calc(100% - 25px);
+}
+/*# sourceMappingURL=ruler.css.map */

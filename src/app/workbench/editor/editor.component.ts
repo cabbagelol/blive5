@@ -31,12 +31,12 @@ export class EditorComponent implements OnInit,OnChanges  {
     'startOneState': false
   };
 
-  constructor(private _sanitizer: DomSanitizer,private mSeesionStorage: LocalStorage) { }
+  constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     const self = this;
     let calaNum = parseInt(this.window.height()) / 3;
-    let configure = self.mSeesionStorage.getObject('blive_configure');
+    let configure = LocalStorage.getObject('blive_configure');
 
     /**
      * 初始编译器

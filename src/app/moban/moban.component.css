@@ -65,5 +65,9 @@
 
 /*tag*/
 .blive-moban-window-title-tag {
-    margin: 10px 10px 10px 0;
+    margin: 10px 10px 0px 0;
+}
+
+.blive-moban-window-pacity {
+    opacity: .3;
 }

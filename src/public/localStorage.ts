@@ -7,12 +7,12 @@ export class LocalStorage {
 
     public localStorage: any;
 
-    constructor() {
-        if (!localStorage) {
-            throw new Error('Current browser does not support Local Storage');
-        }
-        this.localStorage = localStorage;
-    }
+    // constructor() {
+    //     if (!localStorage) {
+    //         throw new Error('Current browser does not support Local Storage');
+    //     }
+    //     this.localStorage = localStorage;
+    // }
 
     public set(key: string, value: string): void {
         this.localStorage[key] = value;
@@ -22,12 +22,12 @@ export class LocalStorage {
         return this.localStorage[key] || false;
     }
 
-    public setObject(key: string, value: any): void {
-        this.localStorage[key] = JSON.stringify(value);
-    }
+    static setObject(key: string, value: any): void {
+        localStorage.setItem(key, JSON.stringify(value));
+     }
 
-    public getObject(key: string): any {
-        return JSON.parse(this.localStorage[key] || '{}');
+    static getObject(key: string): any {
+        return JSON.parse(localStorage.getItem(key) || '{}');
     }
 
     public remove(key: string): any {

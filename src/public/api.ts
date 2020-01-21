@@ -28,15 +28,19 @@ export default {
      * 不可靠的标签名单
      * 包含的标签已确认被过滤,严重造成简介排版
      */
-    elementBlackList: {
-
-    },
+    elementBlackList: {},
 
     /**
      * 白板配置
      * 工作台大小
      */
     blankSize: [
+        {
+            name: '无限制',
+            company: 'auto',
+            width: 0,
+            height: 0,
+        },
         {
             name: "小",
             company: "px",

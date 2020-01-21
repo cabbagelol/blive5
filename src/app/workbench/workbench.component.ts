@@ -1,18 +1,21 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {NzContextMenuService, NzDropdownMenuComponent, NzModalService} from "ng-zorro-antd";
 import {Shortcutkeys} from './shortcutkeys';
-import {NzContextMenuService, NzDropdownMenuComponent} from "ng-zorro-antd";
+import {Historicalstorage} from './historicalstorage';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 // @ts-ignore
 import $ from "jquery";
 import api from 'src/public/api';
+import util from "../../public/util";
 
 @Component({
     selector: 'blive-workbench',
     templateUrl: './workbench.component.html',
     styleUrls: ['./workbench.component.css'],
-    providers: [Shortcutkeys]
+    providers: [Shortcutkeys, Historicalstorage],
 })
 
 export class WorkbenchComponent implements OnInit {
@@ -45,6 +48,7 @@ export class WorkbenchComponent implements OnInit {
     private fluoroscopePreviewShowState = false;
     // 工作台
     private workbenchData = {
+        'isNull': false, // 是否无效数据
         'isData': false, // 工作台是否包含内容
         's': 1,
         'top': 0,
@@ -64,42 +68,90 @@ export class WorkbenchComponent implements OnInit {
     constructor(private _sanitizer: DomSanitizer,
                 private notification: NzNotificationService,
                 private shortcutkeys: Shortcutkeys,
+                private _historicalstorage: Historicalstorage,
+                private message: NzMessageService,
+                private modalService: NzModalService,
                 private nzContextMenuService: NzContextMenuService) {
     }
 
     async ngOnInit() {
+        const self = this;
+
         this.windows = $(window);
         this.workbenchInfo = $('#blive-workbench');
         this.fluoroscopy = $('#blive-fluoroscopy > div.d1');
         this.previewFluoroscopy = $('#blive-fluoroscopy > div.d2');
 
         /**
-         * 检查工作台内容
-         * 是否存在
+         * 从路由获取id取得简介数据
+         * 取历史纪录， 如果没有则是失效id
          */
-        if (this.isWorkbenchData().state) {
-            /// 更新工作台
-            await this.setWorkbenchReady();
-            await this.onEventProxy();
+        const UrlVariable = util.getQueryVariable();
+        if (Object.keys(UrlVariable).length > 0) {
+            var res = self._historicalstorage.query(UrlVariable.id);
+            if (!!res) {
+                self.workbenchInfo.html(res.html);
+                self.data.editorCode = res.html;
+                self.workbenchData.isData = true;
+                self.workbenchData.isNull = false;
+            } else {
+                self.workbenchData.isNull = !UrlVariable.one;
+                self.workbenchData.isData = true;
+            }
         } else {
-            /// 显性工作台引导
+            self.workbenchData.isData = false;
+            self.workbenchData.isNull = true;
         }
 
-        this.onShortcutkeys();
+        await self.isWorkbenchData()
+        await self.setWorkbenchReady();
+        await self.onEventProxy();
+        await self.onShortcutkeys();
     }
 
     /**
      * 全局事件
      */
-    async onShortcutkeys () {
+    async onShortcutkeys() {
         const self = this;
+        const map = util.getQueryVariable();
+
         self.shortcutkeys.readonly({
             resolve: (keys) => {
 
                 switch (keys.codekey) {
                     case 0:
-                        console.log("保存");
-                    break;
+                        if (!this.isWorkbenchData().state) {
+                            this.modalService.error({
+                                nzTitle: '糟糕',
+                                nzContent: '要不试试先创建一份模板试试.....'
+                            });
+                            return
+                        }
+
+                        this.message
+                            .loading('储存中', {nzDuration: 2500}).onClose!
+                            .subscribe(() => {
+                                this.message.success('成功', {nzDuration: 2500});
+                                self._historicalstorage.save(map.id, self.workbenchInfo.html());
+                            });
+                        break;
+                    case 10:
+                    // .on("mousewheel DOMMouseScroll", function (e) {
+                    //     const delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||
+                    //         // chrome & ie
+                    //         (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+                    //     if (delta > 0 && self.workbenchData.s < 1.4) {
+                    //         self.workbenchInfo.css({
+                    //             'transform': `scale(${self.workbenchData.s += .1})`,
+                    //         });
+                    //     } else if (delta < 0 && self.workbenchData.s > 1) {
+                    //         self.workbenchInfo.css({
+                    //             'transform': `scale(${self.workbenchData.s -= .1})`,
+                    //         });
+                    //     }
+                    // });
+                        break;
                 }
             }
         });
@@ -114,22 +166,28 @@ export class WorkbenchComponent implements OnInit {
         const box = $('.blive-workbench');
 
         self.workbenchData = Object.assign(self.workbenchData, {
-            left: (box.width() / 2) - (api.blankSize[1].width / 2 || self.workbenchInfo.width() / 2),
-            top: (box.height() / 2) - (api.blankSize[1].height / 2 || self.workbenchInfo.height() / 2),
+            left: (box.width() / 2) - (api.blankSize[2].width / 2 || self.workbenchInfo.width() / 2),
+            top: (box.height() / 2) - (api.blankSize[2].height / 2 || self.workbenchInfo.height() / 2),
             width: api.blankSize[1].width || self.workbenchInfo.width(),
             height: api.blankSize[1].height || self.workbenchInfo.height(),
         });
 
         self.workbenchInfo.attr(
             "style",
-            `left: calc(50% - ${api.blankSize[1].width / 2 || self.workbenchInfo.width() / 2}px); top: calc(50% - ${api.blankSize[1].height / 2 || self.workbenchInfo.height() / 2}px)`
+            `left: calc(50% - ${api.blankSize[2].width / 2 || self.workbenchInfo.width() / 2}px); top: calc(50% - ${api.blankSize[2].height / 2 || self.workbenchInfo.height() / 2}px)`
         );
+
+        document.querySelectorAll('a').forEach(a => {
+            a.onclick = (e) => {
+                e.preventDefault()
+            }
+        })
 
         /**
          * 初始设置的画布大小
          * 具体看api.blankSize配置
          */
-        this.setWhiteboardsizeSize(api.blankSize[1]);
+        this.setWhiteboardsizeSize(api.blankSize[2]);
 
         /**
          * 监听窗口变动
@@ -200,20 +258,7 @@ export class WorkbenchComponent implements OnInit {
                     "cursor": "grab"
                 });
             });
-        }).on("mousewheel DOMMouseScroll", function (e) {
-            const delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||
-                // chrome & ie
-                (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
-            if (delta > 0 && self.workbenchData.s < 1.4) {
-                self.workbenchInfo.css({
-                    'transform': `scale(${self.workbenchData.s += .1})`,
-                });
-            } else if (delta < 0 && self.workbenchData.s > 1) {
-                self.workbenchInfo.css({
-                    'transform': `scale(${self.workbenchData.s -= .1})`,
-                });
-            }
-        });
+        })
     }
 
     /**
@@ -233,6 +278,11 @@ export class WorkbenchComponent implements OnInit {
     onEventProxy() {
         const self = this;
         self.workbenchInfo.find('*').on('click', (event) => {
+
+            // 主动消除编辑点
+            self.workbenchInfo.find('*').removeAttr("contenteditable");
+
+            // 选择器
             self.workbenchSelectorController.event = event;
             self.fluoroscopePreviewShowState = false;
             self.fluoroscopeShowState = true;
@@ -430,27 +480,46 @@ export class WorkbenchComponent implements OnInit {
     }
 
     /**
-     * 编写模块
+     * 编写模块 编辑
      * 焦点 失焦
      */
     onInput() {
         const self = this;
-        self.workbenchInfo.find('*').on('dblclick', (event) => {
+        self.workbenchInfo.find('p').on('dblclick', (event) => {
+            event.preventDefault();
             $(event)[0].target.contentEditable = true;
             $($(event)[0].target).focus();
 
-            $($(event)[0].target).on('keypress', (event) => {
-                console.log('键盘')
+            /**
+             * 选择编辑并全选文字
+             */
+            var range = document.createRange();
+                range.selectNodeContents($(event)[0].target);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+
+            $($(event)[0].target).keydown( (event) => {
                 self.onResetPosition();
                 self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
             });
 
             $($(event)[0].target).blur(event_ => {
                 $($(event_)[0].target).removeAttr("contenteditable");
-            })
+
+                /**
+                 * 取消全选节点
+                 */
+                window.getSelection().removeAllRanges();
+
+                return false;
+            });
+
+
+            document.execCommand('',false,null)
             return false;
         });
     }
+
 
     /**
      * 设置画布大小
@@ -458,10 +527,19 @@ export class WorkbenchComponent implements OnInit {
      */
     async setWhiteboardsizeSize(data: any) {
         const self = this;
-        self.workbenchInfo.css({
-            'width': `${data.width}px`,
-            'height': `${data.height}px`
-        });
+
+        if (data.company == 'auto') {
+            self.workbenchInfo.css({
+                'width': ``,
+                'height': ``
+            });
+        } else {
+            self.workbenchInfo.css({
+                'width': `${data.width}${data.company || 'px'}`,
+                'height': `${data.height}${data.company || 'px'}`
+            });
+
+        }
 
         /**
          * 延迟更新
@@ -478,18 +556,40 @@ export class WorkbenchComponent implements OnInit {
      */
     async onUpdataWorkbenchMoban() {
         const self = this;
-        await $.ajax(`../../assets/moban/${self.data.moban.name}.txt`).then(res => {
-            self.workbenchInfo.html(res);
-            self.data.editorCode = res;
-        }).catch(err => {
-            self.notification.warning(
-                '模板丢失',
-                '哭唧唧,很遗憾的告诉你简介姬找不到这简介，要不你联系下作者吧'
-            );
-        });
-        await this.isWorkbenchData();
-        await this.setWorkbenchReady();
-        await this.onEventProxy();
+        if (!self.data.moban.w) {
+            await $.ajax(`assets/moban/${self.data.moban.name}.txt`).then(res => {
+                self.workbenchInfo.html(res);
+                self.data.editorCode = res;
+            }).catch(err => {
+                self.notification.warning(
+                    '模板丢失',
+                    '哭唧唧,很遗憾的告诉你简介姬找不到这简介，要不你联系下作者吧'
+                );
+            });
+        } else {
+            var roomid = prompt("输入直播间ID:","");
+            if (roomid != null && roomid.length > 0){
+                await $.ajax({
+                    type:"post",
+                    url:"https://cabbagelol.net/blive/Blive-4.0/aip/get_info.php",
+                    dataType:'json',
+                    async:true,
+                    data:{
+                        roomid: roomid
+                    },
+                }).then(res => {
+                    if(res.message == "ok"){
+                        var res = res.data;
+                        self.workbenchInfo.html(res.description);
+                        self.data.editorCode = res.description;
+                    }
+                });
+            }
+        }
+
+        await self.isWorkbenchData();
+        await self.setWorkbenchReady();
+        await self.onEventProxy();
     }
 
     /**
@@ -498,7 +598,7 @@ export class WorkbenchComponent implements OnInit {
      */
     async onWindowSizeChange(event: any) {
         const self = this;
-        self.workbenchInfo.codeHeigth = event.y;
+        self.workbenchInfo.codeHeigth = event.y || self.workbenchInfo.codeHeigth;
 
         await self.setWorkbenchReady();
         await self.onResetPosition();
@@ -537,9 +637,5 @@ export class WorkbenchComponent implements OnInit {
 
     contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
         this.nzContextMenuService.create($event, menu);
-    }
-
-    closeMenu(): void {
-        this.nzContextMenuService.close();
     }
 }

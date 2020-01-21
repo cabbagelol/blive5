@@ -6,7 +6,15 @@
     <div class="blive-moban-window-box">
         <nz-layout style="height: 100%;">
             <nz-header style="color: #fff;text-align: center; background: #1890ff;">
-                模板
+                <div nz-row>
+                    <div nz-col nzMd="4"></div>
+                    <div nz-col nzMd="16">
+                        模板
+                    </div>
+                    <div nz-col nzMd="4" style="text-align: right">
+                        <i nz-icon nzType="close" nzTheme="outline" (click)="close('event')"></i>
+                    </div>
+                </div>
             </nz-header>
             <nz-layout>
                 <nz-sider nzTheme="light">
@@ -32,6 +40,35 @@
                 <!--S 首页-->
                 <nz-content class="blive-moban-window-overflow">
                     <div style="padding: 30px">
+
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            <div class="ant-upload ant-upload-drag ng-star-inserted" (click)="onGetBilibiliData()">
+                                <div class=" ant-upload ant-upload-btn">
+                                    <p class="ant-upload-drag-icon">
+                                        <i nz-icon nzType="inbox"></i>
+                                    </p>
+                                    <p class="ant-upload-text">导入直播简介</p>
+                                    <p class="ant-upload-hint">
+                                        远程获取直播间简介
+                                    </p>
+                                </div>
+                            </div>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <div class="ant-upload ant-upload-drag ng-star-inserted" style="opacity: .6">
+                                <div class=" ant-upload ant-upload-btn">
+                                    <p class="ant-upload-drag-icon">
+                                        <i nz-icon nzType="inbox"></i>
+                                    </p>
+                                    <p class="ant-upload-text">导入.blive文件 <nz-tag [nzColor]="'#999'">不可用</nz-tag></p>
+                                    <p class="ant-upload-hint">
+                                        你可从本地导入简介到blive中
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <nz-alert nzType="warning" nzMessage="外部导入的内容不受Blive控制, 无法支持特定模块,甚至引起排版问题。" nzShowIcon style="margin: 10px 0"></nz-alert>
+                        <nz-divider></nz-divider>
                         <div *ngFor="let item of mobanlist">
                             <nz-divider nzDashed [nzText]="text">
                                 <ng-template #text>
@@ -39,13 +76,17 @@
                                     <span class="blive-moban-window-title-h">{{item.h}}</span>
                                 </ng-template>
                             </nz-divider>
-                            <div *ngFor="let i of item.list" (click)="onSelectTemplate(i)">
+                            <div *ngFor="let i of item.list" (click)="onSelectTemplate(i)" >
+
                                 <nz-card nzHoverable
                                          class="blive-moban-window-card"
                                          [nzCover]="coverTemplate">
-                                    <nz-card-meta nzTitle="{{i.name}}"></nz-card-meta>
+                                    <nz-card-meta nzTitle="{{i.name}}  {{i.disabled}}"></nz-card-meta>
                                     <nz-tag [nzColor]="'magenta'" *ngIf="i.level == 1" class="blive-moban-window-title-tag">
                                         扩展
+                                    </nz-tag>
+                                    <nz-tag [nzColor]="'#777'" *ngIf="i.disables" class="blive-moban-window-title-tag">
+                                        不可用
                                     </nz-tag>
                                     <nz-tag *ngFor="let f of i.tag" class="blive-moban-window-title-tag">{{f}}</nz-tag>
                                 </nz-card>

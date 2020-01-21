@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import moban from '../../public/moban';
 import {NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions} from "ng-zorro-antd";
+import moban from '../../public/moban';
+// @ts-ignore
+import $ from "jquery";
 
 @Component({
     selector: 'blive-moban-window',
@@ -56,25 +58,39 @@ export class MobanComponent implements OnInit, AfterViewInit {
      * 选择模板
      */
     onSelectTemplate(data) {
+        if (data.disables) {
+            return;
+        }
         this.close('event');
         this.mobanData_.emit(data);
     }
 
-    // 筛选勾选列表
+    /**
+     * 筛选勾选列表
+     * @param event
+     */
     nzCheck(event: NzFormatEmitEvent): void {
         console.log('nzCheck', event);
         this.defaultCheckedKeys = event.keys;
     }
 
     ngAfterViewInit(): void {
-        // get node by key: '10011'
         console.log(this.nzTreeComponent.getTreeNodeByKey('10011'));
-        // use tree methods
         console.log(
             this.nzTreeComponent.getTreeNodes(),
             this.nzTreeComponent.getCheckedNodeList(),
             this.nzTreeComponent.getSelectedNodeList(),
             this.nzTreeComponent.getExpandedNodeList()
         );
+    }
+
+    /**
+     * 获取直播间数据
+     */
+    onGetBilibiliData () {
+        const self = this;
+        self.onSelectTemplate({
+            'w': true,
+        })
     }
 }
