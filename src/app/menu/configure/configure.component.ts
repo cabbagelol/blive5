@@ -26,7 +26,7 @@ export class ConfigureComponent implements OnInit {
           name: '账户配置'
         },
         {
-          name: '工作台颜色'
+          name: '工作台'
         },
         {
           name: '简介信息'
@@ -70,9 +70,6 @@ export class ConfigureComponent implements OnInit {
    * 选择简介模板
    */
   onSelectMuen(data) {
-    // this.close('event');
-    console.log(data.el.innerText)
     this.configureMuenSele = data.el.innerText;
   }
-
 }

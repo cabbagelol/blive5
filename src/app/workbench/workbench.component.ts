@@ -58,12 +58,29 @@ export class WorkbenchComponent implements OnInit {
     };
     // 选择器坐标位置
     private workbenchSelectorController = {
+        'nodeName': '',
         'top': 0,
         'left': 0,
         'width': 0,
         'height': 0,
+        'borderTopWidth': 0,
+        'borderLeftWidth': 0,
+        'borderBottomWidth': 0,
+        'borderRightWidth': 0,
+        'marginTop': 0,
+        'marginLeft': 0,
+        'marginBottom': 0,
+        'marginRight': 0,
+        'paddingTop': 0,
+        'paddingLeft': 0,
+        'paddingBottom': 0,
+        'paddingRight': 0,
         'event': {},
     };
+    // 属性可见面板
+    panel: any = {
+        imgFilter: true,
+    }
 
     constructor(private _sanitizer: DomSanitizer,
                 private notification: NzNotificationService,
@@ -137,20 +154,20 @@ export class WorkbenchComponent implements OnInit {
                             });
                         break;
                     case 10:
-                    // .on("mousewheel DOMMouseScroll", function (e) {
-                    //     const delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||
-                    //         // chrome & ie
-                    //         (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
-                    //     if (delta > 0 && self.workbenchData.s < 1.4) {
-                    //         self.workbenchInfo.css({
-                    //             'transform': `scale(${self.workbenchData.s += .1})`,
-                    //         });
-                    //     } else if (delta < 0 && self.workbenchData.s > 1) {
-                    //         self.workbenchInfo.css({
-                    //             'transform': `scale(${self.workbenchData.s -= .1})`,
-                    //         });
-                    //     }
-                    // });
+                        // .on("mousewheel DOMMouseScroll", function (e) {
+                        //     const delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||
+                        //         // chrome & ie
+                        //         (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+                        //     if (delta > 0 && self.workbenchData.s < 1.4) {
+                        //         self.workbenchInfo.css({
+                        //             'transform': `scale(${self.workbenchData.s += .1})`,
+                        //         });
+                        //     } else if (delta < 0 && self.workbenchData.s > 1) {
+                        //         self.workbenchInfo.css({
+                        //             'transform': `scale(${self.workbenchData.s -= .1})`,
+                        //         });
+                        //     }
+                        // });
                         break;
                 }
             }
@@ -209,23 +226,16 @@ export class WorkbenchComponent implements OnInit {
      */
     onWorkController() {
         var self = this;
-
-
-        $('.blive-workbench').css({
-            "cursor": "grabb",
-        });
-
         $('.blive-workbench').mousedown(function (e) {
-            var positionDiv = self.workbenchInfo.offset();
-            var distenceX = e.pageX - positionDiv.left;
-            var distenceY = e.pageY - positionDiv.top;
+            const positionDiv = self.workbenchInfo.offset();
+            const distenceX = e.pageX - positionDiv.left;
+            const distenceY = e.pageY - positionDiv.top;
 
             $('.blive-workbench').css({
                 "cursor": "grabbing",
             });
 
             $(document).mousemove(e => {
-                var borderBottomWidth = 0;
                 var x = e.pageX - distenceX;
                 var y = e.pageY - distenceY;
 
@@ -233,17 +243,11 @@ export class WorkbenchComponent implements OnInit {
                     return;
                 }
 
-                if (self.workbenchSelectorController.event == '{}') {
-                    borderBottomWidth = self.workbenchSelectorController.event['target'].style.borderBottomWidth || 0;
-                }
-
                 self.workbenchData.top = y;
                 self.workbenchData.left = x;
+                self.fluoroscopePreviewShowState = false;
 
-                self.fluoroscopy.css({
-                    'top': `${self.workbenchData.top + self.workbenchSelectorController.top + borderBottomWidth}px`,
-                    'left': `${self.workbenchData.left + self.workbenchSelectorController.left + borderBottomWidth}px`,
-                });
+                self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
 
                 self.workbenchInfo.css({
                     'left': x + 'px',
@@ -258,18 +262,32 @@ export class WorkbenchComponent implements OnInit {
                     "cursor": "grab"
                 });
             });
-        })
+        }).css({
+            "cursor": "grabb",
+        });
     }
 
     /**
      * 重置选择器坐标
      */
-    async onResetPosition() {
+    onResetPosition(): any {
         const self = this;
         self.workbenchInfo.top = 0;
         self.workbenchInfo.left = 0;
+        // self.workbenchInfo.width = 0;
+        // self.workbenchInfo.height = 0;
         self.workbenchSelectorController.top = 0;
         self.workbenchSelectorController.left = 0;
+        // self.workbenchSelectorController.width = 0;
+        // self.workbenchSelectorController.height = 0;
+        self.workbenchSelectorController.borderBottomWidth = 0;
+        self.workbenchSelectorController.borderLeftWidth = 0;
+        self.workbenchSelectorController.borderRightWidth = 0;
+        self.workbenchSelectorController.borderTopWidth = 0;
+        self.workbenchSelectorController.marginLeft = 0;
+        self.workbenchSelectorController.marginTop = 0;
+        self.workbenchSelectorController.marginBottom = 0;
+        self.workbenchSelectorController.marginRight = 0;
     }
 
     /**
@@ -278,13 +296,11 @@ export class WorkbenchComponent implements OnInit {
     onEventProxy() {
         const self = this;
         self.workbenchInfo.find('*').on('click', (event) => {
-
             // 主动消除编辑点
             self.workbenchInfo.find('*').removeAttr("contenteditable");
 
             // 选择器
             self.workbenchSelectorController.event = event;
-            self.fluoroscopePreviewShowState = false;
             self.fluoroscopeShowState = true;
             self.onResetPosition();
             self.onChangeComponentData(event);
@@ -298,14 +314,15 @@ export class WorkbenchComponent implements OnInit {
                 self.fluoroscopePreviewShowState = false;
                 return;
             }
+            self.fluoroscopePreviewShowState = true;
             self.onWithUpdataPreviewFluoroscopy(event);
         });
 
-        $('.blive-workbench').mouseover(event => {
-            if (event.target.className == "blive-workbench") {
-                self.fluoroscopePreviewShowState = false;
-            }
-        });
+        // $('.blive-workbench').mouseover(event => {
+        //     if (event.target.className == "blive-workbench") {
+        //         self.fluoroscopePreviewShowState = false;
+        //     }
+        // });
     }
 
     /**
@@ -314,17 +331,29 @@ export class WorkbenchComponent implements OnInit {
     onWithUpdataPreviewFluoroscopy(event) {
         const self = this;
         const target = event.target;
+        var x = 0;
+        var y = 0;
 
-        self.workbenchPreviewSelectorController.width = event.target.clientWidth;
-        self.workbenchPreviewSelectorController.height = event.target.clientHeight;
-        self.fluoroscopePreviewShowState = true;
+        self.workbenchPreviewSelectorController.width = target.clientWidth;
+        self.workbenchPreviewSelectorController.height = target.clientHeight;
         self.workbenchPreviewSelectorController.nodeName = event.target.nodeName.toLocaleLowerCase().replace(event.target.nodeName.toLocaleLowerCase()[0], event.target.nodeName.toLocaleLowerCase()[0].toLocaleUpperCase());
 
-        self.previewFluoroscopy
-            .css({
-                'top': `${self.workbenchData.top + target.offsetTop + parseInt(target.style.borderBottomWidth || 0)}px`,
-                'left': `${self.workbenchData.left + target.offsetLeft + parseInt(target.style.borderBottomWidth || 0)}px`,
-            });
+        switch (target.nodeName) {
+            case 'IMG':
+                y = target.y;
+                x = target.x;
+                break;
+            case 'DIV':
+            case 'P':
+            default:
+                y = self.workbenchData.top + target.offsetTop + (parseInt(target.style.borderTopWidth) || 0)
+                x = self.workbenchData.left + target.offsetLeft + (parseInt(target.style.borderLeftWidth) || 0)
+        }
+
+        self.previewFluoroscopy.css({
+            'top': `${y}px`,
+            'left': `${x}px`
+        });
     }
 
     /**
@@ -333,43 +362,99 @@ export class WorkbenchComponent implements OnInit {
      */
     onWithUpdataFluoroscopy(event) {
         const self = this;
-        var borderBottomWidth = 0;
+        let x = 0;
+        let y = 0;
         var target;
-
-        if (self.workbenchSelectorController.event == '{}') {
-            borderBottomWidth = self.workbenchSelectorController.event['target'].style.borderBottomWidth || 0;
-        }
 
         if (!event.target) {
             target = {
+                nodeName: '',
                 left: 0,
                 top: 0,
                 width: 0,
                 height: 0,
+                borderTopWidth: 0,
+                borderLeftWidth: 0,
+                borderBottomWidth: 0,
+                borderRightWidth: 0,
+                marginLeft: 0,
+                marginTop: 0,
+                marginBottom: 0,
+                marginRight: 0,
+                paddingTop: 0,
+                paddingLeft: 0,
+                paddingBottom: 0,
+                paddingRight: 0,
             }
         } else {
             target = {
+                nodeName: event.target.nodeName,
                 left: event.target.offsetLeft,
                 top: event.target.offsetTop,
                 width: event.target.clientWidth,
                 height: event.target.clientHeight,
+                borderTopWidth: parseInt(event.target.style.borderTopWidth) || 0,
+                borderLeftWidth: parseInt(event.target.style.borderLeftWidth) || 0,
+                borderBottomWidth: parseInt(event.target.style.borderBottomWidth) || 0,
+                borderRightWidth: parseInt(event.target.style.borderRightWidth) || 0,
+                marginLeft: parseInt(event.target.style.marginLeft),
+                marginTop: parseInt(event.target.style.marginTop),
+                marginBottom: parseInt(event.target.style.marginBottom),
+                marginRight: parseInt(event.target.style.marginRight),
+                paddingTop: parseInt(event.target.style.paddingTop),
+                paddingLeft: parseInt(event.target.style.paddingLeft),
+                paddingBottom: parseInt(event.target.style.paddingBottom),
+                paddingRight: parseInt(event.target.style.paddingRight),
             }
         }
 
-        self.workbenchSelectorController.left = target.left;
-        self.workbenchSelectorController.top = target.top;
-        self.workbenchSelectorController.width = target.width;
-        self.workbenchSelectorController.height = target.height;
+        self.workbenchSelectorController = Object.assign(self.workbenchSelectorController, {
+            nodeName: target.nodeName,
+            left: target.left,
+            top: target.top,
+            width: target.width,
+            height: target.height,
+            borderTopWidth: target.borderTopWidth,
+            borderLeftWidth: target.borderLeftWidth,
+            borderBottomWidth: target.borderBottomWidth,
+            borderRightWidth: target.borderRightWidth,
+            marginLeft: target.marginLeft,
+            marginTop: target.marginTop,
+            marginBottom: target.marginBottom,
+            marginRight: target.marginRight,
+            paddingTop: target.paddingTop,
+            paddingLeft: target.paddingLeft,
+            paddingBottom: target.paddingBottom,
+            paddingRight: target.paddingRight,
+        })
 
-        /**
-         * 影响top因素:
-         * 容器距离 + 外边距离 +
-         */
-        self.fluoroscopy
-            .css({
-                'top': `${self.workbenchData.top + self.workbenchSelectorController.top + borderBottomWidth}px`,
-                'left': `${self.workbenchData.left + self.workbenchSelectorController.left + borderBottomWidth}px`,
+
+        if (!!event.target) {
+            /**
+             * 处理不同标签坐标
+             */
+            switch (event.target.nodeName) {
+                case 'IMG':
+                    y = event.target.y;
+                    x = event.target.x;
+                    break;
+                case 'P':
+                    y = self.workbenchData.top + self.workbenchSelectorController.top
+                    x = self.workbenchData.left + self.workbenchSelectorController.left
+                    break;
+                case 'DIV':
+                default:
+                    // 容器距离 + 边框宽度距离
+                    y = self.workbenchData.top + self.workbenchSelectorController.top + self.workbenchSelectorController.borderTopWidth
+                    x = self.workbenchData.left + self.workbenchSelectorController.left + self.workbenchSelectorController.borderLeftWidth
+                    break;
+            }
+
+            self.fluoroscopy.css({
+                'top': `${y}px`,
+                'left': `${x}px`,
             });
+        }
     }
 
     setWid(item, data, type: string) {
@@ -396,11 +481,11 @@ export class WorkbenchComponent implements OnInit {
                 switch (item.toString()) {
                     case 'lt':
                     case 'rt':
-                        return this._sanitizer.bypassSecurityTrustStyle(`-${num}px`);
+                        return `-${num}px`;
                         break;
                     case 'lb':
                     case 'rb':
-                        return this._sanitizer.bypassSecurityTrustStyle(data.height - num + 'px');
+                        return `${data.height - num}px`;
                         break;
                 }
                 break;
@@ -408,11 +493,11 @@ export class WorkbenchComponent implements OnInit {
                 switch (item.toString()) {
                     case 'lt':
                     case 'lb':
-                        return this._sanitizer.bypassSecurityTrustStyle(`-${num}px`);
+                        return `-${num}px`;
                         break;
                     case 'rt':
                     case 'rb':
-                        return this._sanitizer.bypassSecurityTrustStyle(data.width - num + 'px');
+                        return `${data.width - num}px`;
                         break;
                 }
                 break;
@@ -487,23 +572,23 @@ export class WorkbenchComponent implements OnInit {
         const self = this;
         self.workbenchInfo.find('p').on('dblclick', (event) => {
             event.preventDefault();
-            $(event)[0].target.contentEditable = true;
-            $($(event)[0].target).focus();
+            event.target.contentEditable = true;
+            $(event.target).focus();
 
             /**
              * 选择编辑并全选文字
              */
             var range = document.createRange();
                 range.selectNodeContents($(event)[0].target);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
+                document.getSelection().removeAllRanges();
+                document.getSelection().addRange(range);
 
-            $($(event)[0].target).keydown( (event) => {
+            $(event.target).keydown((event) => {
                 self.onResetPosition();
                 self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
             });
 
-            $($(event)[0].target).blur(event_ => {
+            $(event.target).blur(event_ => {
                 $($(event_)[0].target).removeAttr("contenteditable");
 
                 /**
@@ -514,9 +599,10 @@ export class WorkbenchComponent implements OnInit {
                 return false;
             });
 
-
-            document.execCommand('',false,null)
+            document.execCommand('', false, null)
             return false;
+        }).mouseup(function(event){
+            // TODO
         });
     }
 
@@ -567,18 +653,18 @@ export class WorkbenchComponent implements OnInit {
                 );
             });
         } else {
-            var roomid = prompt("输入直播间ID:","");
-            if (roomid != null && roomid.length > 0){
+            var roomid = prompt("输入直播间ID:", "");
+            if (roomid != null && roomid.length > 0) {
                 await $.ajax({
-                    type:"post",
-                    url:"https://cabbagelol.net/blive/Blive-4.0/aip/get_info.php",
-                    dataType:'json',
-                    async:true,
-                    data:{
+                    type: "post",
+                    url: "https://cabbagelol.net/blive/Blive-4.0/aip/get_info.php",
+                    dataType: 'json',
+                    async: true,
+                    data: {
                         roomid: roomid
                     },
                 }).then(res => {
-                    if(res.message == "ok"){
+                    if (res.message == "ok") {
                         var res = res.data;
                         self.workbenchInfo.html(res.description);
                         self.data.editorCode = res.description;
@@ -637,5 +723,13 @@ export class WorkbenchComponent implements OnInit {
 
     contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
         this.nzContextMenuService.create($event, menu);
+    }
+
+    /**
+     * 打开可见面包
+     */
+    openPanel (name: string) {
+        const self = this;
+        self.panel[name] = self.panel[name] != true;
     }
 }

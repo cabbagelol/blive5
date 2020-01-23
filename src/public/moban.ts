@@ -11,6 +11,19 @@
  */
 let list = [
     {
+        name: '测试模板',
+        h: '',
+        list: [
+            {
+                name: 'ce',
+                img: '',
+                path: '',
+                level: 0,
+                tag: ['测试']
+            }
+        ]
+    },
+    {
         name: 'Blive经典模板',
         h: '',
         list: [

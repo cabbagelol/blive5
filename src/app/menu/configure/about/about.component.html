@@ -1,5 +1,46 @@
 <!--
     * 关于Blive
 -->
+<h1>Blive5</h1>
+<p>简介生成器提供给 B站直播间生成简介使用，具有可视化修改功能。</p>
+<div>
+    <nz-badge nzDot><a target="_blank" href="http://hn.cabbagelol.net/blog/halloffame/">杰出贡献</a></nz-badge>
+    <nz-divider nzType="vertical"></nz-divider>
+    <a target="_blank" href="http://hn.cabbagelol.net/blog/">教程</a>
+    <nz-divider nzType="vertical"></nz-divider>
+    <a target="_blank" href="https://cabbagelol.net">作者博客</a>
+    <nz-divider nzType="vertical"></nz-divider>
+    <a target="_blank" href="http://hn.cabbagelol.net/blive_pay_hn/index.html">捐助</a>
+</div>
 
-<p>about works!</p>
+<nz-divider nzText="贡献者"></nz-divider>
+<p>从blive开始一人前行到现在众多贡献用户相伴，少不了他们的帮助，blive到现在还处于维护需感谢他们。</p>
+<p>少数愿无偿帮助blive可爱的人们(●'◡'●) —— 致敬</p>
+<nz-table [nzData]="[1]" [nzShowPagination]="false" nzBordered>
+    <thead>
+    <tr>
+        <th></th>
+        <th nzWidth="30%">名字</th>
+        <th>贡献</th>
+        <th>联系方式</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="editable-row" *ngFor="let item of aboutContributionList">
+        <td>
+            <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="'https://q1.qlogo.cn/g?b=qq&nk=' + item.img + '&s=100'"></nz-avatar>
+        </td>
+        <td>
+            <div class="editable-cell" >
+                <div class="editable-cell-value-wrap">
+                    {{item.name}}
+                </div>
+            </div>
+        </td>
+        <td>{{item.describe}}</td>
+        <td>{{item.contact || '太害羞了，所以不愿意公布'}}</td>
+    </tr>
+    </tbody>
+</nz-table>
+<br/>
+<p>以上名单不分前后顺序</p>

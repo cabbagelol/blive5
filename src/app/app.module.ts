@@ -35,6 +35,7 @@ import { WorkbenchstyleComponent } from './menu/configure/workbenchstyle/workben
 import { ProfileinformationComponent } from './menu/configure/profileinformation/profileinformation.component';
 import { ShortcutkeysComponent } from './menu/configure/shortcutkeys/shortcutkeys.component';
 import { HistoryComponent } from './menu/history/history.component';
+import { ImgFilterComponent } from './workbench/imgfilter/img-filter.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -80,7 +81,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     WorkbenchstyleComponent,
     ProfileinformationComponent,
     ShortcutkeysComponent,
-    HistoryComponent
+    HistoryComponent,
+    ImgFilterComponent
   ],
   providers: [
     httpInterceptorProviders,

@@ -22,7 +22,7 @@
 }
 .Ruler-Guides-top,
 .Ruler-Guides-left {
-  top: 20px;
+  top: 10px;
   left: 0;
   width: 0;
   height: 0;
@@ -44,8 +44,8 @@
   border-left: 1px solid #006bfd;
 }
 .Ruler-div {
-  width: 25px;
-  height: 25px;
+  width: 10px;
+  height: 10px;
   position: relative;
   background-color: #aaa;
 }
@@ -67,15 +67,15 @@
 }
 .Ruler-top,
 .Ruler-auto {
-  top: 45px;
-  left: 25px;
-  width: 25px;
-  height: 25px;
+  top: 25px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
   z-index: 100;
   position: fixed;
-  border-color: #aaa;
+  border-color: #aaaaaa61;
   border-style: solid;
-  background-color: #ddd;
+  background-color: #fff0;
   box-sizing: border-box;
   /** end #鼠标位 */
 }
@@ -144,7 +144,7 @@
   height: 75%;
   content: "";
   position: absolute;
-  border-right: 1px solid #000;
+  border-right: 1px solid #0000001f;
 }
 .Ruler-top-body-75 > div {
   width: 5px;
@@ -179,7 +179,7 @@
   width: 75%;
   content: "";
   position: absolute;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #aaaaaa61;
 }
 .Ruler-auto-body-75 > div {
   height: 5px;

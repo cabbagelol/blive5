@@ -54,6 +54,12 @@ export default {
             height: 174,
         },
         {
+            name: "中大",
+            company: "px",
+            width: 998,
+            height: 230,
+        },
+        {
             name: "大",
             company: "px",
             width: 1140,

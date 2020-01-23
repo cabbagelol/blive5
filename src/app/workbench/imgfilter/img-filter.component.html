@@ -1,0 +1,22 @@
+<div class="blive-imgFilter" [ngStyle]="{
+    'top': imgFilter.y + 'px',
+    'left': imgFilter.x + 'px'
+}">
+    <nz-card style="width:300px;" nzTitle="滤镜" [nzExtra]="extraTemplate">
+        <nz-radio-group [(ngModel)]="radioValue" style="height: 400px; overflow: auto">
+            <label nz-radio nzValue="{{item.id}}" *ngFor="let item of radioList">
+                <div nz-row>
+                    <div nz-col [nzSpan]="18" [nzPush]="6">
+                        <img src="http://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" width="100px" height="50px">
+                    </div>
+                    <div nz-col [nzSpan]="6" [nzPull]="18">
+                        <div>{{item.text}}</div>
+                    </div>
+                </div>
+            </label>
+        </nz-radio-group>
+    </nz-card>
+    <ng-template #extraTemplate>
+        <a (mousedown)="onEditorLineMouseDow($event)">More</a>
+    </ng-template>
+</div>

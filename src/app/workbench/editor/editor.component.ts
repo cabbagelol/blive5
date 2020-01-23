@@ -71,7 +71,6 @@ export class EditorComponent implements OnInit,OnChanges  {
     const self = this;
     self.window.on('mousemove', event => {
       let calaNum = parseInt(this.window.height()) - event.pageY;
-      console.log(calaNum)
       if (calaNum > (this.window.height() / 3) * 2 || calaNum < (this.window.height() / 4) * 1) {
         return;
       }

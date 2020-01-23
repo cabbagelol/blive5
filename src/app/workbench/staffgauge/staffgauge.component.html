@@ -11,7 +11,7 @@
             <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="setWhiteboardsizeSize(radioValue)">
                 <ul nz-menu>
                     <li nz-menu-item *ngFor="let item of whiteboardsizeList">
-                        <label nz-radio nzValue="{{item.name}}">
+                        <label nz-radio nzValue="{{item.name}}" class="ant-dropdown-menu-item ng-star-inserted">
                             <span *ngIf="item.company != 'auto'">{{item.width}}px * {{item.height}}
                                 px |</span>{{item.name}}
                         </label>

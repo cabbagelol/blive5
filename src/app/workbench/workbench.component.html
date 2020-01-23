@@ -25,6 +25,7 @@
 </div>
 
 <blive-staffgauge [data]="data" (whiteboardsizeSize)="setWhiteboardsizeSize($event)"></blive-staffgauge>
+<blive-workbench-imgfilter *ngIf="panel.imgFilter"></blive-workbench-imgfilter>
 
 <!--E 引导-->
 <div class="blive-workbench" [style.height]="getWindowSizeChange()" (contextmenu)="contextMenu($event, menu)">
@@ -42,52 +43,161 @@
     <div id="blive-fluoroscopy">
         <!--选择器-->
         <div class="blive-fluoroscopy-selectors d1" [style.display]="fluoroscopeShowState ? 'block' : 'none'">
-            <span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['rb']"
-                  [style.top]="setWid(item,workbenchSelectorController, 'angle-top')"
-                  [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>
+            <div class="blive-fluoroscopy-selectors-nodeName">
+                <div>
+                    {{workbenchSelectorController.nodeName || ''}}
+                </div>
+                <div class="blive-fluoroscopy-selectors-nodeName-icons">
+                    <div (click)="openPanel('imgFilter')">
+                        <i nz-icon nzType="setting" nzTheme="outline"></i>
+                    </div>
+                </div>
+            </div>
+
+            <span :class="span-angle span-angle-{{item}}"
+                  *ngFor="let item of ['rb']"
+                  [ngStyle]="{'top': setWid(item,workbenchSelectorController, 'angle-top'), 'left': setWid(item,workbenchSelectorController, 'angle-left')}"></span>
 
             <!--<span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['lt','lb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>-->
             <!--<span :class="span-angle span-angle-{{item}}" *ngFor="let item of ['rt','rb']" [style.top]="setWid(item,workbenchSelectorController, 'angle-top')" [style.left]="setWid(item,workbenchSelectorController, 'angle-left')"></span>-->
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']"
+            <span :class="span-line span-line-{{item}}"
+                  *ngFor="let item of ['t','b']"
                   [style.top]="setWid(item,workbenchSelectorController, 'top')"
                   [style.width]="setWid(item,workbenchSelectorController, 'width')"></span>
-            <span :class="span-line span-line-{{item}}" *ngFor="let item of ['l','r']"
+            <span :class="span-line span-line-{{item}}"
+                  *ngFor="let item of ['l','r']"
                   [style.left]="setWid(item,workbenchSelectorController, 'left')"
                   [style.height]="setWid(item,workbenchSelectorController, 'height')"></span>
 
             <!--S 外 距离容器-->
-            <span class="span-margin span-margin-top" [style.top]="getDistanceRecognitionArea('-top')"
+            <span class="span-margin span-margin-top"
+                  nz-tooltip nzTooltipTitle="外边距"
+                  *ngIf="workbenchSelectorController.borderTopWidth > 0"
+                  [ngStyle]="{
+                    'top': '-' + (workbenchSelectorController.marginTop + workbenchSelectorController.borderTopWidth) + 'px'
+                  }"
                   [style.height]="getDistanceRecognitionArea('+top')"
-                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
-                  *ngIf="getDistanceRecognitionArea('+top')"></span>
-            <span class="span-margin span-margin-left" [style.left]="getDistanceRecognitionArea('-left')"
+                  [style.width]="setWid(item,workbenchSelectorController, 'width')">
+            </span>
+            <span class="span-margin span-margin-left"
+                  nz-tooltip nzTooltipTitle="外边距"
+                  *ngIf="workbenchSelectorController.borderLeftWidth > 0"
+                  [ngStyle]="{
+                    'left': '-' + (workbenchSelectorController.marginLeft + workbenchSelectorController.borderLeftWidth) + 'px'
+                  }"
                   [style.height]="setWid(item,workbenchSelectorController, 'height')"
-                  [style.width]="getDistanceRecognitionArea('+left')"
-                  *ngIf="getDistanceRecognitionArea('+left')"></span>
+                  [style.width]="getDistanceRecognitionArea('+left')">
+            </span>
             <span class="span-margin span-margin-botton"
-                  [style.top]="setWid(item,workbenchSelectorController, 'height')"
-                  [style.height]="getDistanceRecognitionArea('+top')"
-                  [style.width]="setWid(item,workbenchSelectorController, 'width')"
-                  *ngIf="getDistanceRecognitionArea('+bottom')"></span>
-            <span class="span-margin span-margin-right" [style.left]="setWid(item,workbenchSelectorController, 'width')"
-                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
-                  [style.width]="getDistanceRecognitionArea('+right')"
-                  *ngIf="getDistanceRecognitionArea('+right')"></span>
+                  nz-tooltip nzTooltipTitle="外边距"
+                  *ngIf="workbenchSelectorController.marginBottom > 0"
+                  [ngStyle]="{
+                    'top': (workbenchSelectorController.height + workbenchSelectorController.borderBottomWidth) + 'px',
+                    'height': workbenchSelectorController.marginTop + 'px',
+                    'width': workbenchSelectorController.width + 'px'
+                  }">
+            </span>
+            <span class="span-margin span-margin-right"
+                  nz-tooltip nzTooltipTitle="外边距"
+                  *ngIf="workbenchSelectorController.marginRight > 0"
+                  [ngStyle]="{
+                    'left': (workbenchSelectorController.width + workbenchSelectorController.borderRightWidth) + 'px',
+                    'height': workbenchSelectorController.height + 'px',
+                    'width': workbenchSelectorController.marginRight + 'px'
+                  }"></span>
             <!--E 外 距离容器-->
 
+            <!--S 中 边距-->
+            <span class="span-border span-border-top"
+                  nz-tooltip nzTooltipTitle="边框距离"
+                  *ngIf="workbenchSelectorController.borderTopWidth > 0"
+                  [ngStyle]="{
+                    'left':'0px',
+                    'top': '-' + workbenchSelectorController.borderTopWidth + 'px',
+                    'width': workbenchSelectorController.width + 'px',
+                    'height': workbenchSelectorController.borderTopWidth + 'px'
+                  }">
+            </span>
+            <span class="span-border span-border-left"
+                  nz-tooltip nzTooltipTitle="边框距离"
+                  *ngIf="workbenchSelectorController.borderLeftWidth > 0"
+                  [ngStyle]="{'left':'-' + workbenchSelectorController.borderLeftWidth + 'px','top': '0px', 'width': workbenchSelectorController.borderLeftWidth + 'px', 'height': workbenchSelectorController.height + 'px'}">
+                    <svg [attr.width]="workbenchSelectorController.borderLeftWidth"
+                         height="8"
+                         xmlns="http://www.w3.org/2000/svg">
+                     <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+                     <g>
+                      <line stroke="#039be5" id="svg_13" y2="3.94141" x2="0.31356" y1="0.33563" x1="3.79598"
+                            fill="none"/>
+                      <line stroke="#039be5" id="svg_14" y2="4.14034" x2="0.33804" y1="7.48173" x1="3.79" fill="none"/>
+                      <line x1="0.8" y1="3.6771" [attr.x2]="workbenchSelectorController.borderLeftWidth" y2="4.37107"
+                            style="stroke:#039be5;stroke-width:1"/>
+                     </g>
+                    </svg>
+            </span>
+            <span class="span-border span-border-bottom"
+                  nz-tooltip nzTooltipTitle="边框距离"
+                  *ngIf="workbenchSelectorController.borderBottomWidth > 0"
+                  [ngStyle]="{
+                    'left':'0px',
+                    'top': workbenchSelectorController.height + 'px',
+                    'width': workbenchSelectorController.width + 'px',
+                    'height': workbenchSelectorController.borderBottomWidth + 'px'
+                  }">
+            </span>
+            <span class="span-border span-border-right"
+                  nz-tooltip nzTooltipTitle="边框距离"
+                  *ngIf="workbenchSelectorController.borderRightWidth > 0"
+                  [ngStyle]="{
+                    'left': workbenchSelectorController.width  + 'px',
+                    'top': '0px',
+                    'width': workbenchSelectorController.borderRightWidth + 'px',
+                    'height': workbenchSelectorController.height + 'px'
+                  }">
+                <svg width="5" height="8" xmlns="http://www.w3.org/2000/svg"
+                     style="display: block;float: right;position: absolute;right: 0;top: calc(50% - 5px);">
+                 <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+                 <defs>
+                  <filter>
+                   <feGaussianBlur stdDeviation="0"/>
+                  </filter>
+                 </defs>
+                 <g>
+                  <title>Layer 1</title>
+                  <line transform="rotate(90 2.8309948444366455,2.094164371490479) " fill="none" x1="4.5722"
+                        y1="0.29127" x2="1.08978" y2="3.89705" stroke="#039be5"/>
+                  <line stroke="#039be5" transform="rotate(90 2.862497806549072,5.82484006881714) " fill="none"
+                        x1="4.58848" y1="7.61751" x2="1.13652" y2="4.03217"/>
+                  <line stroke="#039be5" y2="3.99002" x2="4.45666" y1="3.99002" x1="4.98101" fill-opacity="null"
+                        stroke-opacity="null" stroke-width="null" fill="none"/>
+                 </g>
+                </svg>
+            </span>
+            <!--E 中 边距-->
+
             <!--S 内 距离容器-->
-            <span class="span-padding span-padding-left" [style.width]="getDistanceRecognitionArea('p-left')"
-                  [style.height]="setWid(item,workbenchSelectorController, 'height')"
-                  title="{{'内边距-左:' + workbenchSelectorController.event['target']?.style.paddingLeft}}"></span>
+            <span class="span-padding span-padding-left"
+                  nz-tooltip nzTooltipTitle="内边距"
+                  *ngIf="workbenchSelectorController.paddingLeft > 0"
+                  [style.width]="getDistanceRecognitionArea('p-left')"
+                  [style.height]="setWid(item,workbenchSelectorController, 'height')"></span>
             <span class="span-padding span-padding-top"
+                  nz-tooltip nzTooltipTitle="内边距"
+                  *ngIf="workbenchSelectorController.paddingTop > 0"
                   [style.width]="setWid(item,workbenchSelectorController, 'width')"
                   [style.height]="getDistanceRecognitionArea('p-top')"
                   title="{{'内边距-上:' + workbenchSelectorController.event['target']?.style.paddingTop}}"></span>
-            <span class="span-padding span-padding-right" [style.left]="getDistanceRecognitionArea('p-width-right')"
+            <span class="span-padding span-padding-right"
+                  nz-tooltip nzTooltipTitle="内边距"
+                  *ngIf="workbenchSelectorController.paddingRight > 0"
+                  [style.left]="getDistanceRecognitionArea('p-width-right')"
                   [style.height]="setWid(item,workbenchSelectorController, 'height')"
                   [style.width]="getDistanceRecognitionArea('p-right')"
                   title="{{'内边距-右:' + workbenchSelectorController.event['target']?.style.paddingRight}}"></span>
-            <span class="span-padding span-padding-bottom" [style.top]="getDistanceRecognitionArea('p-height-bottom')"
+            <span class="span-padding span-padding-bottom"
+                  nz-tooltip nzTooltipTitle="内边距"
+                  *ngIf="workbenchSelectorController.paddingBottom > 0"
+                  [style.top]="getDistanceRecognitionArea('p-height-bottom')"
                   [style.height]="getDistanceRecognitionArea('p-bottom')"
                   [style.width]="setWid(item,workbenchSelectorController, 'width')"
                   title="{{'内边距-下:' + workbenchSelectorController.event['target']?.style.paddingBottom}}"></span>
@@ -97,7 +207,9 @@
         <!--预选器-->
         <div class="blive-fluoroscopy-preview-selectors d2"
              [style.display]="fluoroscopePreviewShowState ? 'block' : 'none'">
-            <span style="position:absolute;top: -15px;left: 0; padding: 0px 10px; height: 15px; background: rgba(3, 155, 229, 0.4); color: #fff;font-size: 10px">{{workbenchPreviewSelectorController.nodeName}}</span>
+            <span style="position:absolute;top: -15px;left: 0; padding: 0px 10px; height: 15px;background: #e6f7ff;color: #61ccff;font-size: 10px">
+                {{workbenchPreviewSelectorController.nodeName}}
+            </span>
             <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']"
                   [style.top]="setWid(item,workbenchPreviewSelectorController, 'top')"
                   [style.width]="setWid(item,workbenchPreviewSelectorController, 'width')"></span>
