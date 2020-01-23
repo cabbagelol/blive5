@@ -79,7 +79,7 @@ export class WorkbenchComponent implements OnInit {
     };
     // 属性可见面板
     panel: any = {
-        imgFilter: true,
+        imgFilter: false,
     }
 
     constructor(private _sanitizer: DomSanitizer,
