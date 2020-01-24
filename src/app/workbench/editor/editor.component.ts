@@ -21,6 +21,14 @@ export class EditorComponent implements OnInit,OnChanges  {
   // 编译器参数
   editorOptions = {
     language: 'html',
+    verticalHasArrows: true,
+    horizontalHasArrows: true,
+    vertical: 'visible',
+    horizontal: 'hidden',
+    verticalScrollbarSize: 17,
+    horizontalScrollbarSize: 17,
+    arrowSize: 12,
+    automaticLayout: true
   };
   // 编译器各种状态
   editor: any = {

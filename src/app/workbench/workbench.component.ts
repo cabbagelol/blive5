@@ -33,6 +33,7 @@ export class WorkbenchComponent implements OnInit {
     // [预选]选择器属性
     private workbenchPreviewSelectorController = {
         'nodeName': '',
+        'event': {},
         'width': 0,
         'height': 0,
         'margin': {
@@ -59,6 +60,8 @@ export class WorkbenchComponent implements OnInit {
     // 选择器坐标位置
     private workbenchSelectorController = {
         'nodeName': '',
+        'isLegalLabel': 1,
+        'isLegalLabelTip': '',
         'top': 0,
         'left': 0,
         'width': 0,
@@ -80,6 +83,7 @@ export class WorkbenchComponent implements OnInit {
     // 属性可见面板
     panel: any = {
         imgFilter: false,
+        imgAttr: false,
     }
 
     constructor(private _sanitizer: DomSanitizer,
@@ -314,19 +318,37 @@ export class WorkbenchComponent implements OnInit {
                 self.fluoroscopePreviewShowState = false;
                 return;
             }
+            self.workbenchPreviewSelectorController.event = event;
             self.fluoroscopePreviewShowState = true;
             self.onWithUpdataPreviewFluoroscopy(event);
         });
 
-        // $('.blive-workbench').mouseover(event => {
-        //     if (event.target.className == "blive-workbench") {
-        //         self.fluoroscopePreviewShowState = false;
-        //     }
-        // });
+        $('.blive-workbench').mouseover(event => {
+            if (event.target.className == "blive-workbench") {
+                self.fluoroscopePreviewShowState = false;
+            }
+        });
+    }
+
+    /**
+     * 校验合法标签
+     */
+    isLegalLabel(tagName: string) {
+        const self = this;
+        self.workbenchSelectorController.isLegalLabel = 1;
+        if (tagName.toLocaleLowerCase() in api.elementWhiteList) {
+            self.workbenchSelectorController.isLegalLabel = 1;
+        } else if (tagName.toLocaleLowerCase() in api.elementBlackList) {
+            self.workbenchSelectorController.isLegalLabel = 2;
+            self.workbenchSelectorController.isLegalLabelTip = api.elementBlackList[tagName.toLocaleLowerCase()].tip || '';
+        } else {
+            self.workbenchSelectorController.isLegalLabel = 0;
+        }
     }
 
     /**
      * 预览视图
+     * 预选选择器
      */
     onWithUpdataPreviewFluoroscopy(event) {
         const self = this;
@@ -334,26 +356,28 @@ export class WorkbenchComponent implements OnInit {
         var x = 0;
         var y = 0;
 
-        self.workbenchPreviewSelectorController.width = target.clientWidth;
-        self.workbenchPreviewSelectorController.height = target.clientHeight;
-        self.workbenchPreviewSelectorController.nodeName = event.target.nodeName.toLocaleLowerCase().replace(event.target.nodeName.toLocaleLowerCase()[0], event.target.nodeName.toLocaleLowerCase()[0].toLocaleUpperCase());
+        if (!!event.target) {
+            self.workbenchPreviewSelectorController.width = target.clientWidth;
+            self.workbenchPreviewSelectorController.height = target.clientHeight;
+            self.workbenchPreviewSelectorController.nodeName = event.target.nodeName.toLocaleLowerCase().replace(event.target.nodeName.toLocaleLowerCase()[0], event.target.nodeName.toLocaleLowerCase()[0].toLocaleUpperCase());
 
-        switch (target.nodeName) {
-            case 'IMG':
-                y = target.y;
-                x = target.x;
-                break;
-            case 'DIV':
-            case 'P':
-            default:
-                y = self.workbenchData.top + target.offsetTop + (parseInt(target.style.borderTopWidth) || 0)
-                x = self.workbenchData.left + target.offsetLeft + (parseInt(target.style.borderLeftWidth) || 0)
+            switch (target.nodeName) {
+                case 'IMG':
+                    y = target.y;
+                    x = target.x;
+                    break;
+                case 'DIV':
+                case 'P':
+                default:
+                    y = self.workbenchData.top + target.offsetTop + (parseInt(target.style.borderTopWidth) || 0)
+                    x = self.workbenchData.left + target.offsetLeft + (parseInt(target.style.borderLeftWidth) || 0)
+            }
+
+            self.previewFluoroscopy.css({
+                'top': `${y}px`,
+                'left': `${x}px`
+            });
         }
-
-        self.previewFluoroscopy.css({
-            'top': `${y}px`,
-            'left': `${x}px`
-        });
     }
 
     /**
@@ -391,8 +415,8 @@ export class WorkbenchComponent implements OnInit {
                 nodeName: event.target.nodeName,
                 left: event.target.offsetLeft,
                 top: event.target.offsetTop,
-                width: event.target.clientWidth,
-                height: event.target.clientHeight,
+                width: event.target.clientWidth || event.target.offsetWidth,
+                height: event.target.clientHeight || event.target.offsetHeight,
                 borderTopWidth: parseInt(event.target.style.borderTopWidth) || 0,
                 borderLeftWidth: parseInt(event.target.style.borderLeftWidth) || 0,
                 borderBottomWidth: parseInt(event.target.style.borderBottomWidth) || 0,
@@ -430,6 +454,8 @@ export class WorkbenchComponent implements OnInit {
 
 
         if (!!event.target) {
+            self.isLegalLabel(event.target.nodeName);
+
             /**
              * 处理不同标签坐标
              */
@@ -442,7 +468,6 @@ export class WorkbenchComponent implements OnInit {
                     y = self.workbenchData.top + self.workbenchSelectorController.top
                     x = self.workbenchData.left + self.workbenchSelectorController.left
                     break;
-                case 'DIV':
                 default:
                     // 容器距离 + 边框宽度距离
                     y = self.workbenchData.top + self.workbenchSelectorController.top + self.workbenchSelectorController.borderTopWidth
@@ -579,9 +604,9 @@ export class WorkbenchComponent implements OnInit {
              * 选择编辑并全选文字
              */
             var range = document.createRange();
-                range.selectNodeContents($(event)[0].target);
-                document.getSelection().removeAllRanges();
-                document.getSelection().addRange(range);
+            range.selectNodeContents($(event)[0].target);
+            document.getSelection().removeAllRanges();
+            document.getSelection().addRange(range);
 
             $(event.target).keydown((event) => {
                 self.onResetPosition();
@@ -595,13 +620,12 @@ export class WorkbenchComponent implements OnInit {
                  * 取消全选节点
                  */
                 window.getSelection().removeAllRanges();
-
                 return false;
             });
 
             document.execCommand('', false, null)
             return false;
-        }).mouseup(function(event){
+        }).mouseup(function (event) {
             // TODO
         });
     }
@@ -624,7 +648,6 @@ export class WorkbenchComponent implements OnInit {
                 'width': `${data.width}${data.company || 'px'}`,
                 'height': `${data.height}${data.company || 'px'}`
             });
-
         }
 
         /**
@@ -697,6 +720,13 @@ export class WorkbenchComponent implements OnInit {
      */
     getWindowSizeChange() {
         const self = this;
+
+        /**
+         * 变动比例时可能导致预选器位置未更新问题
+         * 因此需随着比例更新一次
+         */
+        self.onWithUpdataPreviewFluoroscopy(self.workbenchPreviewSelectorController.event);
+
         return self._sanitizer.bypassSecurityTrustStyle(`${self.workbenchInfo.codeHeigth}px`);
     }
 
@@ -726,10 +756,41 @@ export class WorkbenchComponent implements OnInit {
     }
 
     /**
-     * 打开可见面包
+     * 打开可见面板
      */
-    openPanel (name: string) {
+    openPanel(name: string) {
         const self = this;
+        self.data = Object.assign(self.data, {
+            workbenchSelectorController: self.workbenchSelectorController.event
+        })
+        self.fluoroscopePreviewShowState = false;
         self.panel[name] = self.panel[name] != true;
+    }
+
+    /**
+     * 更新滤镜数值
+     * 由面板滤镜传递
+     */
+    onFilterChange(data) {
+        const self = this;
+        var data_ = data.filter;
+        // ${data_[2] > 0 ? 'contrast(' + data_[2] * 0.01 + '%)' : ''} ${data_[3] > 0 ? 'drop-shadow(' + data_[3] * 0.01 + 'px)' : ''} ${data_[4] > 0 ? 'grayscale(' + data_[4] * 0.01 + '%)' : ''}
+        $(self.workbenchSelectorController.event['target']).css({
+            'filter': `${data_[0] > 0 ? 'brightness(' + data_[0] + '%)' : ''} ${data_[1] > 0 ? 'blur(' + data_[1] * 0.01 + 'px)' : ''} `
+        })
+    }
+
+    /**
+     * 更新img数值
+     * 由面板attr传递
+     */
+    onImgAttrChange(data) {
+        const self = this;
+        console.log(data);
+        $(self.workbenchSelectorController.event['target']).attr({
+            'src': data.src,
+            'alt': data.alt,
+            'title': data.title,
+        });
     }
 }

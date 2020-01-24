@@ -1,22 +1,49 @@
-<div class="blive-imgFilter" [ngStyle]="{
-    'top': imgFilter.y + 'px',
-    'left': imgFilter.x + 'px'
-}">
-    <nz-card style="width:300px;" nzTitle="滤镜" [nzExtra]="extraTemplate">
-        <nz-radio-group [(ngModel)]="radioValue" style="height: 400px; overflow: auto">
-            <label nz-radio nzValue="{{item.id}}" *ngFor="let item of radioList">
-                <div nz-row>
-                    <div nz-col [nzSpan]="18" [nzPush]="6">
-                        <img src="http://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" width="100px" height="50px">
-                    </div>
-                    <div nz-col [nzSpan]="6" [nzPull]="18">
-                        <div>{{item.text}}</div>
-                    </div>
+<div class="blive-imgFilter">
+    <div class="blive-imgFilter-bk" (click)="onClose()"></div>
+    <div class="blive-imgFilter-box" [ngStyle]="{
+        'top': imgFilter.y + 'px',
+        'left': imgFilter.x + 'px'
+    }">
+        <div nz-row class="blive-imgFilter-padding blive-imgFilter-head">
+            <div nz-col nzSpan="8">
+                <div>
+                    滤镜 <nz-tag [nzColor]="'#f50'">测试</nz-tag>
                 </div>
-            </label>
+            </div>
+            <div nz-col nzSpan="8" style="text-align: center" (mousedown)="onEditorLineMouseDow($event)">
+                <svg width="14" height="6" viewBox="0 0 14 6">
+                    <circle cx="1" cy="1" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="5" cy="1" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="9" cy="1" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="13" cy="1" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="1" cy="5" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="5" cy="5" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="9" cy="5" r="1" fill="#f2f2f2"></circle>
+                    <circle cx="13" cy="5" r="1" fill="#f2f2f2"></circle>
+                </svg>
+            </div>
+            <div nz-col nzSpan="8" style="text-align: right">
+                <div (click)="onClose()">
+                    关闭
+                </div>
+            </div>
+        </div>
+        <nz-radio-group [(ngModel)]="radioValue" style="height: 300px; overflow-y: auto; overflow-x: hidden;" class="blive-imgFilter-padding">
+            <!--<label nz-radio nzValue="{{item.id}}" *ngFor="let item of radioList">-->
+            <!--{{item.text}}-->
+            <!--</label>-->
+            <!--<nz-divider nzText="高级"></nz-divider>-->
+            <h4>亮度</h4>
+            <nz-slider [(ngModel)]="filter[0]" (ngModelChange)="onInput(0)"></nz-slider>
+            <h4>模糊</h4>
+            <nz-slider [(ngModel)]="filter[1]" (ngModelChange)="onInput(0)"></nz-slider>
+            <!--<h4>对比度</h4>-->
+            <!--<nz-slider [(ngModel)]="filter[2]" (ngModelChange)="onInput(0)"></nz-slider>-->
+            <!--<h4>阴影</h4>-->
+            <!--<nz-slider [(ngModel)]="filter[3]" (ngModelChange)="onInput(0)"></nz-slider>-->
+            <!--<h4>灰度</h4>-->
+            <!--<nz-slider [(ngModel)]="filter[4]" (ngModelChange)="onInput(0)"></nz-slider>-->
+            <!--<nz-slider [(ngModel)]="filter[5]" (ngModelChange)="onInput(0)"></nz-slider>-->
         </nz-radio-group>
-    </nz-card>
-    <ng-template #extraTemplate>
-        <a (mousedown)="onEditorLineMouseDow($event)">More</a>
-    </ng-template>
+    </div>
 </div>

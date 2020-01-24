@@ -31,7 +31,9 @@
     "monaco-editor": "^0.19.3",
     "ng-zorro-antd": "^8.5.2",
     "ngx-monaco-editor": "^6.0.0",
+    "ngx-perfect-scrollbar": "^5.3.5",
     "rxjs": "^6.5.1",
+    "rxjs-compat": "^6.5.4",
     "typings": "^2.1.1",
     "zone.js": "~0.9.1"
   },

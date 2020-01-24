@@ -2,7 +2,7 @@
     display: block;
 }
 
-.blive-imgFilter {
+.blive-imgAttr {
     position: fixed;
     z-index: 10;
     height: 100%;
@@ -13,8 +13,8 @@
     background: rgba(0, 0, 0, 0);
 }
 
-.blive-imgFilter-bk,
-.blive-imgFilter-bk:hover {
+.blive-imgAttr-bk,
+.blive-imgAttr-bk:hover {
     content: '';
     position: fixed;
     z-index: -1;
@@ -26,28 +26,31 @@
     transition: background-color .25s;
 }
 
-.blive-imgFilter-bk:hover {
+.blive-imgAttr-bk:hover {
     background: rgba(0, 0, 0, 0.1) !important;
 }
 
-.blive-imgFilter-box {
+.blive-imgAttr-box {
     position: fixed;
     z-index: 10;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
     width: 350px;
-    height: 400px;
     background-color: #fff;
 }
 
-.blive-imgFilter-head {
+.blive-imgAttr-head {
     border-bottom: 1px solid #f2f2f2;
     background: #1890ff;
     color: #fff;
 }
 
-.blive-imgFilter-padding {
+.blive-imgAttr-padding {
     padding: 20px;
     width: 100%;
+}
+
+.blive-imgAttr-buttom {
+    margin-bottom: 10px;
 }

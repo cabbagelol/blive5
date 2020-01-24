@@ -36,11 +36,20 @@ import { ProfileinformationComponent } from './menu/configure/profileinformation
 import { ShortcutkeysComponent } from './menu/configure/shortcutkeys/shortcutkeys.component';
 import { HistoryComponent } from './menu/history/history.component';
 import { ImgFilterComponent } from './workbench/imgfilter/img-filter.component';
+import { AttributeComponent } from './workbench/panel/attribute/attribute.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
+
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { ImgAttrComponent } from './workbench/imgattr/img-attr.component';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelPropagation: true
+};
 
 @NgModule({
   imports: [
@@ -61,6 +70,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     // ui
     NgZorroAntdModule,
     NzIconModule,
+
+    PerfectScrollbarModule
   ],
   declarations: [
     AppComponent,
@@ -82,12 +93,18 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProfileinformationComponent,
     ShortcutkeysComponent,
     HistoryComponent,
-    ImgFilterComponent
+    ImgFilterComponent,
+    AttributeComponent,
+    ImgAttrComponent
   ],
   providers: [
     httpInterceptorProviders,
     { provide: NZ_ICON_DEFAULT_TWOTONE_COLOR, useValue: '#00ff00' }, // 不提供的话，即为 Ant Design 的主题蓝色
-    { provide: NZ_ICONS, useValue: icons }
+    { provide: NZ_ICONS, useValue: icons },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [ AppComponent ]
 })

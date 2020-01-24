@@ -17,10 +17,13 @@ export default {
      */
     elementWhiteList: {
         'div': {
-            'tip': ''
+            'tip': '233'
         },
         'img': {
-            'tip': ''
+            'tip': '33'
+        },
+        'p': {
+            'tip': '33'
         }
     },
 
@@ -28,7 +31,11 @@ export default {
      * 不可靠的标签名单
      * 包含的标签已确认被过滤,严重造成简介排版
      */
-    elementBlackList: {},
+    elementBlackList: {
+        'strong': {
+            'tip': '这样的加粗方式已经不适应，会被官方过滤造成简介排版问题'
+        }
+    },
 
     /**
      * 白板配置

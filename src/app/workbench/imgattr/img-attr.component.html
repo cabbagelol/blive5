@@ -1,0 +1,56 @@
+<!--
+    * 图片属性面板
+-->
+
+<div class="blive-imgAttr">
+    <div class="blive-imgAttr-bk" (click)="onClose()"></div>
+    <div class="blive-imgAttr-box" [ngStyle]="{
+        'top': imgAttr.y + 'px',
+        'left': imgAttr.x + 'px'
+    }">
+        <div nz-row class="blive-imgAttr-padding blive-imgAttr-head">
+            <div nz-col nzSpan="8">
+                <div>
+                    图片属性
+                </div>
+            </div>
+            <div nz-col nzSpan="8" style="text-align: center">
+
+            </div>
+            <div nz-col nzSpan="8" style="text-align: right">
+                <div (click)="onClose()">
+                    关闭
+                </div>
+            </div>
+        </div>
+        <perfect-scrollbar style="height: 300px;" [scrollIndicators]="true" class="blive-imgAttr-padding">
+            <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="8">
+                    <nz-statistic [nzValue]="imgAttr.width | number" [nzTitle]="'自然宽'" [nzSuffix]="'/ px'"></nz-statistic>
+                </nz-col>
+                <nz-col [nzSpan]="8">
+                    <nz-statistic [nzValue]="imgAttr.height | number" [nzTitle]="'自然高'" [nzSuffix]="'/ px'"></nz-statistic>
+                </nz-col>
+                <nz-col [nzSpan]="8">
+                    <nz-statistic [nzValue]="imgAttr.size | number" [nzTitle]="'大小'" [nzSuffix]="'/ kb'"></nz-statistic>
+                </nz-col>
+            </nz-row>
+            <nz-divider nzText="图片地址" nzOrientation="left"></nz-divider>
+            <nz-input-group>
+                <input type="text" nz-input placeholder="http(s)://" [(ngModel)]="imgAttr.src" />
+            </nz-input-group>
+            <nz-divider nzText="描述 (可选)" nzOrientation="left"></nz-divider>
+            <nz-input-group>
+                <input type="text" nz-input [(ngModel)]="imgAttr.alt" placeholder="可输入图片alt数学" />
+            </nz-input-group>
+            <nz-divider nzText="title (可选)" nzOrientation="left"></nz-divider>
+            <nz-input-group>
+                <input type="text" nz-input [(ngModel)]="imgAttr.title" placeholder="可输入title属性" />
+            </nz-input-group>
+        </perfect-scrollbar>
+        <div class="blive-imgAttr-padding">
+            <button nz-button nzType="default" nzBlock class="blive-imgAttr-buttom" disabled>容器属性</button>
+            <button nz-button nzType="primary" nzBlock (click)="onChange()">确认</button>
+        </div>
+    </div>
+</div>

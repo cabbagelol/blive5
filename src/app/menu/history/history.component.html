@@ -1,5 +1,6 @@
 <!--
     * 简介历史
+    * 储存
 -->
 
 <div class="blive-history-window" (click)="close($event)">
@@ -38,78 +39,84 @@
                                 </nz-dropdown-menu>
                             </nz-page-header-extra>
                             <nz-page-header-content>
-                                <nz-row nzType="flex">
-                                    <nz-statistic nzTitle="剩余可用储存" nzPrefix="份"
-                                                  nzValue="{{20 - listLength}}"></nz-statistic>
-                                    <nz-statistic nzTitle="总量" [nzValue]="568.08" nzPrefix="kb"
-                                                  style="margin: 0 32px"></nz-statistic>
+                                <nz-row [nzGutter]="16">
+                                    <nz-col [nzSpan]="12">
+                                        <nz-statistic [nzValue]="20 - listLength | number" [nzTitle]="'剩余可用储存'"></nz-statistic>
+                                    </nz-col>
+                                    <nz-col [nzSpan]="12">
+                                        <nz-statistic [nzValue]="568.08 | number: '1.0-2'" [nzTitle]="'总量'"></nz-statistic>
+                                    </nz-col>
                                 </nz-row>
                             </nz-page-header-content>
                         </nz-page-header>
 
                         <nz-divider></nz-divider>
 
-                        <!--<div class="operate">-->
-                        <!--<button-->
-                        <!--nz-button-->
-                        <!--[disabled]="numberOfChecked === 0"-->
-                        <!--[nzType]="'primary'"-->
-                        <!--[nzLoading]="isOperating"-->
-                        <!--(click)="operateData()"-->
-                        <!--&gt;-->
-                        <!--Reload-->
-                        <!--</button>-->
-                        <!--<span *ngIf="numberOfChecked">Selected {{ numberOfChecked }} items</span>-->
-                        <!--</div>-->
-                        <nz-table
-                            #rowSelectionTable
-                            nzShowPagination
-                            nzShowSizeChanger
-                            [nzData]="historyList"
-                            (nzCurrentPageDataChange)="currentPageDataChange($event)">
-                            <thead>
-                            <tr>
-                                <th
-                                        nzShowCheckbox
-                                        [(nzChecked)]="isAllDisplayDataChecked"
-                                        [nzIndeterminate]="isIndeterminate"
-                                        (nzCheckedChange)="checkAll($event)"></th>
-                                <th>简要信息</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
+                        <nz-table [nzData]="historyList">
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th>+</th>-->
+                                <!--<th>简要信息</th>-->
+                                <!--<th>操作</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+
                             <tbody>
-                            <tr *ngFor="let data of historyList">
-                                <td
-                                        nzShowCheckbox
-                                        [(nzChecked)]="mapOfCheckedId[data.id]"
-                                        [nzDisabled]="data.disabled"
-                                        (nzCheckedChange)="refreshStatus()"
-                                ></td>
-                                <td>
-                                    <nz-descriptions nzLayout="vertical">
-                                        <nz-descriptions-item nzTitle="名称">
-                                            <p nz-paragraph nzEditable [nzEllipsisRows]="1" [nzEllipsis]="true" [(nzContent)]="data.name" (nzContentChange)="onUpDataList(data)"></p>
-                                        </nz-descriptions-item>
-                                        <nz-descriptions-item nzTitle="原始模板"> 未知</nz-descriptions-item>
-                                        <nz-descriptions-item nzTitle="容量">
-                                            <nz-progress [nzPercent]="(19.53 / (data.html.toString().length / 1024)).toFixed(2)" style="width: 200px; display: block"></nz-progress>
-                                        </nz-descriptions-item>
-                                        <nz-descriptions-item nzTitle="系统序列">
-                                            <span nz-tooltip
-                                                  nzTooltipTitle="这是blive生成的简介id,它是由什么组成并不重要,得益于此id工具才能通过它加载简介数据">{{data.id}}</span>
-                                        </nz-descriptions-item>
-                                        <nz-descriptions-item nzTitle="创建时间">{{ data.time }}</nz-descriptions-item>
-                                    </nz-descriptions>
-                                </td>
-                                <td style="width: 200px">
-                                    <button nz-button nzType="primary" (click)="open(data)">使用</button>
-                                    <nz-divider nzType="vertical"></nz-divider>
-                                    <button nz-popconfirm
-                                            nzPopconfirmTitle="删除该简介"
-                                            nzPopconfirmPlacement="bottom" nz-button nzType="danger" (nzOnConfirm)="delete(data)">删除</button>
-                                </td>
-                            </tr>
+                                <nz-content *ngFor="let data of historyList">
+                                    <!--S 历史记录-->
+
+                                    <tr style="background: #fff;padding: 15px 10px;display: block;">
+                                        <td
+                                                (nzExpandChange)="onCollapse(data)"
+                                                [nzShowExpand]="data.children.length > 0"></td>
+                                        <td>
+                                            <nz-descriptions nzLayout="vertical">
+                                                <nz-descriptions-item nzTitle="名称">
+                                                    <p nz-paragraph nzEditable [nzEllipsisRows]="1" [nzEllipsis]="true"
+                                                       [(nzContent)]="data.name" (nzContentChange)="onUpDataList(data)"></p>
+                                                </nz-descriptions-item>
+                                                <nz-descriptions-item nzTitle="原始模板"> 未知</nz-descriptions-item>
+                                                <nz-descriptions-item nzTitle="容量">
+                                                    <nz-progress
+                                                            [nzPercent]="(19.53 / (data.html.toString().length / 1024)).toFixed(2)"
+                                                            style="width: 200px; display: block"></nz-progress>
+                                                </nz-descriptions-item>
+                                                <nz-descriptions-item nzTitle="系统序列">
+                                                <span nz-tooltip
+                                                      nzTooltipTitle="这是blive生成的简介id,它是由什么组成并不重要,得益于此id工具才能通过它加载简介数据">{{data.id}}</span>
+                                                </nz-descriptions-item>
+                                                <nz-descriptions-item nzTitle="创建时间">{{ data.time }}</nz-descriptions-item>
+                                            </nz-descriptions>
+                                        </td>
+                                        <td style="width: 200px">
+                                            <button nz-button nzType="primary" (click)="open(data)">使用</button>
+                                            <nz-divider nzType="vertical"></nz-divider>
+                                            <button nz-popconfirm
+                                                    nzPopconfirmTitle="删除该简介"
+                                                    nzPopconfirmPlacement="bottom"
+                                                    nz-button
+                                                    nzType="danger"
+                                                    (nzOnConfirm)="delete(data)">删除
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!--S 子记录-->
+                                    <nz-content *ngFor="let t of data.children; let tindex = index;">
+                                        <tr *ngIf="data.show" style="background: #fff;border-bottom: 1px solid #f2f2f2;width: 100%;padding: 7px 15px; display: inline-table;">
+                                            <td style="width: 45px;"></td>
+                                            <td>
+                                                <nz-badge nzStatus="error"></nz-badge>
+                                                {{t.time}}
+                                            </td>
+                                            <td style="width: 200px" *ngIf="data.html != t.html">
+                                                <button nz-button nzType="link" (click)="delete(data, tindex)">删除</button>
+                                                <nz-divider nzType="vertical"></nz-divider>
+                                                <button nz-button nzType="link">使用分支</button>
+                                            </td>
+                                        </tr>
+                                    </nz-content>
+                                </nz-content>
                             </tbody>
                         </nz-table>
                     </div>

@@ -1,3 +1,7 @@
+::ng-deep ngx-monaco-editor {
+    height: 100% !important;
+}
+
 .blive-editor {
     height: calc(100% - 66.66666666666667%);
 }
@@ -12,7 +16,7 @@
 /*控制器*/
 .blive-editor-controller {
     position: absolute;
-    z-index: 10;
+    z-index: 9;
     top: -8px;
     left: calc(50% - 50px);
     width: 70px;

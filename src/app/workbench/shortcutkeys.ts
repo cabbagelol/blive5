@@ -12,8 +12,6 @@ export class Shortcutkeys {
             var shiftKey = e.shiftKey || e.metaKey;
             var ctrlKey = e.ctrlKey || e.metaKey;
 
-            console.log('e.keyCode', e.keyCode);
-
             if(shiftKey && ctrlKey && e.keyCode == 83) {
                 // 保存
                 data.resolve({
@@ -33,7 +31,6 @@ export class Shortcutkeys {
             //     // chrome & ie
             //     (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
             if (shiftKey) {
-                console.log("x" + e.originalEvent.detail);
                 data.resolve({
                     codekey: 20,
                 });
@@ -44,7 +41,7 @@ export class Shortcutkeys {
                 });
             }
         }).mousedown(e => {
-            return false;
+            // return false;
         });
     }
 }

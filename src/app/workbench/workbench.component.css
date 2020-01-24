@@ -2,6 +2,7 @@
     background-blend-mode: hard-light;
     height: 66.66666666666667%;
     overflow: hidden;
+    width: calc(100% - 300px);
     /*cursor: grab;*/
     position: absolute;
     z-index: 2;
@@ -118,23 +119,50 @@
     cursor: context-menu;
     position: absolute;
     z-index: 2;
-    top: -15px;
+    top: -17px;
     left: 0;
-    padding: 0px 0 0 5px;
-    height: 15px;
-    background: #039be5;
-    color: #ffffff;
-    font-size: 10px;
+    height: 17px;
+    font-size: 12px;
     display: flex;
+}
+
+.blive-fluoroscopy-selectors-nodeName.nodename-l-0 {
+    background: #858585 !important;
+    color: #ffffff;
+}
+
+.blive-fluoroscopy-selectors-nodeName.nodename-l-2 {
+    background: red !important;
+    color: #ffffff;
+}
+
+.blive-fluoroscopy-selectors-nodeName.nodename-l-1{
+    background: #039be5 !important;
+    color: #ffffff;
+}
+
+.blive-fluoroscopy-selectors-nodeName > div.nodename {
+    padding: 0 10px;
+    white-space: pre;
 }
 
 .blive-fluoroscopy-selectors-nodeName-icons {
     cursor: pointer;
-    margin-left: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
     border-left: 1px solid #ffffff26;
     font-size: 12px;
+    display: flex;
+}
+
+.blive-fluoroscopy-selectors-nodeName-icons > div {
+    display: block;
+    display: block;
+    padding: 0 5px;
+    font-size: 12px;
+    transform: scale(1);
+}
+
+.blive-fluoroscopy-selectors-nodeName-icons > div:hover {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .blive-fluoroscopy-preview-selectors .span-angle {
@@ -230,13 +258,11 @@
 
 .span-border-left {
     display: flex;
-    justify-content: start;
     align-items: center;
 }
 
 .span-border-right {
     display: flex;
-    justify-content: end;
     align-items: center;
 }
 

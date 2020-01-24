@@ -5,7 +5,6 @@ import {NzMessageService} from 'ng-zorro-antd/message';
 import util from '../../../public/util';
 import {LocalStorage, SeesionStorage} from '../../../public/localStorage';
 import {Historicalstorage} from "../../workbench/historicalstorage";
-import {Data} from "@angular/router";
 
 @Component({
     selector: 'blive-windwos-history',
@@ -21,11 +20,6 @@ export class HistoryComponent implements OnInit {
     historyList: any = [];
     listLength: number = 0;
     private saveName: string = 'blive.historicalstorage';
-    isAllDisplayDataChecked = false;
-    isIndeterminate = false;
-    listOfDisplayData: Data[] = [];
-    mapOfCheckedId: { [key: string]: boolean } = {};
-    numberOfChecked = 0;
 
     constructor(
         private sanitizer: DomSanitizer,
@@ -40,9 +34,18 @@ export class HistoryComponent implements OnInit {
         self.listLength = Historicalstorage.onQueryListLength();
 
         if (Object.keys(historicalstorage).length > 0) {
-            historicalstorage.list.forEach(i => {
+            historicalstorage.list.forEach((i, index) => {
+                i.key = index;
                 i.html = this.sanitizer.bypassSecurityTrustHtml(i.html);
                 i.time = new Date(i.time);
+                i.show = false;
+                if (!i.children) {
+                    i.children = []
+                } else {
+                    i.children.forEach(f => {
+                        f.time = new Date(f.time);
+                    })
+                }
             });
             self.historyList = historicalstorage.list;
         }
@@ -74,9 +77,10 @@ export class HistoryComponent implements OnInit {
     /**
      * 删除简介
      */
-    delete(data) {
+    delete(data: any, type: number = -1) {
         const self = this;
-        Historicalstorage.delete(data.id).then(result => {
+
+        Historicalstorage.delete(data.id, type.toString()).then(result => {
             if (result) {
                 self.message.success('删除成功');
 
@@ -89,7 +93,7 @@ export class HistoryComponent implements OnInit {
      * 编辑时更新标题
      * @param $event
      */
-    onUpDataList (data: any) {
+    onUpDataList(data: any) {
         const self = this;
         var list = LocalStorage.getObject(self.saveName);
 
@@ -102,23 +106,10 @@ export class HistoryComponent implements OnInit {
         LocalStorage.setObject(self.saveName, list);
     }
 
-    currentPageDataChange($event: Data[]): void {
-        this.listOfDisplayData = $event;
-        this.refreshStatus();
-    }
-
-    refreshStatus(): void {
-        this.isAllDisplayDataChecked = this.listOfDisplayData
-            .filter(item => !item.disabled)
-            .every(item => this.mapOfCheckedId[item.id]);
-        this.isIndeterminate =
-            this.listOfDisplayData.filter(item => !item.disabled).some(item => this.mapOfCheckedId[item.id]) &&
-            !this.isAllDisplayDataChecked;
-        this.numberOfChecked = this.historyList.filter(item => this.mapOfCheckedId[item.id]).length;
-    }
-
-    checkAll(value: boolean): void {
-        this.listOfDisplayData.filter(item => !item.disabled).forEach(item => (this.mapOfCheckedId[item.id] = value));
-        this.refreshStatus();
+    /**
+     * 展开状态
+     */
+    onCollapse (data) {
+        data.show = data.show != true;
     }
 }

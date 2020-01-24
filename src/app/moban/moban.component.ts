@@ -70,7 +70,6 @@ export class MobanComponent implements OnInit, AfterViewInit {
      * @param event
      */
     nzCheck(event: NzFormatEmitEvent): void {
-        console.log('nzCheck', event);
         this.defaultCheckedKeys = event.keys;
     }
 

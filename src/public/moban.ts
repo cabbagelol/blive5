@@ -15,8 +15,8 @@ let list = [
         h: '',
         list: [
             {
-                name: 'ce',
-                img: '',
+                name: '测试模板',
+                img: 'http://iph.href.lu/200x150?bg=f2f2f2',
                 path: '',
                 level: 0,
                 tag: ['测试']
