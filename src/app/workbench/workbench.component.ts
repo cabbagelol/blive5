@@ -132,6 +132,7 @@ export class WorkbenchComponent implements OnInit {
 
     /**
      * 全局事件
+     * 快捷键回调
      */
     async onShortcutkeys() {
         const self = this;
@@ -172,6 +173,15 @@ export class WorkbenchComponent implements OnInit {
                         //         });
                         //     }
                         // });
+                        break;
+                    case 40:
+                        self.onEventSelectorControl('lastBrother');
+                        break;
+                    case 41:
+                        self.onEventSelectorControl('nextBrother');
+                        break;
+                    case 42:
+                        self.onEventSelectorControl('parentNode');
                         break;
                 }
             }
@@ -328,6 +338,28 @@ export class WorkbenchComponent implements OnInit {
                 self.fluoroscopePreviewShowState = false;
             }
         });
+    }
+
+    /**
+     * 选择器控制
+     * 改变当前控制器选择对象
+     * 下兄弟 上兄弟 父节
+     */
+    onEventSelectorControl(type: string) {
+        const self = this;
+        var e;
+        switch (type) {
+            case 'lastBrother':
+                e = $(self.workbenchSelectorController.event['target']).prev().click();
+                break;
+            case 'nextBrother':
+                e = $(self.workbenchSelectorController.event['target']).next().click();
+                break;
+            case 'parentNode':
+                self.workbenchSelectorController.event = $(self.workbenchSelectorController.event['target']).parent().click();
+                break;
+        }
+        // self.onWithUpdataFluoroscopy(self.workbenchSelectorController.event);
     }
 
     /**

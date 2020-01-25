@@ -2,7 +2,6 @@
     * 工作台
     ** 工作台部件
 -->
-
 <div style="display: flex">
     <div style="width: calc(100% - 300px)">
         <div class="blive-workbench-bk" [style.height]="getWindowSizeChange()" *ngIf="workbenchData.isData"></div>
@@ -41,9 +40,15 @@
                 <ul nz-menu>
                     <li nz-submenu nzTitle=":: 选择元素节点">
                         <ul>
-                            <li nz-menu-item>上个兄弟节点</li>
-                            <li nz-menu-item>下个兄弟节点</li>
-                            <li nz-menu-item>父节点</li>
+                            <li nz-menu-item (click)="onEventSelectorControl('lastBrother')">
+                                上个兄弟节点
+                            </li>
+                            <li nz-menu-item (click)="onEventSelectorControl('nextBrother')">
+                                下个兄弟节点
+                            </li>
+                            <li nz-menu-item (click)="onEventSelectorControl('parentNode')">
+                                父节点
+                            </li>
                         </ul>
                     </li>
                     <li nz-menu-divider></li>
@@ -263,7 +268,6 @@
         <blive-code-editor [code]="data.editorCode" (change)="onWindowSizeChange($event)"></blive-code-editor>
     </div>
     <div style="width: 300px;border-left: 1px solid #f7f7f7;box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);">
-        <blive-attribute></blive-attribute>
-
+        <blive-attribute (eventSelectorControl)="onEventSelectorControl($event)"></blive-attribute>
     </div>
 </div>

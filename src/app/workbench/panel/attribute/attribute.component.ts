@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import { PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -10,6 +10,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 
 export class AttributeComponent implements OnInit {
+    @Output('eventSelectorControl') eventSelectorControl_ = new EventEmitter<any>();
+
     public config: PerfectScrollbarConfigInterface = {};
 
     panels = [
@@ -87,5 +89,12 @@ export class AttributeComponent implements OnInit {
 
         // @ts-ignore
         self.mobanDoms = this._sanitizer.bypassSecurityTrustHtml(getDOM(event));
+    }
+
+    /**
+     * onEventSelectorControl -> F
+     */
+    onEventSelectorControl (name) {
+        this.eventSelectorControl_.emit(name);
     }
 }

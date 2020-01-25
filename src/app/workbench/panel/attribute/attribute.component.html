@@ -28,12 +28,21 @@
                     <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
                         操作
                     </div>
-                    <li nz-menu-item>
-                        上一兄弟节点 <nz-tag>alt + shift + z</nz-tag>
+                    <li nz-menu-item (click)="onEventSelectorControl('lastBrother')">
+                        <div>
+                            上个兄弟节点 <nz-tag>alt + shift + z</nz-tag>
+                        </div>
                     </li>
-                    <li nz-menu-item>下一兄弟节点 <nz-tag>alt + shift + c</nz-tag></li>
-                    <li nz-menu-item>父节点 <nz-tag>alt + shift + x</nz-tag></li>
-                    <li nz-menu-item>取消选择</li>
+                    <li nz-menu-item (click)="onEventSelectorControl('nextBrother')">
+                        <div>
+                            下个兄弟节点 <nz-tag>alt + shift + c</nz-tag>
+                        </div>
+                    </li>
+                    <li nz-menu-item (click)="onEventSelectorControl('parentNode')">
+                        <div>
+                            父节点 <nz-tag>alt + shift + x</nz-tag>
+                        </div>
+                    </li>
                     <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
                         操作
                     </div>

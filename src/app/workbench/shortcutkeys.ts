@@ -21,6 +21,21 @@ export class Shortcutkeys {
                 data.resolve({
                     codekey: 2,
                 });
+            }else if (shiftKey && ctrlKey && e.keyCode == 90) {
+                // z
+                data.resolve({
+                    codekey: 40,
+                });
+            }else if (shiftKey && ctrlKey && e.keyCode == 88) {
+                // x
+                data.resolve({
+                    codekey: 41,
+                });
+            }else if (shiftKey && ctrlKey && e.keyCode == 67) {
+                // c
+                data.resolve({
+                    codekey: 42,
+                });
             }
         }).on("mousewheel DOMMouseScroll", function (e) {
             var e = e || event;
