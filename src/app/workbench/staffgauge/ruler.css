@@ -125,7 +125,7 @@
 .Ruler-top {
   top: 20px;
   border-width: 0 0 1px 0;
-  width: calc(100% - 25px);
+  width: calc(100% - 310px);
 }
 .Ruler-top-mouse {
   width: 1px;

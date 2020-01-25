@@ -1,11 +1,18 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
 .blive-attribute {
-    margin-top: 40px;
+    padding-top: 30px;
+    overflow: hidden;
+    height: calc(100% - 30px);
 }
 
 .blive-attribute-box {
     background: #fff;
+    height: calc(100% - 200px);
+}
+
+.blive-attribute-height {
+    height: 100%;
 }
 
 .blive-attribute-padding {
@@ -17,4 +24,59 @@
     color: #fff;
     border-bottom: 1px solid #f2f2f2;
     padding: 10px 20px;
+    display: flex;
+    align-self: center;
+    width: 100%;
+}
+
+.blive-attribute-head-icon {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    cursor: no-drop;
+}
+
+.blive-attribute-head-selector {
+    background-color: #f2f2f2;
+    padding: 5px 7px;
+    border-radius: 5px;
+    margin: 0 auto 0 10px;
+    width: 100%;
+}
+
+/*标签*/
+.card-container .ant-tabs-bar {
+    margin-bottom: 0px !important;
+}
+
+/*遍历*/
+.domList {
+    background: #fff;
+}
+
+.domList-span {
+    width: 20px;
+    min-width: 20px;
+    display: none;
+}
+
+.flex {
+    display: flex;
+    word-break: break-all;
+    white-space: pre;
+    padding: 5px 10px;
+    border-top: 1px solid #f2f2f2;
+}
+
+.flex:hover {
+    background: #f2f2f2;
+}
+
+.flex-nodeName {
+    background-color: #1c90f3;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 10px;
+    font-size: 12px;
+    margin-right: 10px;
 }

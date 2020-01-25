@@ -338,11 +338,13 @@ export class WorkbenchComponent implements OnInit {
         self.workbenchSelectorController.isLegalLabel = 1;
         if (tagName.toLocaleLowerCase() in api.elementWhiteList) {
             self.workbenchSelectorController.isLegalLabel = 1;
+            self.workbenchSelectorController.isLegalLabelTip = '';
         } else if (tagName.toLocaleLowerCase() in api.elementBlackList) {
             self.workbenchSelectorController.isLegalLabel = 2;
             self.workbenchSelectorController.isLegalLabelTip = api.elementBlackList[tagName.toLocaleLowerCase()].tip || '';
         } else {
             self.workbenchSelectorController.isLegalLabel = 0;
+            self.workbenchSelectorController.isLegalLabelTip = '我们不知道此标签是否影响,可通过联系方式通知我们';
         }
     }
 

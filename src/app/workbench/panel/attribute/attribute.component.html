@@ -3,55 +3,85 @@
 -->
 
 <div class="blive-attribute">
-    <div class="blive-attribute-box">
+    <div class="blive-attribute-box card-container">
         <div class="blive-attribute-head blive-attribute-padding">
-            <svg width="14" height="6" viewBox="0 0 14 6">
-                <circle cx="1" cy="1" r="1" fill="#999"></circle>
-                <circle cx="5" cy="1" r="1" fill="#999"></circle>
-                <circle cx="9" cy="1" r="1" fill="#999"></circle>
-                <circle cx="13" cy="1" r="1" fill="#999"></circle>
-                <circle cx="1" cy="5" r="1" fill="#999"></circle>
-                <circle cx="5" cy="5" r="1" fill="#999"></circle>
-                <circle cx="9" cy="5" r="1" fill="#999"></circle>
-                <circle cx="13" cy="5" r="1" fill="#999"></circle>
-            </svg>
+            <div class="blive-attribute-head-icon">
+                <svg width="6" height="14">
+                    <g>
+                        <circle id="svg_1" r="1" fill="#999" cy="1" cx="1"/>
+                        <circle id="svg_2" r="1" fill="#999" cy="1" cx="5"/>
+                        <circle id="svg_3" r="1" fill="#999" cy="8.94585" cx="1.04056"/>
+                        <circle id="svg_4" r="1" fill="#999" cy="8.94585" cx="5.04056"/>
+                        <circle id="svg_5" r="1" fill="#999" cy="5" cx="1"/>
+                        <circle id="svg_6" r="1" fill="#999" cy="5" cx="5"/>
+                        <circle id="svg_7" r="1" fill="#999" cy="12.94585" cx="1.04056"/>
+                        <circle id="svg_8" r="1" fill="#999" cy="12.94585" cx="5.04056"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="blive-attribute-head-selector"  nz-dropdown [nzDropdownMenu]="menu1" (nzVisibleChange)="onUpDom()">
+                <nz-tag  [nzMode]="false ? 'default' : 'closeable'"
+                         (nzAfterClose)="handleClose(tag)">测试</nz-tag>
+            </div>
+            <nz-dropdown-menu #menu1="nzDropdownMenu">
+                <ul nz-menu>
+                    <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
+                        操作
+                    </div>
+                    <li nz-menu-item>
+                        上一兄弟节点 <nz-tag>alt + shift + z</nz-tag>
+                    </li>
+                    <li nz-menu-item>下一兄弟节点 <nz-tag>alt + shift + c</nz-tag></li>
+                    <li nz-menu-item>父节点 <nz-tag>alt + shift + x</nz-tag></li>
+                    <li nz-menu-item>取消选择</li>
+                    <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
+                        操作
+                    </div>
+                    <perfect-scrollbar [scrollIndicators]="true" style="height: 300px">
+                        <div [innerHTML]="mobanDoms"></div>
+                    </perfect-scrollbar>
+                </ul>
+            </nz-dropdown-menu>
         </div>
         <nz-tabset [nzTabPosition]="'top'" [nzTabBarGutter]="'2'" [nzSize]="'small'">
-            <nz-tab [nzTitle]="'基础属性'">
-                <perfect-scrollbar style="height: 400px" [config]="config" [scrollIndicators]="true">
-                    <div class="scrollable-content">
-                        <nz-collapse [nzBordered]="false">
-                            <nz-collapse-panel
-                                #p
-                                *ngFor="let panel of panels; let isFirst = first"
-                                [nzHeader]=""
-                                [nzActive]="panel.active"
-                                [ngStyle]="panel.customStyle"
-                                [nzExpandedIcon]="(panel.icon || expandedIcon)">
-                                <div>{{ panel.name }} content</div>
-                                <ng-template #expandedIcon let-active>
-                                    <div style="font-size: 12px;color: #888;line-height: .4;">
-                                        <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
-                                        自定义 {{panel.name}} <nz-badge nzStatus="success"></nz-badge>
-                                    </div>
-                                </ng-template>
-                            </nz-collapse-panel>
-                        </nz-collapse>
-                    </div>
-                </perfect-scrollbar>
-            </nz-tab>
-
-            <nz-tab [nzTitle]="'高级属性'">
-                <nz-result nzStatus="warning" nzTitle="施工中">
-
-                </nz-result>
-            </nz-tab>
-
-            <nz-tab [nzTitle]="'设计工程'">
-                <nz-result nzStatus="warning" nzTitle="施工中">
-
-                </nz-result>
-            </nz-tab>
+            <nz-tab [nzTitle]="'基础属性'"></nz-tab>
         </nz-tabset>
+
+        <perfect-scrollbar [config]="config" [scrollIndicators]="true">
+            <div class="scrollable-content">
+                <nz-collapse [nzBordered]="false">
+                    <nz-collapse-panel
+                        #p
+                        *ngFor="let panel of panels"
+                        [nzHeader]=""
+                        [nzActive]="panel.active"
+                        [ngStyle]="panel.customStyle"
+                        [nzExpandedIcon]="(panel.icon || expandedIcon)">
+                        <div>{{ panel.name }} content</div>
+                        <ng-template #expandedIcon let-active>
+                            <div style="font-size: 12px;color: #888;line-height: .9;">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
+                                {{panel.name}}
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                    <nz-collapse-panel
+                        #p
+                        [nzActive]="panels[0].active"
+                        [ngStyle]="panels[0].customStyle"
+                        [nzExpandedIcon]="(panels[0].icon || expandedIcon)">
+                        <blive-attrbute-spacing></blive-attrbute-spacing>
+                        <ng-template #expandedIcon let-active>
+                            <div style="font-size: 12px;color: #888;line-height: .9;">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
+                                容器
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+        </perfect-scrollbar>
+
+        <!--<nz-result nzStatus="warning" nzTitle="施工中"></nz-result>-->
     </div>
 </div>

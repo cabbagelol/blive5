@@ -46,6 +46,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
   PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { ImgAttrComponent } from './workbench/imgattr/img-attr.component';
+import { AttrbutespacingComponent } from './workbench/panel/attribute/attrbutespacing/attrbutespacing.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
@@ -95,7 +96,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HistoryComponent,
     ImgFilterComponent,
     AttributeComponent,
-    ImgAttrComponent
+    ImgAttrComponent,
+    AttrbutespacingComponent
   ],
   providers: [
     httpInterceptorProviders,

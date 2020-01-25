@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 300px;
     z-index: 10;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     height: 20px;
