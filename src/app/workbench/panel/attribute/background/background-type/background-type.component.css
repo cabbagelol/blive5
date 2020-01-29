@@ -1,0 +1,11 @@
+@import "../background.component.css";
+
+.blive-background-type {
+    width: 250px;
+}
+
+.blive-background-type-btn {
+    display: inline-grid;
+    justify-content: center;
+    align-self: center;
+}

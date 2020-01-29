@@ -1,0 +1,40 @@
+.blive-background {
+    background-color: #fbfbfb;
+    padding: 21px;
+    margin: -5px -20px -20px -20px;
+}
+
+.blive-background-bottom {
+    margin-bottom: 5px;
+}
+
+.blive-background-title {
+    text-align: right;
+}
+
+
+.blive-background-images {
+    padding: 5px 5px 0px 5px;
+    background-color: #f9f9f9;
+    display: inline-block;
+    width: 100%;
+    border-radius: 2px;
+    border: 1px solid #f1f1f1;
+}
+
+.blive-background-images-item {
+    display: flex;
+    padding: 0 0 0 10px;
+}
+
+.blive-background-images-item-content {
+    padding-left: 7px;
+    color: #999;
+}
+
+.blive-background-item-colorblock {
+    width: 21px;
+    height: 21px;
+    margin-left: -11px;
+    background-color: #f2f2f2;
+}

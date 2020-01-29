@@ -52,6 +52,7 @@ import { IndexComponent } from './workbench/index.component';
 import { UtmsourceComponent } from './dashboard/utmsource/utmsource.component';
 import { SizeComponent } from './workbench/panel/attribute/size/size.component';
 import { BackgroundComponent } from './workbench/panel/attribute/background/background.component';
+import { BackgroundTypeComponent } from './workbench/panel/attribute/background/background-type/background-type.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
@@ -107,7 +108,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     IndexComponent,
     UtmsourceComponent,
     SizeComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    BackgroundTypeComponent
   ],
   providers: [
     httpInterceptorProviders,
