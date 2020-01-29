@@ -1,10 +1,12 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {NzContextMenuService, NzDropdownMenuComponent, NzModalService} from "ng-zorro-antd";
 import {Shortcutkeys} from './shortcutkeys';
 import {Historicalstorage} from './historicalstorage';
 import {NzMessageService} from 'ng-zorro-antd/message';
+
+import {AttributeComponent} from './panel/attribute/attribute.component';
 
 // @ts-ignore
 import $ from "jquery";
@@ -14,13 +16,15 @@ import util from "../../public/util";
 @Component({
     selector: 'blive-workbench',
     templateUrl: './workbench.component.html',
-    styleUrls: ['./workbench.component.css'],
+    styleUrls: ['./workbench.component.less'],
     providers: [Shortcutkeys, Historicalstorage],
 })
 
 export class WorkbenchComponent implements OnInit {
     @Input() data: any;
     @Output('checked') checkedBack = new EventEmitter<any>();
+
+    @ViewChild('attributecomponent', {static: false}) attributecomponent_ :AttributeComponent;
 
     // panel
     private windows;
@@ -316,9 +320,11 @@ export class WorkbenchComponent implements OnInit {
             // 选择器
             self.workbenchSelectorController.event = event;
             self.fluoroscopeShowState = true;
+            self.fluoroscopePreviewShowState = false;
             self.onResetPosition();
             self.onChangeComponentData(event);
             self.onWithUpdataFluoroscopy(event);
+            self.attributecomponent_.onUpAttrData()
             return false;
         }).mouseover(event => {
             /**
@@ -393,7 +399,7 @@ export class WorkbenchComponent implements OnInit {
         if (!!event.target) {
             self.workbenchPreviewSelectorController.width = target.clientWidth;
             self.workbenchPreviewSelectorController.height = target.clientHeight;
-            self.workbenchPreviewSelectorController.nodeName = event.target.nodeName.toLocaleLowerCase().replace(event.target.nodeName.toLocaleLowerCase()[0], event.target.nodeName.toLocaleLowerCase()[0].toLocaleUpperCase());
+            self.workbenchPreviewSelectorController.nodeName =  util.toWritingStyle(event.target.nodeName);
 
             switch (target.nodeName) {
                 case 'IMG':
@@ -446,7 +452,7 @@ export class WorkbenchComponent implements OnInit {
             }
         } else {
             target = {
-                nodeName: event.target.nodeName,
+                nodeName: util.toWritingStyle(event.target.nodeName),
                 left: event.target.offsetLeft,
                 top: event.target.offsetTop,
                 width: event.target.clientWidth || event.target.offsetWidth,
@@ -700,7 +706,7 @@ export class WorkbenchComponent implements OnInit {
     async onUpdataWorkbenchMoban() {
         const self = this;
         if (!self.data.moban.w) {
-            await $.ajax(`assets/moban/${self.data.moban.name}.txt`).then(res => {
+            await $.ajax(`assets/moban/${self.data.moban.path || self.data.moban.name}.txt`).then(res => {
                 self.workbenchInfo.html(res);
                 self.data.editorCode = res;
             }).catch(err => {

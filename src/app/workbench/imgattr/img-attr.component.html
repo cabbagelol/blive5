@@ -3,12 +3,12 @@
 -->
 
 <div class="blive-imgAttr">
-    <div class="blive-imgAttr-bk" (click)="onClose()"></div>
-    <div class="blive-imgAttr-box" [ngStyle]="{
+    <div (click)="onClose()" class="blive-imgAttr-bk"></div>
+    <div [ngStyle]="{
         'top': imgAttr.y + 'px',
         'left': imgAttr.x + 'px'
-    }">
-        <div nz-row class="blive-imgAttr-padding blive-imgAttr-head">
+    }" class="blive-imgAttr-box">
+        <div class="blive-imgAttr-padding blive-imgAttr-head" nz-row>
             <div nz-col nzSpan="8">
                 <div>
                     图片属性
@@ -23,34 +23,82 @@
                 </div>
             </div>
         </div>
-        <perfect-scrollbar style="height: 300px;" [scrollIndicators]="true" class="blive-imgAttr-padding">
+        <perfect-scrollbar [scrollIndicators]="true" class="blive-imgAttr-padding" style="height: 300px;">
             <nz-row [nzGutter]="16">
                 <nz-col [nzSpan]="8">
-                    <nz-statistic [nzValue]="imgAttr.width | number" [nzTitle]="'自然宽'" [nzSuffix]="'/ px'"></nz-statistic>
+                    <nz-statistic [nzSuffix]="'/ px'" [nzTitle]="'自然宽'"
+                                  [nzValue]="imgAttr.width | number"></nz-statistic>
                 </nz-col>
                 <nz-col [nzSpan]="8">
-                    <nz-statistic [nzValue]="imgAttr.height | number" [nzTitle]="'自然高'" [nzSuffix]="'/ px'"></nz-statistic>
+                    <nz-statistic [nzSuffix]="'/ px'" [nzTitle]="'自然高'"
+                                  [nzValue]="imgAttr.height | number"></nz-statistic>
                 </nz-col>
                 <nz-col [nzSpan]="8">
-                    <nz-statistic [nzValue]="imgAttr.size | number" [nzTitle]="'大小'" [nzSuffix]="'/ kb'"></nz-statistic>
+                    <nz-statistic [nzSuffix]="'/ kb'" [nzTitle]="'大小'" [nzValue]="imgAttr.size | number"></nz-statistic>
                 </nz-col>
             </nz-row>
-            <nz-divider nzText="图片地址" nzOrientation="left"></nz-divider>
-            <nz-input-group>
-                <input type="text" nz-input placeholder="http(s)://" [(ngModel)]="imgAttr.src" />
+            <nz-divider nzOrientation="left" nzText="图片地址"></nz-divider>
+            <nz-input-group [nzAddOnAfter]="addOnAfterTemplate">
+                <input [(ngModel)]="imgAttr.src" nz-input placeholder="http(s)://" type="text"/>
+                <ng-template #addOnAfterTemplate>
+                    <div [nzDropdownMenu]="menu1" nz-dropdown nzPlacement="bottomRight">
+                        <i nz-icon nzType="ellipsis"></i>
+                    </div>
+                    <nz-dropdown-menu #menu1="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li (click)="showModal()" nz-menu-item>
+                                <i nz-icon nzType="upload" nzTheme="outline"></i>
+                                上传图床
+                            </li>
+                        </ul>
+                    </nz-dropdown-menu>
+
+                    <!--S 图床控制-->
+                    <nz-modal [nzFooter]="modalFooter" [(nzVisible)]="isVisible">
+                        <nz-select style="min-width: 100px;" [(ngModel)]="imagesApiList.value" (nzOpenChange)="onSelectImagesChange($event)">
+                            <nz-option [nzValue]="i.url" [nzLabel]="i.name" *ngFor="let i of imagesApiList.list"></nz-option>
+                        </nz-select>
+                        <nz-divider></nz-divider>
+                        <div class="ant-upload ant-upload-drag ng-star-inserted">
+                            <input (change)="previewFile($event)"
+                                   style="position: absolute;  top: 0; left: 0;right: 0;height: 100%; width: 100%;opacity: 0;"
+                                   type="file"><br/>
+                            <div class=" ant-upload ant-upload-btn">
+                                <p class="ant-upload-drag-icon">
+                                    <i nz-icon nzType="upload"></i>
+                                </p>
+                                <p class="ant-upload-text">上传</p>
+                                <p class="ant-upload-hint">
+                                    图片请勿包含色情，暴力等严禁图片，一旦封禁不会再提供图床服务.
+                                </p>
+                            </div>
+                        </div>
+
+                        <nz-content *ngIf="imgAttr.src_.length > 0">
+                            <br/>
+                            <input nz-input placeholder="Basic usage" [(ngModel)]="imgAttr.src_" [disabled]="true" />
+                        </nz-content>
+
+                        <ng-template #modalFooter>
+                            <button nz-button nzType="default" (click)="showModal(0)">取消</button>
+                            <button nz-button nzType="primary" (click)="showModal(1)" [disabled]="imgAttr.src_.length <= 0">确认</button>
+                        </ng-template>
+                    </nz-modal>
+                    <!--E 图床控制-->
+                </ng-template>
             </nz-input-group>
-            <nz-divider nzText="描述 (可选)" nzOrientation="left"></nz-divider>
+            <nz-divider nzOrientation="left" nzText="描述 (可选)"></nz-divider>
             <nz-input-group>
-                <input type="text" nz-input [(ngModel)]="imgAttr.alt" placeholder="可输入图片alt数学" />
+                <input [(ngModel)]="imgAttr.alt" nz-input placeholder="可输入图片alt数学" type="text"/>
             </nz-input-group>
-            <nz-divider nzText="title (可选)" nzOrientation="left"></nz-divider>
+            <nz-divider nzOrientation="left" nzText="title (可选)"></nz-divider>
             <nz-input-group>
-                <input type="text" nz-input [(ngModel)]="imgAttr.title" placeholder="可输入title属性" />
+                <input [(ngModel)]="imgAttr.title" nz-input placeholder="可输入title属性" type="text"/>
             </nz-input-group>
         </perfect-scrollbar>
         <div class="blive-imgAttr-padding">
-            <button nz-button nzType="default" nzBlock class="blive-imgAttr-buttom" disabled>容器属性</button>
-            <button nz-button nzType="primary" nzBlock (click)="onChange()">确认</button>
+            <button class="blive-imgAttr-buttom" disabled nz-button nzBlock nzType="default">容器属性</button>
+            <button (click)="onChange()" nz-button nzBlock nzType="primary">确认</button>
         </div>
     </div>
 </div>

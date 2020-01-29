@@ -2,8 +2,8 @@
     * 工作台
     ** 工作台部件
 -->
-<div style="display: flex">
-    <div style="width: calc(100% - 300px)">
+<div class="blive-workbench-flex">
+    <div class="blive-workbench-leftbox">
         <div class="blive-workbench-bk" [style.height]="getWindowSizeChange()" *ngIf="workbenchData.isData"></div>
         <!--S 引导-->
         <div class="blive-workbench-guide" [style.height]="getWindowSizeChange()" *ngIf="!workbenchData.isData">
@@ -77,7 +77,7 @@
                             {{workbenchSelectorController.nodeName || ''}}
                         </div>
                         <div class="blive-fluoroscopy-selectors-nodeName-icons"
-                             *ngIf="workbenchSelectorController.nodeName == 'IMG'">
+                             *ngIf="workbenchSelectorController.nodeName == 'Img'">
                             <div (click)="openPanel('imgAttr')">
                                 <i nz-icon nzType="setting" nzTheme="outline"></i>
                             </div>
@@ -249,7 +249,7 @@
                 <!--预选器-->
                 <div class="blive-fluoroscopy-preview-selectors d2"
                      [style.display]="fluoroscopePreviewShowState ? 'block' : 'none'">
-                    <span style="position:absolute;top: -17px;left: 0; padding: 0px 10px; height: 17px;background: #e6f7ff;color: #61ccff;font-size: 10px">
+                    <span class="blive-fluoroscopy-preview-selectors-nodeName">
                         {{workbenchPreviewSelectorController.nodeName}}
                     </span>
                     <span :class="span-line span-line-{{item}}" *ngFor="let item of ['t','b']"
@@ -267,7 +267,7 @@
 
         <blive-code-editor [code]="data.editorCode" (change)="onWindowSizeChange($event)"></blive-code-editor>
     </div>
-    <div style="width: 300px;border-left: 1px solid #f7f7f7;box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);">
-        <blive-attribute (eventSelectorControl)="onEventSelectorControl($event)"></blive-attribute>
+    <div class="blive-workbench-attr">
+        <blive-attribute [data]="data" (eventSelectorControl)="onEventSelectorControl($event)" (attrChange)="onWithUpdataFluoroscopy(workbenchSelectorController.event)" #attributecomponent></blive-attribute>
     </div>
 </div>

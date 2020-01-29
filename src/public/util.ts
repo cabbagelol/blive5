@@ -22,5 +22,15 @@ export default {
             var r = Math.random() * (16) | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(length || 16);
         });
+    },
+
+    /**
+     * 字符转换 首个字符转为大写
+     */
+    toWritingStyle(content: string) {
+        if (content.toString().length <= 0) {
+            return '';
+        }
+        return content.toLocaleLowerCase().replace(content.toLocaleLowerCase()[0], content.toLocaleLowerCase()[0].toLocaleUpperCase());
     }
 }

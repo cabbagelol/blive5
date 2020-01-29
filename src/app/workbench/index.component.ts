@@ -25,7 +25,7 @@ export class IndexComponent implements OnInit {
     const self = this;
     const map = util.getQueryVariable();
     if (Object.keys(map).length == 0) {
-      self.location.go('/?id=' + util.getUUID(16) + '&one=true')
+      self.location.go('edit/?id=' + util.getUUID(16) + '&one=true')
     }
   }
 

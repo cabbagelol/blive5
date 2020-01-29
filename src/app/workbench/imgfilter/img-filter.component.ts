@@ -5,7 +5,7 @@ import $ from "jquery";
 @Component({
   selector: 'blive-workbench-imgfilter',
   templateUrl: './img-filter.component.html',
-  styleUrls: ['./img-filter.component.css']
+  styleUrls: ['./img-filter.component.less']
 })
 
 export class ImgFilterComponent implements OnInit {

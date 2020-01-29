@@ -49,6 +49,9 @@ import { ImgAttrComponent } from './workbench/imgattr/img-attr.component';
 import { AttrbutespacingComponent } from './workbench/panel/attribute/attrbutespacing/attrbutespacing.component';
 import { FolderPage } from './dashboard/folder/folder.component';
 import { IndexComponent } from './workbench/index.component';
+import { UtmsourceComponent } from './dashboard/utmsource/utmsource.component';
+import { SizeComponent } from './workbench/panel/attribute/size/size.component';
+import { BackgroundComponent } from './workbench/panel/attribute/background/background.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
@@ -101,7 +104,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ImgAttrComponent,
     AttrbutespacingComponent,
     FolderPage,
-    IndexComponent
+    IndexComponent,
+    UtmsourceComponent,
+    SizeComponent,
+    BackgroundComponent
   ],
   providers: [
     httpInterceptorProviders,

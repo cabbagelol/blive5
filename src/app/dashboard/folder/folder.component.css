@@ -1,13 +1,15 @@
 .blive-folder {
     height: 100%;
+    overflow: auto;
 }
 
 .logo {
     width: 120px;
-    height: 31px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px 28px 16px 0;
+    height: 100%;
     float: left;
+    display: flex;
+    color: #fff;
+    font-size: 35px;
 }
 
 .header-menu {
@@ -39,4 +41,44 @@ nz-breadcrumb {
 
 nz-footer {
     text-align: center;
+}
+
+/*项目列表*/
+.blive-project-item {
+    margin-bottom: 20px;
+}
+
+.blive-project-html {
+    height: 220px;
+    background-color: #f2f2f2;
+    overflow: hidden;
+    margin: -24px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 20px;
+}
+
+.blive-project-html:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+.blive-project-html > div {
+    transform: scale(0.8);
+    width: 1000px;
+    position: absolute;
+}
+
+.blive-folder-user-box{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
 }

@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import { PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {DomSanitizer} from "@angular/platform-browser";
+import {SizeComponent} from "./size/size.component";
 
 @Component({
     selector: 'blive-attribute',
@@ -10,7 +11,10 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 
 export class AttributeComponent implements OnInit {
+    @Input() data: any;
     @Output('eventSelectorControl') eventSelectorControl_ = new EventEmitter<any>();
+    @Output('attrChange') attrChange_ = new EventEmitter<any>();
+    @ViewChild('sizecomponent', {static: false}) sizecomponent_: SizeComponent;
 
     public config: PerfectScrollbarConfigInterface = {};
 
@@ -39,33 +43,33 @@ export class AttributeComponent implements OnInit {
 
     constructor(
         private _sanitizer: DomSanitizer
-    ) {}
-
-    ngOnInit(): void {
-
+    ) {
     }
 
-    onUpDom () {
+    ngOnInit(): void {
+    }
+
+    onUpDom() {
         const self = this;
         self.getDoms(document.getElementById('Blive'));
     }
 
-    getDoms (event) {
+    getDoms(event) {
         const self = this;
-        var getDOM = (function() {
+        var getDOM = (function () {
             var dom = "";
             var depth = 0;
 
-            const a = '<svg data-icon="SelectorCombo" aria-hidden="true" focusable="false" width="10" height="17" viewBox="0 0 10 17" class="bem-Svg" style="display: block; transform: translate(0px, 0px); opacity: 0.6; justify-self: end; margin-top: -2px;"><path fill="currentColor" d="M9 11H6V8H4v3H1v2h3v3h2v-3h3z"></path><path fill="currentColor" d="M4 1h2v4H4z" opacity=".3"></path></svg>'
+            const a = '<svg data-icon="SelectorCombo" aria-hidden="true" focusable="false" width="10" height="17" viewBox="0 0 10 17" class="bem-Svg" style="display: block; transform: translate(0px, 0px); opacity: 0.6; justify-self: end; margin-top: -2px;"><path fill="currentColor" d="M9 11H6V8H4v3H1v2h3v3h2v-3h3z"></path><path fill="currentColor" d="M4 1h2v4H4z" opacity=".3"></path></svg>';
 
-            return function(node, n) {
-                dom += `<div class="flex">`
+            return function (node, n) {
+                dom += `<div class="flex">`;
                 for (var i = 0; i < depth; i++) {
                     dom += `<div class="domList-span">${i >= depth - 1 ? a : ''}</div>`;
                 }
                 dom += '<b class="flex-nodeName">' + node.nodeName.toLowerCase() + '</b>';
                 if (node.id) {
-                    dom += '<kbd>'+'[#' + node.id + ']'+'</kbd>';
+                    dom += '<kbd>' + '[#' + node.id + ']' + '</kbd>';
                 }
                 if (node.className) {
                     dom += '(' + node.className + ')'
@@ -75,7 +79,7 @@ export class AttributeComponent implements OnInit {
                 }
                 dom += '</div>';
                 depth++;
-                [].forEach.call(node.children, function(node, childNumber) {
+                [].forEach.call(node.children, function (node, childNumber) {
                     getDOM(node, childNumber);
                 });
                 depth--;
@@ -94,7 +98,22 @@ export class AttributeComponent implements OnInit {
     /**
      * onEventSelectorControl -> F
      */
-    onEventSelectorControl (name) {
+    onEventSelectorControl(name) {
         this.eventSelectorControl_.emit(name);
+    }
+
+    /**
+     * 主动更新attr属性
+     * 同步style同步到面板下的子组件数据
+     */
+    onUpAttrData() {
+        this.sizecomponent_.setAttrUp();
+    }
+
+    /**
+     * 通知选择器更新
+     */
+    onNoticeFather () {
+        this.attrChange_.emit();
     }
 }

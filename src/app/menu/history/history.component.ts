@@ -9,7 +9,7 @@ import {Historicalstorage} from "../../workbench/historicalstorage";
 @Component({
     selector: 'blive-windwos-history',
     templateUrl: './history.component.html',
-    styleUrls: ['./history.component.css'],
+    styleUrls: ['./history.component.less'],
     providers: [LocalStorage, SeesionStorage, Historicalstorage],
 })
 

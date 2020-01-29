@@ -8,7 +8,30 @@ export default {
     /**
      * 程序版本
      */
-    appVersion: '5.0.0 beta',
+    appVersion: '5.0.1 beta',
+
+    imgagesApi: [
+        {
+            name: '线路一',
+            url: 'https://api.uomg.com/api/image.juejin', // 掘金社区
+        },
+        {
+            name: '线路二',
+            url: 'https://api.uomg.com/api/image.sogou' // 搜狗
+        },
+        {
+            name: '线路三',
+            url: 'https://api.uomg.com/api/image.360' // 奇虎
+        },
+        {
+            name: '线路四',
+            url: 'https://api.uomg.com/api/image.sina' // 新浪
+        },
+        {
+            name: '线路五',
+            url: 'https://api.uomg.com/api/image.jd' // 京东
+        }
+    ],
 
     /**
      * 可用的标签名单

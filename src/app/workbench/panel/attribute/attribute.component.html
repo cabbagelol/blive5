@@ -1,5 +1,5 @@
 <!--
-    * 属性
+    * 属性栏
 -->
 
 <div class="blive-attribute">
@@ -56,40 +56,61 @@
             <nz-tab [nzTitle]="'基础属性'"></nz-tab>
         </nz-tabset>
 
-        <perfect-scrollbar [config]="config" [scrollIndicators]="true">
-            <div class="scrollable-content">
-                <nz-collapse [nzBordered]="false">
-                    <nz-collapse-panel
-                        #p
-                        *ngFor="let panel of panels"
-                        [nzHeader]=""
-                        [nzActive]="panel.active"
-                        [ngStyle]="panel.customStyle"
-                        [nzExpandedIcon]="(panel.icon || expandedIcon)">
-                        <div>{{ panel.name }} content</div>
-                        <ng-template #expandedIcon let-active>
-                            <div style="font-size: 12px;color: #888;line-height: .9;">
-                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
-                                {{panel.name}}
-                            </div>
-                        </ng-template>
-                    </nz-collapse-panel>
-                    <nz-collapse-panel
-                        #p
-                        [nzActive]="panels[0].active"
-                        [ngStyle]="panels[0].customStyle"
-                        [nzExpandedIcon]="(panels[0].icon || expandedIcon)">
-                        <blive-attrbute-spacing></blive-attrbute-spacing>
-                        <ng-template #expandedIcon let-active>
-                            <div style="font-size: 12px;color: #888;line-height: .9;">
-                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
-                                容器
-                            </div>
-                        </ng-template>
-                    </nz-collapse-panel>
-                </nz-collapse>
-            </div>
-        </perfect-scrollbar>
+        <div class="scrollable-content">
+            <nz-collapse [nzBordered]="false">
+                <!--S 大小 size-->
+                <nz-collapse-panel
+                    #panelSizePanel
+                    [nzActive]="'大小'"
+                    [ngStyle]="panels[0].customStyle"
+                    [nzExpandedIcon]="panelSize">
+                    <blive-attrbute-size [data]="data" (attrChange)="onNoticeFather()" #sizecomponent></blive-attrbute-size>
+                    <ng-template #panelSize let-active>
+                        <div style="font-size: 12px;color: #888;line-height: .9;">
+                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelSizePanel.nzActive ? 90 : 0"></i>
+                            尺寸
+                        </div>
+                    </ng-template>
+                </nz-collapse-panel>
+                <!--E 大小 size-->
+
+                <!--S 背景 background-->
+                <nz-collapse-panel
+                    #panelBackgroundPanel
+                    [nzActive]="panels[0].active"
+                    [ngStyle]="panels[0].customStyle"
+                    [nzExpandedIcon]="panelBackground">
+                    <blive-attrbute-background></blive-attrbute-background>
+                    <ng-template #panelBackground let-active>
+                        <div style="font-size: 12px;color: #888;line-height: .9;">
+                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelBackgroundPanel.nzActive ? 90 : 0"></i>
+                            背景
+                        </div>
+                    </ng-template>
+                </nz-collapse-panel>
+                <!--E 背景 background-->
+
+                <!--S 外边距 spacing-->
+                <nz-collapse-panel
+                    #panelSpacingPanel
+                    [nzActive]="panels[0].active"
+                    [ngStyle]="panels[0].customStyle"
+                    [nzExpandedIcon]="panelSpacing">
+                    <blive-attrbute-spacing></blive-attrbute-spacing>
+                    <ng-template #panelSpacing let-active>
+                        <div style="font-size: 12px;color: #888;line-height: .9;">
+                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelSpacingPanel.nzActive ? 90 : 0"></i>
+                            外边距
+                        </div>
+                    </ng-template>
+                </nz-collapse-panel>
+                <!--E 外边距 spacing-->
+            </nz-collapse>
+        </div>
+
+        <!--<perfect-scrollbar [config]="config" [scrollIndicators]="true">-->
+            <!---->
+        <!--</perfect-scrollbar>-->
 
         <!--<nz-result nzStatus="warning" nzTitle="施工中"></nz-result>-->
     </div>

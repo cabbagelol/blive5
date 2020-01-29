@@ -1,66 +1,65 @@
-<div id="Blive" style="display: block;border-radius: 2px;overflow: hidden;width: 100%;height: 230px;background-color: rgba(27, 27, 27, 0.1);" title="简介由生成器生成：http://blive.Cabbagelol.net(丸子http://www.uid75.com/)">
+<div id="Blive" style="display: block;border-radius: 2px;overflow: hidden;width: 100%;height: 100%;background-color: rgba(27, 27, 27, 0.1);" title="简介由生成器生成：http://blive.Cabbagelol.net(丸子http://www.uid75.com/)">
 	<!--bj-->
-	<div style=" float: left; width: 100%; height: 230px; ">
+	<div style="width: 100%;height: 100%;">
 		<!--bor-->
-		<div id="div" style="height: 100%;max-height: 230px;overflow: hidden">
-			<div style="float: left; position: relative; height: 100%; width: 100%; top: 0px;">
+		<div id="div" style="overflow: hidden;height: 100%;">
+			<div style="width: 100%;height: 100%;">
 				<!--a-->
-				<div id="Paging_one" style="float: left;width: 100%;height: 230px;overflow: hidden;display:inline-flex;">
-					<div style="width: 25%;height: 230px;float: left;text-align: center;">
-						<div style="overflow:hidden;margin: 15px auto;width:150px;height:150px;border-radius:50%;background-color: #fff;">
-							<!--头像-->
-							<div id="Blive-Tox" style="width: 100%;height: 100%;color: rgba(0, 0, 0, 0);">
-							
-							</div>
-						</div>
-						<div style="color: rgba(255, 255, 255, 0.85);margin: 0 auto;font-size: 21px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);text-align: center;padding: 5px;border-radius: 3px;border: 1px solid rgba(255, 255, 255, 0.11);width: 190px;">
+				<div id="Paging_one" style="width: 100%;height: 100%;overflow: hidden;display:inline-flex;">
+					<div style="width: 25%;height: 100%;padding: 10px 20px;display: flex;flex-flow: column;justify-content: center;">
+						<!--头像-->
+							<img src="http://iph.href.lu/200x200?text=%E5%A4%B4%E5%83%8F&amp;bg=f2f2f2" style="
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    max-width: 130px;
+    margin: 0 auto;
+    display: block;
+">
+						<div style="color: rgba(255, 255, 255, 0.85);font-size: 16px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);text-align: center;margin-top: 5px;padding: 5px;border-radius: 3px;border: 1px solid rgba(255, 255, 255, 0.11);width: 190px;">
 							请输入你的名字
 						</div>
 					</div>
-					<div style="width: calc();height: 230px;display: inline-flex;">
-						<div style="color: rgba(255, 255, 255, 0.85);margin: 10px 0px 0px 0;font-size: 15px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);padding: 10px;border-radius: 3px;border: 1px solid rgba(255, 255, 255, 0.11);width: 261px;height: 190px;">
-							<div style="background-color:#009BFF;padding:5px 20px;width:100px;border-radius: 14px;box-shadow:0 0 20px rgba(0,0,0,.48);">
+					<div style="width: 100%;padding: 10px 10px 10px 0;display: inline-flex;">
+						<div style="color: rgba(255, 255, 255, 0.85);font-size: 15px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);padding: 10px;border-radius: 3px;border: 1px solid rgba(255, 255, 255, 0.11);height: 100%;flex: 1;">
+							<div style="background-color:#009BFF;padding: 2px 10px;width:100px;border-radius: 14px;box-shadow:0 0 20px rgba(0,0,0,.48);">
 								标题
 							</div>
 
-							<p style="padding:5px">
+							<p style="padding: 0px;margin: 0;">
 								输入你需要写的内容
 							</p>
 						</div>
-						<div style="width: 332px;height: 230px;float: left;">
-							<div style="color:rgba(255,255,255,.85);margin: 10px 0 0 10px;font-size:15px;text-shadow:#263522 0 0 0;background-color:rgba(0,0,0,.15);padding: 10px;border-radius:3px;max-height:268px;border:1px solid rgba(255,255,255,.11);height: 78px">
-								<div style="background-color:#FF51AA;padding:5px 20px;width:100px;border-radius: 14px;box-shadow:0 0 20px rgba(0,0,0,.48);">
+						<div style="display: flex;flex-flow: column;flex: 1;">
+							<div style="color:rgba(255,255,255,.85);font-size:15px;text-shadow:#263522 0 0 0;background-color:rgba(0,0,0,.15);padding: 10px;border:1px solid rgba(255,255,255,.11);flex: 1;">
+								<div style="background-color:#FF51AA;padding: 2px 10px;width:100px;border-radius: 14px;box-shadow:0 0 20px rgba(0,0,0,.48);">
 									标题
 								</div>
 
-								<p style="padding:5px">
+								<p style="padding: 0px;margin: 0;">
 									输入你需要写的内容
 								</p>
 							</div>
-							<div style="color: rgba(255, 255, 255, 0.85);margin: 9px 0px 0px 10px;font-size: 15px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);padding: 10px;border-radius: 4px;border: 1px solid rgba(255, 255, 255, 0.11);height: 80px">
-								<div style="background-color: rgb(124, 179, 52);padding: 5px 20px;width: 100px;border-radius: 14px;box-shadow: rgba(0, 0, 0, 0.48) 0px 0px 20px;word-wrap: break-word;">
+							<div style="color: rgba(255, 255, 255, 0.85);font-size: 15px;text-shadow: rgb(38, 53, 34) 0px 0px 0px;background-color: rgba(0, 0, 0, 0.15);padding: 10px;border: 1px solid rgba(255, 255, 255, 0.11);flex: 1;">
+								<div style="background-color: rgb(124, 179, 52);padding: 2px 10px;width: 100px;border-radius: 14px;box-shadow: rgba(0, 0, 0, 0.48) 0px 0px 20px;word-wrap: break-word;">
 									标题
 								</div>
 
-								<p style="padding:5px">
+								<p style="padding: 0px;margin: 0;">
 									输入你需要写的内容
 								</p>
 							</div>
 						</div>
-						<div style="color:rgba(255,255,255,.85);margin: 10px 0 0 10px;font-size:15px;float: left;text-shadow:#263522 0 0 0;background-color:rgba(0,0,0,.15);padding: 10px;border-radius:3px;max-height: 190px;border:1px solid rgba(255,255,255,.11);width: 271px;height: 190px;">
-							<div style="background-color: rgb(0, 155, 255);padding: 5px 20px;width: 100px;border-radius: 14px;box-shadow: rgba(0, 0, 0, 0.48) 0px 0px 20px;word-wrap: break-word;">
+						<div style="color:rgba(255,255,255,.85);font-size:15px;text-shadow:#263522 0 0 0;background-color:rgba(0,0,0,.15);padding: 10px;border-radius:3px;border:1px solid rgba(255,255,255,.11);height: 100%;flex: 1;">
+							<div style="background-color: rgb(0, 155, 255);padding: 2px 10px;width: 100px;border-radius: 14px;box-shadow: rgba(0, 0, 0, 0.48) 0px 0px 20px;word-wrap: break-word;">
 								标题
 							</div>
 
-							<p style="padding:5px">
+							<p style="padding: 0px;margin: 0;">
 								输入你需要写的内容
 							</p>
 						</div>
 					</div>
-				</div>
-				<!--b-->
-				<div id="Paging_two" style=" float: left; width: 100%; height: 230px;overflow: hidden;">
-					<div style="width: 100px;height: 100px;background-color: rgba(0, 0, 0, 0.18);border-radius: 50%;text-align: center;font-size: 62px;color: #fff;margin: 70px auto;">+</div>
 				</div>
 			</div>
 		</div>

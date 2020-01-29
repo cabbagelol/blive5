@@ -1,3 +1,7 @@
+<!--
+    * 图片滤镜
+-->
+
 <div class="blive-imgFilter">
     <div class="blive-imgFilter-bk" (click)="onClose()"></div>
     <div class="blive-imgFilter-box" [ngStyle]="{
@@ -28,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <nz-radio-group [(ngModel)]="radioValue" style="height: 300px; overflow-y: auto; overflow-x: hidden;" class="blive-imgFilter-padding">
+        <nz-radio-group [(ngModel)]="radioValue" style="overflow-y: auto; overflow-x: hidden;" class="blive-imgFilter-padding">
             <!--<label nz-radio nzValue="{{item.id}}" *ngFor="let item of radioList">-->
             <!--{{item.text}}-->
             <!--</label>-->

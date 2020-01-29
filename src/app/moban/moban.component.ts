@@ -7,7 +7,7 @@ import $ from "jquery";
 @Component({
     selector: 'blive-moban-window',
     templateUrl: './moban.component.html',
-    styleUrls: ['./moban.component.css']
+    styleUrls: ['./moban.component.less']
 })
 export class MobanComponent implements OnInit, AfterViewInit {
     @Output('close') close_ = new EventEmitter<any>();

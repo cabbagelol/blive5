@@ -1,0 +1,199 @@
+<!--
+    * 容器尺寸
+    ** 属性栏内
+-->
+
+<div class="blive-size">
+    <div [nzGutter]="6" nz-row>
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="容器宽度" nzTooltipPlacement="top" nz-tooltip>
+                    宽
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateWidth" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.width.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.width.value" (input)="onAttrInput(size.width.value, 'width')" />
+                    </nz-input-group>
+                    <ng-template #suffixTemplateWidth>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="width">
+                        {{companyType[size.width.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #width="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'width')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9"  nzTooltipTitle="容器高度" nzTooltipPlacement="top" nz-tooltip>
+                    高
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateHeight" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.height.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.height.value" (input)="onAttrInput(size.height.value, 'height')" />
+                    </nz-input-group>
+                    <ng-template #suffixTemplateHeight>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="height">
+                        {{companyType[size.height.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #height="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'height')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="容器最小宽度" nzTooltipPlacement="top" nz-tooltip>
+                    最小宽
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateMinWidth" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.minWidth.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.minWidth.value" (input)="onAttrInput(size.minWidth.value, 'minWidth')" />
+                    </nz-input-group>
+                    <ng-template #suffixTemplateMinWidth>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="minWidth">
+                        {{companyType[size.minWidth.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #minWidth="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'minWidth')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="容器最小高度" nzTooltipPlacement="top" nz-tooltip>
+                    最小高
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateMinHeight" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.minHeight.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.minHeight.value" (input)="onAttrInput(size.minHeight.value, 'minHeight')" />
+                    </nz-input-group>
+                    <ng-template #suffixTemplateMinHeight>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="minHeight">
+                        {{companyType[size.minHeight.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #minHeight="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'minHeight')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="容器最大宽度" nzTooltipPlacement="top" nz-tooltip>
+                    最大宽
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateMaxWidth" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.maxWidth.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.maxWidth.value" (input)="onAttrInput(size.maxWidth.value, 'maxWidth')"/>
+                    </nz-input-group>
+                    <ng-template #suffixTemplateMaxWidth>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="maxWidth">
+                        {{companyType[size.maxWidth.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #maxWidth="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'maxWidth')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="blive-size-bottom" nz-col nzSpan="12">
+            <div nz-row>
+                <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="容器最大高度" nzTooltipPlacement="top" nz-tooltip>
+                    最大高
+                </div>
+                <div nz-col nzSpan="15">
+                    <nz-input-group [nzSuffix]="suffixTemplateMaxHeight" [nzSize]="'small'">
+                        <input type="text" nz-input [ngStyle]="{'color': size.maxHeight.value == '' ? '#f2f2f2' : ''}" placeholder="auto" [(ngModel)]="size.maxHeight.value" (input)="onAttrInput(size.maxHeight.value, 'maxHeight')" />
+                    </nz-input-group>
+                    <ng-template #suffixTemplateMaxHeight>
+                    <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="maxHeight">
+                        {{companyType[size.maxHeight.company] || 0}}
+                    </span>
+                        <nz-dropdown-menu #maxHeight="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of companyType;let index = index" (click)="onSelectCompanyType(index, 'maxHeight')">{{i == '-' ? 'auto' : i}}</li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nz-divider style="margin: 10px 0"></nz-divider>
+
+    <div nz-row class="blive-size-bottom">
+        <div nz-col nzSpan="5" class="blive-size-title" nzTooltipTitle="这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。" nzTooltipPlacement="top" nz-tooltip>
+            Overflow
+        </div>
+        <div nz-col nzSpan="19">
+            <nz-radio-group [(ngModel)]="size.overflow.value" (ngModelChange)="onAttrInput(size.overflow.value, 'overflow')" [nzSize]="'small'">
+                <label nz-radio-button nzValue="visible" class="blive-size-label">
+                    <svg data-icon="Eye" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16"
+                         class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M8 13c3.866 0 7-4.5 7-5s-3.134-5-7-5-7 4.5-7 5 3.134 5 7 5zm0-2a3 3 0 100-6 3 3 0 000 6z"
+                              fill="currentColor"></path>
+                        <circle opacity=".6" cx="8" cy="8" r="2" fill="currentColor"></circle>
+                    </svg>
+                </label>
+                <label nz-radio-button nzValue="hidden" class="blive-size-label">
+                    <svg data-icon="EyeInvisible" aria-hidden="true" focusable="false" width="16" height="16"
+                         viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                        <path opacity=".6" fill-rule="evenodd" clip-rule="evenodd"
+                              d="M9.842 3.33A5.537 5.537 0 008 3C4.134 3 1 7.5 1 8c0 .23.666 1.311 1.763 2.409l2.242-2.242a3 3 0 013.162-3.162l1.675-1.676zm-2.009 7.665a3 3 0 003.162-3.162l2.242-2.242C14.334 6.69 15 7.77 15 8c0 .5-3.134 5-7 5a5.538 5.538 0 01-1.842-.33l1.675-1.675z"
+                              fill="currentColor"></path>
+                        <path d="M2 14L14 2" stroke="currentColor" stroke-width="1.5"></path>
+                    </svg>
+                </label>
+                <label nz-radio-button nzValue="scroll" class="blive-size-label">
+                    <svg data-icon="OverflowScroll" aria-hidden="true" focusable="false" width="16" height="16"
+                         viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M13 2v1l-1-1h1zM9 3l1-1H0v1h9zm0 10H0v1h10l-1-1zm4 0l-1 1h1v-1z"
+                              fill="currentColor"></path>
+                        <path opacity=".6" fill-rule="evenodd" clip-rule="evenodd"
+                              d="M2 4h7v2H2V4zm0 3h7v2H2V7zm7 3H2v2h7v-2z" fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4h2v8h-2l3 3 3-3h-2V4h2l-3-3-3 3z"
+                              fill="currentColor"></path>
+                    </svg>
+                </label>
+                <label nz-radio-button nzValue="auto" class="blive-size-label">
+                    <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Auto</div>
+                </label>
+            </nz-radio-group>
+        </div>
+    </div>
+
+    <div nz-row class="blive-size-bottom">
+        <div nz-col nzSpan="5" class="blive-size-title" nzTooltipTitle="您可以通过使用 object-position 属性来切换被替换元素的内容对象在元素框内的对齐方式。" nzTooltipPlacement="top" nz-tooltip>
+            fit
+        </div>
+        <div nz-col nzSpan="19">
+            <nz-select [(ngModel)]="size['object-fit'].value" nzAllowClear nzPlaceHolder="fit" (ngModelChange)="onAttrInput(size['object-fit'].value, 'object-fit')" [nzSize]="'small'" style="min-width: 100px;">
+                <nz-option [nzValue]="i" [nzLabel]="i" *ngFor="let i of objectFit"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+</div>

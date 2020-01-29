@@ -3,7 +3,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'blive-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.less']
 })
 export class MenuComponent implements OnInit {
   @Output('mobanToggle') mobanToggle_ = new EventEmitter<any>();

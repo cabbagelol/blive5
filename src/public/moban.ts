@@ -188,10 +188,10 @@ let list = [
         h: '来源于丸子简介模板',
         list: [
             {
-                disables: true,
+                disables: false,
                 name: '丸子 2:3:3:2',
                 img: 'https://www.cabbagelol.net/blive/blive-4.0/img/moban/Cabb-wanzi-a.png',
-                path: '',
+                path: '丸子 2332',
                 level: 0,
                 tag: ['合作','免费','丸子']
             },
