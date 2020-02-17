@@ -1,12 +1,19 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {DomSanitizer} from "@angular/platform-browser";
+
+
 import {SizeComponent} from "./size/size.component";
+import {BackgroundComponent} from "./background/background.component";
+import {TypographyComponent} from "./typography/typography.component";
+import {CustomAttributesComponent} from "./customAttributes/customAttributes.component";
+
+import api from 'src/public/api';
 
 @Component({
     selector: 'blive-attribute',
     templateUrl: './attribute.component.html',
-    styleUrls: ['./attribute.component.css'],
+    styleUrls: ['./attribute.component.less'],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -15,29 +22,35 @@ export class AttributeComponent implements OnInit {
     @Output('eventSelectorControl') eventSelectorControl_ = new EventEmitter<any>();
     @Output('attrChange') attrChange_ = new EventEmitter<any>();
     @ViewChild('sizecomponent', {static: false}) sizecomponent_: SizeComponent;
+    @ViewChild('backgroundcomponent', {static: false}) backgroundcomponent_: BackgroundComponent;
+    @ViewChild('typographyComponent', {static: false}) typographyComponent_: TypographyComponent;
+    @ViewChild('attributeCustomAttributes', {static: false}) attributeCustomAttributes_: CustomAttributesComponent;
+
+    
 
     public config: PerfectScrollbarConfigInterface = {};
 
-    panels = [
-        {
-            active: false,
-            disabled: false,
-            name: 'Padding',
-            customStyle: {
-                'background': '#fff',
-                'border-bottom': '1px  solid #f9f9f9'
-            },
+    // 面板tab
+    attrTabs = '0';
+
+    /// 面板儲存屬性
+    panelData = {
+        eventOneStatc: false,
+        attrs: [],
+        calc: 0,
+    };
+
+    panels = {
+        active: false,
+        disabled: false,
+        name: 'Padding',
+        customStyle: {
+            'background': '#fff5f9',
+            'color': '#fff5f9',
+            'border-bottom': '1px solid rgba(255, 134, 178, 0.05)'
         },
-        {
-            active: false,
-            disabled: false,
-            name: 'Text',
-            customStyle: {
-                'background': '#fff',
-                'border-bottom': '1px  solid #f9f9f9'
-            },
-        }
-    ];
+    };
+
     // 模板节点列表
     mobanDoms: any;
 
@@ -46,7 +59,8 @@ export class AttributeComponent implements OnInit {
     ) {
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void {        
+        
     }
 
     onUpDom() {
@@ -107,7 +121,31 @@ export class AttributeComponent implements OnInit {
      * 同步style同步到面板下的子组件数据
      */
     onUpAttrData() {
-        this.sizecomponent_.setAttrUp();
+        const self = this;
+
+        /// 當前標籤可用面板屬性
+        self.panelData.attrs = api.elementWhiteList[self.data.event.target.nodeName.toLowerCase()].attr || [];
+        self.panelData.calc = 0;
+        setTimeout(_ => {
+            self.panelData.attrs.forEach(name => {
+                if (name == 'size') {
+                    self.sizecomponent_.setAttrUp();
+                    self.panelData.calc ++;
+                }
+                if (name = 'background') {
+                    self.backgroundcomponent_.onAsyncPanel();
+                    self.panelData.calc ++;
+                }
+                if (name = 'typography') {
+                    self.typographyComponent_.getAttrUp();
+                    self.panelData.calc ++;
+                }
+            });
+        }, 200);
+
+        self.attributeCustomAttributes_.onUpAttr();
+
+        self.panelData.eventOneStatc = true;
     }
 
     /**

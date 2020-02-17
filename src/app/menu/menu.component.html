@@ -7,7 +7,8 @@
         <div class="blive-menu-content-item" nzTooltipTitle="Blive账户" nzTooltipPlacement="right" nz-tooltip>
             <nz-avatar nzIcon="user"></nz-avatar>
         </div>
-        <div class="blive-menu-content-item" nzTooltipTitle="仪表台" nzTooltipPlacement="right" nz-tooltip routerLink="/dashboard/folder">
+        <div class="blive-menu-content-item" nzTooltipTitle="仪表台" nzTooltipPlacement="right" nz-tooltip
+            routerLink="/dashboard/folder">
             <i nz-icon nzType="home" nzTheme="outline"></i>
         </div>
         <nz-divider></nz-divider>
@@ -17,17 +18,27 @@
         <div class="blive-menu-content-item" nzTooltipTitle="简介分页" nzTooltipPlacement="right" nz-tooltip>
             <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
         </div>
+        <div class="blive-menu-content-item" nzTooltipTitle="图库" nzTooltipPlacement="right" nz-tooltip>
+            <i class="anticon anticon-unordered-list">
+                <svg _ngcontent-shp-c2="" aria-hidden="true" class="bem-Svg" data-icon="Assetpanel" focusable="false"
+                    height="18" style="display: block; transform: translate(0px, 0px);" viewBox="0 0 20 18" width="20">
+                    <path _ngcontent-shp-c2=""
+                        d="M13.557.736a1 1 0 00-1.23-.701L.749 3.137A1 1 0 00.034 4.36l2.332 8.701a1 1 0 001.23.701L4 13.654V6.003A2 2 0 015.994 4h8.437L13.557.736zM7.007 6h11.986A1 1 0 0120 6.996v10.008a1 1 0 01-1.007.996H7.007A1 1 0 016 17.004V6.996A1 1 0 017.007 6zM18 9.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM8 12l3.5-3 7 7H8v-4z"
+                        fill="currentColor" fill-rule="evenodd"></path>
+                </svg>
+            </i>  
+        </div>
         <div class="blive-menu-content-item" nzTooltipTitle="历史储存简介" nzTooltipPlacement="right" nz-tooltip
-             (click)="onShowWindow('history')">
+            (click)="onShowWindow('history')">
             <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
         </div>
         <div class="blive-menu-content-item" nzTooltipTitle="简介模板" nzTooltipPlacement="right" nz-tooltip
-             (click)="onShowWindow('moban')">
+            (click)="onShowWindow('moban')">
             <i nz-icon nzType="appstore" nzTheme="outline"></i>
         </div>
         <nz-divider></nz-divider>
         <div class="blive-menu-content-item" nzTooltipTitle="设置" nzTooltipPlacement="right" nz-tooltip
-             (click)="onShowWindow('configure')">
+            (click)="onShowWindow('configure')">
             <i nz-icon nzType="setting" nzTheme="outline"></i>
         </div>
         <div class="blive-menu-content-item" nzTooltipTitle="帮助" nzTooltipPlacement="right" nz-tooltip>
@@ -36,9 +47,9 @@
     </div>
 </div>
 
-<blive-moban-window *ngIf="menu.moban" (close)="onShowWindow('moban')"
-                    (mobanData)="setMobanData($event)"></blive-moban-window>
-<blive-windwos-configure *ngIf="menu.configure" (close)="onShowWindow('configure')"
-                         (mobanData)="setMobanData($event)"></blive-windwos-configure>
-<blive-windwos-history *ngIf="menu.history" (close)="onShowWindow('history')"
-                       (mobanData)="setMobanData($event)"></blive-windwos-history>
+<blive-moban-window *ngIf="menu.moban" (close)="onShowWindow('moban')" (mobanData)="setMobanData($event)">
+</blive-moban-window>
+<blive-windwos-configure *ngIf="menu.configure" (close)="onShowWindow('configure')" (mobanData)="setMobanData($event)">
+</blive-windwos-configure>
+<blive-windwos-history *ngIf="menu.history" (close)="onShowWindow('history')" (mobanData)="setMobanData($event)">
+</blive-windwos-history>

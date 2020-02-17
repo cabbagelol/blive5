@@ -5,26 +5,26 @@
         </div>
         <div nz-col nzSpan="19">
             <nz-radio-group [(ngModel)]="backgroundTypeRadio" [nzSize]="'small'">
-                <label class="blive-background-type-btn" nz-radio-button nzValue="0" nzDisabled>
+                <label class="blive-background-type-btn" nz-radio-button nzValue="0">
                     <svg aria-hidden="true" class="bem-Svg" data-icon="BackgroundImage" focusable="false" height="16"
-                         style="display: block; transform: translate(0px, 0px);"
-                         viewBox="0 0 16 16" width="16">
+                        style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16" width="16">
                         <path clip-rule="evenodd" d="M15 1H1v14h14V1zm-1 1H2v12h12V2z" fill="currentColor"
-                              fill-rule="evenodd"></path>
+                            fill-rule="evenodd"></path>
                         <rect fill="currentColor" height="4" rx="2" transform="translate(4 4)" width="4"></rect>
                         <path d="M3 13h10v-3l-2.5-2.5L3 13z" fill="currentColor"></path>
                     </svg>
                 </label>
                 <label class="blive-background-type-btn" nz-radio-button nzValue="1" nzDisabled>
-                    <svg aria-hidden="true" class="bem-Svg" data-icon="BackgroundLinearGradient" focusable="false" height="16"
-                         style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16" width="16">
+                    <svg aria-hidden="true" class="bem-Svg" data-icon="BackgroundLinearGradient" focusable="false"
+                        height="16" style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16"
+                        width="16">
                         <path d="M0 0h10v10H0z" fill="url(#wf-svg-background-linear-gradient-a)"
-                              transform="translate(3 3)"></path>
+                            transform="translate(3 3)"></path>
                         <path clip-rule="evenodd" d="M15 1H1v14h14V1zm-1 1H2v12h12V2z" fill="#D9D9D9"
-                              fill-rule="evenodd"></path>
+                            fill-rule="evenodd"></path>
                         <defs>
-                            <linearGradient gradientTransform="matrix(0 10 -10 0 10 0)" gradientUnits="userSpaceOnUse" id="wf-svg-background-linear-gradient-a"
-                                            x2="1">
+                            <linearGradient gradientTransform="matrix(0 10 -10 0 10 0)" gradientUnits="userSpaceOnUse"
+                                id="wf-svg-background-linear-gradient-a" x2="1">
                                 <stop stop-color="#D9D9D9"></stop>
                                 <stop offset="1" stop-color="#D9D9D9" stop-opacity="0"></stop>
                             </linearGradient>
@@ -33,16 +33,15 @@
                 </label>
                 <label class="blive-background-type-btn" nz-radio-button nzValue="2" nzDisabled>
                     <svg aria-hidden="true" class="bem-Svg" data-icon="BackgroundRadialGradient" focusable="false"
-                         height="16"
-                         style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16" width="16">
+                        height="16" style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16"
+                        width="16">
                         <path d="M0 0h10v10H0z" fill="url(#wf-svg-background-radial-gradient-a)"
-                              transform="translate(3 3)"></path>
+                            transform="translate(3 3)"></path>
                         <path clip-rule="evenodd" d="M15 1H1v14h14V1zm-1 1H2v12h12V2z" fill="#D9D9D9"
-                              fill-rule="evenodd"></path>
+                            fill-rule="evenodd"></path>
                         <defs>
                             <radialGradient cx=".5" cy=".5" gradientTransform="matrix(0 10 -10 0 10 0)"
-                                            gradientUnits="userSpaceOnUse"
-                                            id="wf-svg-background-radial-gradient-a" r=".5">
+                                gradientUnits="userSpaceOnUse" id="wf-svg-background-radial-gradient-a" r=".5">
                                 <stop stop-color="#D9D9D9" stop-opacity="0"></stop>
                                 <stop offset=".1" stop-color="#D9D9D9" stop-opacity="0"></stop>
                                 <stop offset="1" stop-color="#D9D9D9"></stop>
@@ -52,11 +51,10 @@
                 </label>
                 <label class="blive-background-type-btn" nz-radio-button nzValue="3">
                     <svg aria-hidden="true" class="bem-Svg" data-icon="BackgroundColor" focusable="false" height="16"
-                         style="display: block; transform: translate(0px, 0px);"
-                         viewBox="0 0 16 16" width="16">
+                        style="display: block; transform: translate(0px, 0px);" viewBox="0 0 16 16" width="16">
                         <path d="M3 3h10v10H3z" fill="currentColor"></path>
                         <path clip-rule="evenodd" d="M15 1H1v14h14V1zm-1 1H2v12h12V2z" fill="currentColor"
-                              fill-rule="evenodd"></path>
+                            fill-rule="evenodd"></path>
                     </svg>
                 </label>
             </nz-radio-group>
@@ -65,6 +63,173 @@
 
     <nz-divider style="margin: 10px 0"></nz-divider>
 
+    <!--S 图片背景-->
+    <nz-content *ngIf="backgroundTypeRadio == 0">
+        <div [nzGutter]="6" nz-row>
+            <div nz-col nzSpan="5">
+                Image
+            </div>
+            <div nz-col nzSpan="19">
+                <div [nzGutter]="6" nz-row class="blive-background-type-bottom">
+                    <div nz-col nzSpan="8">
+                        <img :src="{{backgroundType['0']['background-image'] == '' ? 'https://d3e54v103j8qbb.cloudfront.net/img/example-bg.png' : backgroundType['0']['background-size']}}"
+                            width="50px" height="50px">
+                    </div>
+                    <div nz-col nzSpan="16">
+                        <b>t.min.png</b>
+                    </div>
+                </div>
+                <button nz-button nzSize="small" nzBlock>选择图片</button>
+            </div>
+        </div>
+        <nz-divider style="margin: 10px 0"></nz-divider>
+        <div [nzGutter]="6" nz-row>
+            <div nz-col nzSpan="5">
+                Size
+            </div>
+            <div nz-col nzSpan="19">
+                <nz-radio-group [(ngModel)]="backgroundType['0']['background-size']" [nzSize]="'small'"
+                    class="blive-background-type-bottom">
+                    <label nz-radio-button nzValue="auto">Custom</label>
+                    <label nz-radio-button nzValue="cover">Cover</label>
+                    <label nz-radio-button nzValue="contain">Contain</label>
+                </nz-radio-group>
+                <div [nzGutter]="6" nz-row>
+                    <div nz-col nzSpan="12">
+                        <!-- (input)="onAttrInput(backgroundType['0']['background-size-value'].w, 'height')" -->
+                        <nz-input-group [nzSuffix]="backgroundImageWidthTemplate" [nzSize]="'small'">
+                            <input type="text" nz-input [disabled]="backgroundType['0']['background-size'] != 'auto'"
+                                [ngStyle]="{'color': backgroundType['0']['background-size-value-w'].value == '' ? '#f2f2f2' : ''}"
+                                placeholder="auto" [(ngModel)]="backgroundType['0']['background-size-value-w'].value" />
+                        </nz-input-group>
+                        <ng-template #backgroundImageWidthTemplate>
+                            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="width">
+                                {{companyType[backgroundType['0']['background-size-value-w'].company] || 0}}
+                            </span>
+                            <nz-dropdown-menu #width="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                                        (click)="onSelectCompanyType(index, 'background-size-value-w')">
+                                        {{i == '-' ? 'auto' : i}}
+                                    </li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </ng-template>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <nz-input-group [nzSuffix]="backgroundImageHeightTemplate" [nzSize]="'small'">
+                            <input type="text" nz-input [disabled]="backgroundType['0']['background-size'] != 'auto'"
+                                [ngStyle]="{'color': backgroundType['0']['background-size-value-h'].value == '' ? '#f2f2f2' : ''}"
+                                placeholder="auto" [(ngModel)]="backgroundType['0']['background-size-value-h'].value" />
+                        </nz-input-group>
+                        <ng-template #backgroundImageHeightTemplate>
+                            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="height">
+                                {{companyType[backgroundType['0']['background-size-value-h'].company] || 0}}
+                            </span>
+                            <nz-dropdown-menu #height="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                                        (click)="onSelectCompanyType(index, 'background-size-value-h')">
+                                        {{i == '-' ? 'auto' : i}}</li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nz-divider style="margin: 10px 0"></nz-divider>
+        <div [nzGutter]="6" nz-row>
+            <div nz-col nzSpan="5">
+                Position
+            </div>
+            <div nz-col nzSpan="19">
+                <div [nzGutter]="6" nz-row>
+                    <div nz-col nzSpan="12">
+                        <nz-input-group [nzSuffix]="backgroundpositionXWidthTemplate" [nzSize]="'small'">
+                            <input type="text" nz-input
+                                [ngStyle]="{'color': backgroundType['0']['background-position-x'].value == '' ? '#f2f2f2' : ''}"
+                                placeholder="auto" [(ngModel)]="backgroundType['0']['background-position-x'].value" />
+                        </nz-input-group>
+                        <ng-template #backgroundpositionXWidthTemplate>
+                            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="positionwidth">
+                                {{companyType[backgroundType['0']['background-position-x'].company] || 0}}
+                            </span>
+                            <nz-dropdown-menu #positionwidth="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                                        (click)="onSelectCompanyType(index, 'background-position-x')">
+                                        {{i == '-' ? 'auto' : i}}
+                                    </li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </ng-template>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <nz-input-group [nzSuffix]="backgroundpositionYWidthTemplate" [nzSize]="'small'">
+                            <input type="text" nz-input
+                                [ngStyle]="{'color': backgroundType['0']['background-position-y'].value == '' ? '#f2f2f2' : ''}"
+                                placeholder="auto" [(ngModel)]="backgroundType['0']['background-position-y'].value" />
+                        </nz-input-group>
+                        <ng-template #backgroundpositionYWidthTemplate>
+                            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="positionheight">
+                                {{companyType[backgroundType['0']['background-position-y'].company] || 0}}
+                            </span>
+                            <nz-dropdown-menu #positionheight="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                                        (click)="onSelectCompanyType(index, 'background-position-y')">
+                                        {{i == '-' ? 'auto' : i}}</li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nz-divider style="margin: 10px 0"></nz-divider>
+        <div [nzGutter]="6" nz-row>
+            <div nz-col nzSpan="5">
+                Tile
+            </div>
+            <div nz-col nzSpan="19">
+                <nz-radio-group [(ngModel)]="backgroundType['0']['background-repeat']" [nzSize]="'small'">
+                    <label class="blive-background-type-btn" nz-radio-button nzValue="repeat">
+                        <svg data-icon="TileXY" aria-hidden="true" focusable="false" width="16" height="16"
+                            viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                            <path fill="currentColor"
+                                d="M1 1h4v4H1zm5 0h4v4H6zm5 0h4v4h-4zM1 6h4v4H1zm5 0h4v4H6zm5 0h4v4h-4zM1 11h4v4H1zm5 0h4v4H6zm5 0h4v4h-4z">
+                            </path>
+                        </svg>
+                    </label>
+                    <label class="blive-background-type-btn" nz-radio-button nzValue="repeat-x">
+                        <svg data-icon="TileX" aria-hidden="true" focusable="false" width="16" height="16"
+                            viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                            <path fill="currentColor" d="M1 6h4v4H1zm5 0h4v4H6zm5 0h4v4h-4z"></path>
+                        </svg>
+                    </label>
+                    <label class="blive-background-type-btn" nz-radio-button nzValue="repeat-y">
+                        <svg data-icon="TileY" aria-hidden="true" focusable="false" width="16" height="16"
+                            viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                            <path fill="currentColor" d="M6 1h4v4H6zm0 5h4v4H6zm0 5h4v4H6z"></path>
+                        </svg>
+                    </label>
+                    <label class="blive-background-type-btn" nz-radio-button nzValue="no-repeat">
+                        <svg data-icon="Cross" aria-hidden="true" focusable="false" width="16" height="16"
+                            viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M9.414 8l3.293-3.293-1.414-1.414L8 6.586 4.707 3.293 3.293 4.707 6.586 8l-3.293 3.293 1.414 1.414L8 9.414l3.293 3.293 1.414-1.414L9.414 8z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </label>
+                </nz-radio-group>
+            </div>
+        </div>
+        <nz-divider style="margin: 10px 0"></nz-divider>
+        <button nz-button nzType="primary" nzSize="small" nzBlock>确认</button>
+    </nz-content>
+    <!--E 图片背景-->
+
     <!--S 普通背景-->
     <nz-content *ngIf="backgroundTypeRadio == 3">
         <div [nzGutter]="6" nz-row>
@@ -72,29 +237,29 @@
                 Color
             </div>
             <div nz-col nzSpan="19">
-                <nz-input-group [nzPrefix]="prefixTemplateUser"  [nzSize]="'small'">
-                    <input  type="text" nz-input [(ngModel)]="backgroundValue" placeholder="输入颜色值" />
+                <nz-input-group [nzPrefix]="prefixTemplateUser" [nzSize]="'small'">
+                    <input type="text" nz-input [(ngModel)]="backgroundImageValue" placeholder="输入颜色值"
+                        (input)="onBackgroundImageModel($event, backgroundImageValue)" />
                 </nz-input-group>
                 <ng-template #prefixTemplateUser>
-                    <div *ngIf="backgroundValue"
-                         [ngStyle]="{'background-color': backgroundValue}"
-                         class="blive-background-item-colorblock"></div>
+                    <div *ngIf="backgroundValue" [ngStyle]="{'background-color': backgroundValue}"
+                        class="blive-background-item-colorblock"></div>
                     <div *ngIf="!backgroundValue" class="blive-background-item-colorblock">
-                        <svg
-                                aria-hidden="true" class="bem-Svg"
-                                data-icon="TransparentCheckerboardDark" focusable="false" height="21"
-                                style="display: block; transform: translate(0px, 0px); color: black;"
-                                viewBox="0 0 23 23"
-                                width="21">
+                        <svg aria-hidden="true" class="bem-Svg" data-icon="TransparentCheckerboardDark"
+                            focusable="false" height="21"
+                            style="display: block; transform: translate(0px, 0px); color: black;" viewBox="0 0 23 23"
+                            width="21">
                             <path clip-rule="evenodd"
-                                  d="M4 0H0v4h4v4H0v4h4v4H0v4h4v4h4v-4h4v4h4v-4h4v4h4v-4h-4v-4h4v-4h-4V8h4V4h-4V0h-4v4h-4V0H8v4H4V0zm4 8V4h4v4H8zm0 4V8H4v4h4zm4 0V8h4v4h-4zm0 4v-4H8v4H4v4h4v-4h4zm4 0v4h-4v-4h4zm0 0v-4h4v4h-4zm0-8V4h4v4h-4z"
-                                  fill="currentColor"
-                                  fill-opacity=".2" fill-rule="evenodd"></path>
+                                d="M4 0H0v4h4v4H0v4h4v4H0v4h4v4h4v-4h4v4h4v-4h4v4h4v-4h-4v-4h4v-4h-4V8h4V4h-4V0h-4v4h-4V0H8v4H4V0zm4 8V4h4v4H8zm0 4V8H4v4h4zm4 0V8h4v4h-4zm0 4v-4H8v4H4v4h4v-4h4zm4 0v4h-4v-4h4zm0 0v-4h4v4h-4zm0-8V4h4v4h-4z"
+                                fill="currentColor" fill-opacity=".2" fill-rule="evenodd"></path>
                         </svg>
                     </div>
                 </ng-template>
             </div>
         </div>
+        <nz-divider style="margin: 10px 0"></nz-divider>
+        <button nz-button nzType="primary" nzSize="small" nzBlock>确认</button>
     </nz-content>
     <!--E 普通背景-->
+
 </div>

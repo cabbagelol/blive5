@@ -1,0 +1,23 @@
+@import '../background/background.component.css';
+
+.blive-typography-w100 {
+  width: calc(100% + 6px);
+  margin-left: -6px;
+}
+
+.blive-typography {
+  padding: 21px;
+  margin: -5px -20px -20px -20px;
+}
+
+.blive-typography-buttom {
+  margin-bottom: 5px;
+}
+
+/* 重写 */
+.ant-radio-button-wrapper {
+    justify-content: center;
+    flex: 1;
+    width: 25%;
+    display: inline-grid;
+}

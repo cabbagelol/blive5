@@ -1,0 +1,156 @@
+<!--
+    * 文字属性
+    ** 属性栏内
+-->
+
+<div class="blive-typography">
+  <div nz-row>
+    <div class="blive-typography-buttom" nz-col nzSpan="24">
+      <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="5" nzTooltipTitle="文字粗细" nzTooltipPlacement="top" nz-tooltip>
+          Weight
+        </div>
+        <div nz-col nzSpan="19">
+          <nz-select [(ngModel)]="typography['font-weight'].value" [nzSize]="'small'"
+            (ngModelChange)="onSelectAttr(typography['font-weight'].value, 'font-weight')"
+            class="blive-typography-w100">
+            <nz-option *ngFor="let option of typography['font-weight'].list" [nzLabel]="option" [nzValue]="option">
+            </nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [nzGutter]="6" nz-row>
+    <div class="blive-typography-buttom" nz-col nzSpan="12">
+      <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="文字大小" nzTooltipPlacement="top" nz-tooltip>
+          Size
+        </div>
+        <div nz-col nzSpan="15">
+          <nz-input-group [nzSuffix]="suffixTemplateSize" [nzSize]="'small'">
+            <input type="text" nz-input [ngStyle]="{'color': typography['font-size'].value == '' ? '#f2f2f2' : ''}"
+              placeholder="auto" [(ngModel)]="typography['font-size'].value" ng-pattern="/^1[6-9]$|^[2-9]\d$|^1\d{2}$/"
+              (input)="onAttrInput(typography['font-size'].value, 'font-size')" />
+          </nz-input-group>
+          <ng-template #suffixTemplateSize>
+            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="height">
+              {{companyType[typography['font-size'].company] || 0}}
+            </span>
+            <nz-dropdown-menu #height="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                  (click)="onSelectCompanyType(index, 'font-size')">{{i == '-' ? 'auto' : i}}</li>
+              </ul>
+            </nz-dropdown-menu>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="blive-typography-buttom" nz-col nzSpan="12">
+      <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="9" nzTooltipTitle="文字上下间距" nzTooltipPlacement="top" nz-tooltip>
+          Height
+        </div>
+        <div nz-col nzSpan="15">
+          <nz-input-group [nzSuffix]="suffixTemplatelineheight" [nzSize]="'small'">
+            <input type="text" nz-input [ngStyle]="{'color': typography['line-height'].value == '' ? '#f2f2f2' : ''}"
+              placeholder="auto" [(ngModel)]="typography['line-height'].value"
+              (input)="onAttrInput(typography['line-height'].value, 'line-height')" />
+          </nz-input-group>
+          <ng-template #suffixTemplatelineheight>
+            <span nz-dropdown nzTrigger="click" [nzDropdownMenu]="height">
+              {{companyType[typography['line-height'].company] || 0}}
+            </span>
+            <nz-dropdown-menu #height="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item *ngFor="let i of companyType;let index = index"
+                  (click)="onSelectCompanyType(index, 'line-height')">{{i == '-' ? 'auto' : i}}</li>
+              </ul>
+            </nz-dropdown-menu>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row>
+    <div class="blive-typography-buttom" nz-col nzSpan="24">
+      <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="5" nzTooltipTitle="文字颜色" nzTooltipPlacement="top" nz-tooltip>
+          Color
+        </div>
+        <div nz-col nzSpan="19">
+          <div class="blive-typography-w100">
+            <nz-input-group [nzPrefix]="typographyFontColorTemplateUser" [nzSize]="'small'">
+              <input [(ngModel)]="typography.color.value" nz-input placeholder="输入颜色值" type="text"
+                [nzPopoverContent]="paneltypographyFontColorTemplate" [nzPopoverPlacement]="'top'" nz-popover
+                nzPopoverTrigger="click" />
+              <ng-template #paneltypographyFontColorTemplate>
+                <color-chrome [color]="typography.color.value" (onChangeComplete)="changeTypographyColor($event)"
+                  style="margin: -12px -16px;display: block;"></color-chrome>
+              </ng-template>
+            </nz-input-group>
+            <ng-template #typographyFontColorTemplateUser>
+              <div *ngIf=" (typography.color.value =='' || typography.color.value=='rgba(0, 0, 0, 0)' ) ? false : true"
+                [ngStyle]="{'background-color': typography.color.value}" class="blive-background-item-colorblock">
+              </div>
+              <div *ngIf="(typography.color.value == '' || typography.color.value == 'rgba(0, 0, 0, 0)') ? true : false"
+                class="blive-background-item-colorblock">
+                <svg aria-hidden="true" class="bem-Svg" data-icon="TransparentCheckerboardDark" focusable="false"
+                  height="21" style="display: block; transform: translate(0px, 0px); color: black;" viewBox="0 0 23 23"
+                  width="21">
+                  <path clip-rule="evenodd"
+                    d="M4 0H0v4h4v4H0v4h4v4H0v4h4v4h4v-4h4v4h4v-4h4v4h4v-4h-4v-4h4v-4h-4V8h4V4h-4V0h-4v4h-4V0H8v4H4V0zm4 8V4h4v4H8zm0 4V8H4v4h4zm4 0V8h4v4h-4zm0 4v-4H8v4H4v4h4v-4h4zm4 0v4h-4v-4h4zm0 0v-4h4v4h-4zm0-8V4h4v4h-4z"
+                    fill="currentColor" fill-opacity=".2" fill-rule="evenodd"></path>
+                </svg>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row>
+    <div class="blive-typography-buttom" nz-col nzSpan="24">
+      <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="5" nzTooltipTitle="文字方向" nzTooltipPlacement="top" nz-tooltip>
+          Align
+        </div>
+        <div nz-col nzSpan="19">
+          <div class="blive-typography-w100">
+            <nz-radio-group [(ngModel)]="typography['text-align'].value" [nzSize]="'small'" (ngModelChange)="onSelectAttr(typography['text-align'].value, 'text-align')" style="width: 100%;">
+              <label nz-radio-button nzValue="left">
+                <svg data-icon="TextAlignLeft" aria-hidden="true" focusable="false" width="16" height="16"
+                  viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14 2H2v2h12V2zm-4 3H2v2h8V5zm-8 6h8v2H2v-2zm12-3H2v2h12V8z" fill="currentColor"></path>
+                </svg></label>
+              <label nz-radio-button nzValue="center">
+                <svg data-icon="TextAlignCenter" aria-hidden="true" focusable="false" width="16" height="16"
+                  viewBox="0 0 16 16" class="bem-Svg" style="display: block; transform: translate(0px, 0px);">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14 2H2v2h12V2zm-2 3H4v2h8V5zm-8 6h8v2H4v-2zm10-3H2v2h12V8z" fill="currentColor"></path>
+                </svg></label>
+              <label nz-radio-button nzValue="right"><svg data-icon="TextAlignRight" aria-hidden="true" focusable="false"
+                  width="16" height="16" viewBox="0 0 16 16" class="bem-Svg"
+                  style="display: block; transform: translate(0px, 0px);">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14 2H2v2h12V2zm0 3H6v2h8V5zm-8 6h8v2H6v-2zm8-3H2v2h12V8z" fill="currentColor"></path>
+                </svg></label>
+              <label nz-radio-button nzValue="justify"><svg data-icon="TextAlignJustify" aria-hidden="true" focusable="false"
+                  width="16" height="16" viewBox="0 0 16 16" class="bem-Svg"
+                  style="display: block; transform: translate(0px, 0px);">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14 2H2v2h12V2zm0 3H2v2h12V5zM2 11h12v2H2v-2zm12-3H2v2h12V8z" fill="currentColor"></path>
+                </svg></label>
+            </nz-radio-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

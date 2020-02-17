@@ -1,26 +1,31 @@
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
+import { ColorChromeModule } from 'ngx-color/chrome'; // <color-chrome></color-chrome>
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService } from './in-memory-data.service';
 
-import { AppRoutingModule }     from './app-routing.module';
-import { NgZorroAntdModule} from 'ng-zorro-antd';
+import { AppRoutingModule } from './app-routing.module';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule, NZ_ICON_DEFAULT_TWOTONE_COLOR, NZ_ICONS } from 'ng-zorro-antd/icon';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { httpInterceptorProviders } from '../public/http';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { httpInterceptorProviders } from '../public/http';
 
-import { AppComponent }         from './app.component';
-import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import { HeroesComponent }      from './heroes/heroes.component';
-import { HeroSearchComponent }  from './hero-search/hero-search.component';
+import { AppComponent } from './app.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
-import { WorkbenchComponent }   from './workbench/workbench.component';
+// S 公共组件
+// import { ComponentPublic } from '../component/index.component';
+// E 公共组件
+
+import { WorkbenchComponent } from './workbench/workbench.component';
 import { StaffgaugeComponent } from './workbench/staffgauge/staffgauge.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
@@ -43,8 +48,11 @@ const antDesignIcons = AllIcons as {
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import {
+  PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG
+} from 'ngx-perfect-scrollbar';
+
 import { ImgAttrComponent } from './workbench/imgattr/img-attr.component';
 import { AttrbutespacingComponent } from './workbench/panel/attribute/attrbutespacing/attrbutespacing.component';
 import { FolderPage } from './dashboard/folder/folder.component';
@@ -53,6 +61,8 @@ import { UtmsourceComponent } from './dashboard/utmsource/utmsource.component';
 import { SizeComponent } from './workbench/panel/attribute/size/size.component';
 import { BackgroundComponent } from './workbench/panel/attribute/background/background.component';
 import { BackgroundTypeComponent } from './workbench/panel/attribute/background/background-type/background-type.component';
+import { TypographyComponent } from './workbench/panel/attribute/typography/typography.component';
+import { CustomAttributesComponent } from './workbench/panel/attribute/customAttributes/customAttributes.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
@@ -64,6 +74,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ColorChromeModule,
     BrowserAnimationsModule,
     MonacoEditorModule.forRoot(), // use forRoot() in main app module only.
 
@@ -81,6 +92,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule
   ],
   declarations: [
+    // 公共控件
+
+    // 基础
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
@@ -109,7 +123,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UtmsourceComponent,
     SizeComponent,
     BackgroundComponent,
-    BackgroundTypeComponent
+    BackgroundTypeComponent,
+    TypographyComponent,
+    CustomAttributesComponent,
   ],
   providers: [
     httpInterceptorProviders,
@@ -120,7 +136,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule { }

@@ -1,0 +1,40 @@
+<!-- 
+  * 标签属性
+  * 面板内容
+ -->
+
+<div class="blive-customAttributes-padding">
+    <div nz-row class="blive-customAttributes-buttom ">
+        <div class="blive-size-title" nz-col nzSpan="5" nzTooltipTitle="标签唯一标识" nzTooltipPlacement="top" nz-tooltip>
+            Id
+        </div>
+        <div nz-col nzSpan="19">
+            <input nz-input [nzSize]="'small'" placeholder="唯一标识" />
+        </div>
+    </div>
+    <div nz-row>
+        <div class="blive-size-title" nz-col nzSpan="5" nzTooltipTitle="标签类型" nzTooltipPlacement="top" nz-tooltip>
+            Tag
+        </div>
+        <div nz-col nzSpan="19">
+            <input nz-input [nzSize]="'small'" placeholder="标签名称" />
+        </div>
+    </div>
+</div>
+
+<!--S Custom Attributes-->
+<nz-collapse [nzBordered]="false">
+    <nz-collapse-panel #panelCustomAttributes [ngStyle]="panelsStyle.customStyle" [nzExpandedIcon]="panelCustomAttributesP">
+        <div>
+            233
+        </div>
+        <ng-template #panelCustomAttributesP let-active>
+            <div class="blive-attribute-panel-title">
+                <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow"
+                    [nzRotate]="panelCustomAttributes.nzActive ? 90 : 0"></i>
+                Custom Attributes
+            </div>
+        </ng-template>
+    </nz-collapse-panel>
+</nz-collapse>
+<!--E Custom Attributes-->

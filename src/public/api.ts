@@ -37,22 +37,61 @@ export default {
      * 可用的标签名单
      * 包含的标签稳定可靠，不会被过滤
      * 如果不存在于白名单和黑名单的标签未未知标签,工具会通过选择器提示用户
+     * attr: Array 可支持的面板屬性
+     * 
+     * -----------------------------------
+     * 屬性描述:
+     * size 大小面板
+     * backround 背景面板
+     * typography 文字属性面板
+     * spacing 外边距面板
      */
     elementWhiteList: {
-        'div': {},
-        'img': {},
-        'p': {},
-        'span': {},
-        'b': {},
-        'i': {},
-        'ol': {},
-        'ul': {},
-        'li': {},
-        'h1': {},
-        'h2': {},
-        'h3': {},
-        'h4': {},
-        'h5': {}
+        'div': {
+            'attr': ['size','background','spacing']
+        },
+        'img': {
+            'attr': ['size','background']
+        },
+        'a': {
+            'attr': ['size','background']
+        },
+        'p': {
+            'attr': ['typography', 'size','background']
+        },
+        'span': {
+            'attr': ['size','background']
+        },
+        'b': {
+            'attr': ['size','background']
+        },
+        'i': {
+            'attr': ['size','background']
+        },
+        'ol': {
+            'attr': ['size','background']
+        },
+        'ul': {
+            'attr': ['size','background']
+        },
+        'li': {
+            'attr': ['size','background']
+        },
+        'h1': {
+            'attr': ['size','background']
+        },
+        'h2': {
+            'attr': ['size','background']
+        },
+        'h3': {
+            'attr': ['size','background']
+        },
+        'h4': {
+            'attr': ['size','background']
+        },
+        'h5': {
+            'attr': ['size','background']
+        }
     },
 
     /**

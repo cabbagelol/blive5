@@ -1,0 +1,142 @@
+<!-- 
+  * 图库
+ -->
+
+ <div class="blive-images-window" (click)="close($event)">
+  <div class="blive-images-window-box">
+      <nz-layout style="height: 100%;">
+          <nz-header class="blive-images-window-header">
+              历史
+          </nz-header>
+          <nz-layout>
+              <nz-card>
+                  <div nz-row>
+                      <div nz-col nzMd="16">
+                          自动保存
+                      </div>
+                      <div nz-col nzMd="8" style="text-align: right">
+                          <nz-switch [ngModel]="true" nzCheckedChildren="开" nzUnCheckedChildren="关" disabled>
+                          </nz-switch>
+                      </div>
+                  </div>
+              </nz-card>
+
+              <!--S 列表-->
+              <nz-content class="blive-images-window-overflow">
+                  <div style="padding: 30px;">
+                      <nz-page-header>
+                          <nz-page-header-extra>
+                              <a nz-dropdown [nzDropdownMenu]="menu">
+                                  更多 <i nz-icon nzType="ellipsis" nzTheme="outline"></i>
+                              </a>
+                              <nz-dropdown-menu #menu="nzDropdownMenu">
+                                  <ul nz-menu>
+                                      <li nz-menu-item>导出所有历史列表 <nz-tag [nzColor]="'#999'">不可用</nz-tag>
+                                      </li>
+                                      <li nz-menu-item>导出选中的简介 <nz-tag [nzColor]="'#999'">不可用</nz-tag>
+                                      </li>
+                                      <li nz-menu-item>导入 <nz-tag [nzColor]="'#999'">不可用</nz-tag>
+                                      </li>
+                                  </ul>
+                              </nz-dropdown-menu>
+                          </nz-page-header-extra>
+                          <nz-page-header-content>
+                              <nz-row [nzGutter]="16">
+                                  <nz-col [nzSpan]="12">
+                                      <nz-statistic [nzValue]="20 - listLength | number" [nzTitle]="'剩余可用储存'">
+                                      </nz-statistic>
+                                  </nz-col>
+                                  <nz-col [nzSpan]="12">
+                                      <nz-statistic [nzValue]="568.08 | number: '1.0-2'" [nzTitle]="'总量'">
+                                      </nz-statistic>
+                                  </nz-col>
+                              </nz-row>
+                          </nz-page-header-content>
+                      </nz-page-header>
+
+                      <nz-divider></nz-divider>
+
+                      <nz-table [nzData]="imagesList">
+                          <!--<thead>-->
+                          <!--<tr>-->
+                          <!--<th>+</th>-->
+                          <!--<th>简要信息</th>-->
+                          <!--<th>操作</th>-->
+                          <!--</tr>-->
+                          <!--</thead>-->
+
+                          <tbody>
+                              <nz-content *ngFor="let data of imagesList">
+                                  <!--S 历史记录-->
+
+                                  <tr style="background: #fff;padding: 15px 10px;display: block;">
+                                      <td (nzExpandChange)="onCollapse(data)"
+                                          [nzShowExpand]="data.children.length > 0"></td>
+                                      <td>
+                                          <nz-descriptions nzLayout="vertical">
+                                              <nz-descriptions-item nzTitle="名称">
+                                                  <p nz-paragraph nzEditable [nzEllipsisRows]="1" [nzEllipsis]="true"
+                                                      [(nzContent)]="data.name"
+                                                      (nzContentChange)="onUpDataList(data)"></p>
+                                              </nz-descriptions-item>
+                                              <nz-descriptions-item nzTitle="原始模板"> 未知</nz-descriptions-item>
+                                              <nz-descriptions-item nzTitle="容量">
+                                                  <nz-progress
+                                                      [nzPercent]="(19.53 / (data.html.toString().length / 1024)).toFixed(2)"
+                                                      style="width: 200px; display: block"></nz-progress>
+                                              </nz-descriptions-item>
+                                              <nz-descriptions-item nzTitle="系统序列">
+                                                  <span nz-tooltip
+                                                      nzTooltipTitle="这是blive生成的简介id,它是由什么组成并不重要,得益于此id工具才能通过它加载简介数据">{{data.id}}</span>
+                                              </nz-descriptions-item>
+                                              <nz-descriptions-item nzTitle="创建时间">{{ data.time }}
+                                              </nz-descriptions-item>
+                                          </nz-descriptions>
+                                      </td>
+                                      <td style="width: 200px">
+                                          <nz-button-group>
+                                              <button nz-button nzType="primary" (click)="open(data)">使用</button>
+                                              <button nz-button nzType="primary" nz-dropdown
+                                                  [nzDropdownMenu]="imagesPagedropdownMenu"
+                                                  nzPlacement="bottomRight">
+                                                  <i nz-icon nzType="ellipsis"></i>
+                                              </button>
+                                          </nz-button-group>
+                                          <nz-dropdown-menu #imagesPagedropdownMenu="nzDropdownMenu">
+                                              <ul nz-menu>
+                                                  <li nz-menu-item (click)="onPackZip(data)">导出简介</li>
+                                                  <li nz-menu-item nz-popconfirm nzPopconfirmTitle="删除该简介"
+                                                      nzPopconfirmPlacement="bottom"
+                                                      (nzOnConfirm)="delete(data)">删除</li>
+                                              </ul>
+                                          </nz-dropdown-menu>
+                                      </td>
+                                  </tr>
+
+                                  <!--S 子记录-->
+                                  <nz-content *ngFor="let t of data.children; let tindex = index;">
+                                      <tr *ngIf="data.show"
+                                          style="background: #fff;border-bottom: 1px solid #f2f2f2;width: 100%;padding: 7px 15px; display: inline-table;">
+                                          <td style="width: 45px;"></td>
+                                          <td>
+                                              <nz-badge nzStatus="error"></nz-badge>
+                                              {{t.time}}
+                                          </td>
+                                          <td style="width: 200px" *ngIf="data.html != t.html">
+                                              <button nz-button nzType="link"
+                                                  (click)="delete(data, tindex)">删除</button>
+                                              <nz-divider nzType="vertical"></nz-divider>
+                                              <button nz-button nzType="link">使用分支</button>
+                                          </td>
+                                      </tr>
+                                  </nz-content>
+                              </nz-content>
+                          </tbody>
+                      </nz-table>
+                  </div>
+              </nz-content>
+              <!--E 列表-->
+          </nz-layout>
+      </nz-layout>
+  </div>
+</div>
