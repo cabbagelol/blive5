@@ -1,0 +1,64 @@
+<!-- 
+  * 属性网格
+ -->
+<!-- 
+<div (click)='onClick($event)' id='dd'
+  style="color: red;margin: 10px 0; background-color: #f3f3f3;padding: 20px;width: 200px;height: 100px;">
+  内容
+</div> -->
+
+<div class="blive-datagrid" type="Blive/PropertyGrid" style="display: block;">
+  <div class="blive-parameterlist-add">
+    <div>
+      <span style="width: 15px;">
+        <i nz-icon nzType="plus-square" nzTheme="fill"></i>
+      </span>
+      <p contenteditable="true" class="no-p {{value.add.e == '' ? 'no-name' : ''}}" style="min-width: 100px;"
+        [textContent]="value.add.e" (input)="value.add.e=$event.target.textContent">
+        {{value.add.e}}
+      </p>
+    </div>
+    <span>:</span>
+    <div>
+      <!-- <div class="blive-parameterlist-color" [ngStyle]="{'background-color': i.value}">{{value.add.v}}</div> -->
+      <p contenteditable="true" class="no-p {{value.add.v == '' ? 'no-value' : ''}}" style="min-width: 100px;"
+        [textContent]="value.add.v" (input)="value.add.v=$event.target.textContent">{{value.add.v || ''}}</p>
+      <div class='button-add' (click)='onUpAttr(value.add.e, value.add.v)'>添加</div>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let i of evnetdata">
+    <div class="blive-parameterlist-add" *ngIf="i.value != '' && i.name != ''">
+      <div>
+        <label nz-checkbox [(ngModel)]="i.checked"></label>
+
+
+        <ng-container *ngIf='elementBlackList[nodeName] == "undefined"'>
+          <ng-container *ngFor='let sti of elementBlackList[nodeName].style'>
+            <i nz-icon nzType="warning" nzTheme="fill" style="
+            color: #FF9800;margin: 0 0 0 10px;display: block;" *ngIf="sti != i.name" nz-tooltip nzTooltipTitle="不受Blive所支持屬性，它在編譯后代碼可能引起其他問題"></i>
+          </ng-container>
+        </ng-container>
+        
+
+        <p contenteditable="true" class="no-p {{i.name == '' ? 'no-name' : ''}}" style='color: #E91E63;'
+          [textContent]="i.name" (input)="i.name=$event.target.textContent">
+          {{i.name}}
+        </p>
+        <span>:</span>
+
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/{{i.name}}" target="_new">
+          <i nz-icon nzType="question-circle" nzTheme="outline" nz-tooltip nzTooltipTitle="{{i.name}}"></i>
+        </a>
+      </div>
+      <div>
+        <div class="blive-parameterlist-color" [ngStyle]="{'background-color': i.value}" *ngIf="i.isColor"></div>
+        <p contenteditable="true" class="no-p {{i.value == '' ? 'no-value' : ''}}" style="text-align: right;"
+          [textContent]="i.value" (input)="i.value=$event.target.textContent" (blur)="setBlurAttrbute($event, i)">
+          {{i.value || ' '}}
+        </p>
+        <i nz-icon nzType="delete" nzTheme="fill" (click)='onUpAttr(i.name, "")' nz-tooltip nzTooltipTitle="删除"></i>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
     'moban': false,
     'configure': false,
     'history': false,
+    'images': false,
   }
 
   constructor() { }

@@ -1,5 +1,6 @@
+@import '../../../../../component/selectcolor/selectcolor.component.css';
+
 .blive-background {
-    background-color: #fbfbfb;
     padding: 21px;
     margin: -5px -20px -20px -20px;
 }

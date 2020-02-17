@@ -1,6 +1,5 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
 
-
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -11,7 +10,6 @@ export class AppComponent implements OnInit, OnChanges {
     constructor() {}
 
     ngOnInit() {
-
     }
 
     ngOnChanges () {

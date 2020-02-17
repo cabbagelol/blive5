@@ -10,7 +10,7 @@ export class ConfigureComponent implements OnInit {
   @Output('close') close_ = new EventEmitter<any>();
   @Output('mobanData') mobanData_ = new EventEmitter<any>();
   @ViewChild('nzTreeComponent', {static: false}) nzTreeComponent: NzTreeComponent;
-
+ 
   // 菜单列表
   configureMuen: Array<object> = [
     {

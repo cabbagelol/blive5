@@ -1,17 +1,20 @@
-import {Component, OnInit, Output, EventEmitter, Input, ViewChild} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-import {NzNotificationService} from 'ng-zorro-antd/notification';
-import {NzContextMenuService, NzDropdownMenuComponent, NzModalService} from "ng-zorro-antd";
-import {Shortcutkeys} from './shortcutkeys';
-import {Historicalstorage} from './historicalstorage';
-import {NzMessageService} from 'ng-zorro-antd/message';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzContextMenuService, NzDropdownMenuComponent, NzModalService } from "ng-zorro-antd";
+import { Shortcutkeys } from './shortcutkeys';
+import { Historicalstorage } from './historicalstorage';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Store, select } from "@ngrx/store";
+import { Observable } from "rxjs";
 
-import {AttributeComponent} from './panel/attribute/attribute.component';
+import { AttributeComponent } from './panel/attribute/attribute.component';
 
 // @ts-ignore
 import $ from "jquery";
 import api from 'src/public/api';
 import util from "../../public/util";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'blive-workbench',
@@ -24,7 +27,9 @@ export class WorkbenchComponent implements OnInit {
     @Input() data: any;
     @Output('checked') checkedBack = new EventEmitter<any>();
 
-    @ViewChild('attributecomponent', {static: false}) attributecomponent_ :AttributeComponent;
+    @ViewChild('attributecomponent', { static: false }) attributecomponent_: AttributeComponent;
+
+    count$: Observable<number>;
 
     // panel
     private windows;
@@ -66,6 +71,7 @@ export class WorkbenchComponent implements OnInit {
         'nodeName': '',
         'isLegalLabel': 1,
         'isLegalLabelTip': '',
+        'animation': false,
         'top': 0,
         'left': 0,
         'width': 0,
@@ -91,16 +97,22 @@ export class WorkbenchComponent implements OnInit {
     }
 
     constructor(private _sanitizer: DomSanitizer,
-                private notification: NzNotificationService,
-                private shortcutkeys: Shortcutkeys,
-                private _historicalstorage: Historicalstorage,
-                private message: NzMessageService,
-                private modalService: NzModalService,
-                private nzContextMenuService: NzContextMenuService) {
+        private notification: NzNotificationService,
+        private shortcutkeys: Shortcutkeys,
+        private _historicalstorage: Historicalstorage,
+        private message: NzMessageService,
+        private modalService: NzModalService,
+        private nzContextMenuService: NzContextMenuService,
+        private store: Store<{ count: number }>,
+        private route: ActivatedRoute, 
+      ) {
+        this.count$ = store.pipe(select("count"));
     }
 
     async ngOnInit() {
         const self = this;
+        const uuid = self.route.snapshot.paramMap.get("uuid");
+        const UrlVariable = util.getQueryVariable();
 
         this.windows = $(window);
         this.workbenchInfo = $('#blive-workbench');
@@ -111,16 +123,15 @@ export class WorkbenchComponent implements OnInit {
          * 从路由获取id取得简介数据
          * 取历史纪录， 如果没有则是失效id
          */
-        const UrlVariable = util.getQueryVariable();
-        if (Object.keys(UrlVariable).length > 0) {
-            var res = self._historicalstorage.query(UrlVariable.id);
+        if (uuid != '') {
+            var res = self._historicalstorage.query(uuid);
             if (!!res) {
                 self.workbenchInfo.html(res.html);
                 self.data.editorCode = res.html;
                 self.workbenchData.isData = true;
                 self.workbenchData.isNull = false;
             } else {
-                self.workbenchData.isNull = !UrlVariable.one;
+                // self.workbenchData.isNull = !UrlVariable.one;
                 self.workbenchData.isData = true;
             }
         } else {
@@ -156,9 +167,9 @@ export class WorkbenchComponent implements OnInit {
                         }
 
                         this.message
-                            .loading('储存中', {nzDuration: 2500}).onClose!
+                            .loading('储存中', { nzDuration: 2500 }).onClose!
                             .subscribe(() => {
-                                this.message.success('成功', {nzDuration: 2500});
+                                this.message.success('成功', { nzDuration: 2500 });
                                 self._historicalstorage.save(map.id, self.workbenchInfo.html());
                             });
                         break;
@@ -324,6 +335,8 @@ export class WorkbenchComponent implements OnInit {
             self.onResetPosition();
             self.onChangeComponentData(event);
             self.onWithUpdataFluoroscopy(event);
+
+            // 面板內部事件
             self.attributecomponent_.onUpAttrData()
             return false;
         }).mouseover(event => {
@@ -399,7 +412,7 @@ export class WorkbenchComponent implements OnInit {
         if (!!event.target) {
             self.workbenchPreviewSelectorController.width = target.clientWidth;
             self.workbenchPreviewSelectorController.height = target.clientHeight;
-            self.workbenchPreviewSelectorController.nodeName =  util.toWritingStyle(event.target.nodeName);
+            self.workbenchPreviewSelectorController.nodeName = util.toWritingStyle(event.target.nodeName);
 
             switch (target.nodeName) {
                 case 'IMG':
@@ -416,6 +429,10 @@ export class WorkbenchComponent implements OnInit {
             self.previewFluoroscopy.css({
                 'top': `${y}px`,
                 'left': `${x}px`
+            }).mouseover(_ => {
+                /// 离开可视化编译
+                /// 隐藏预选选择器
+                self.fluoroscopePreviewShowState = false;
             });
         }
     }
@@ -426,6 +443,7 @@ export class WorkbenchComponent implements OnInit {
      */
     onWithUpdataFluoroscopy(event) {
         const self = this;
+        const el = $(event.target);
         let x = 0;
         let y = 0;
         var target;
@@ -433,6 +451,7 @@ export class WorkbenchComponent implements OnInit {
         if (!event.target) {
             target = {
                 nodeName: '',
+                lock: false,
                 left: 0,
                 top: 0,
                 width: 0,
@@ -453,6 +472,7 @@ export class WorkbenchComponent implements OnInit {
         } else {
             target = {
                 nodeName: util.toWritingStyle(event.target.nodeName),
+                lock: el.attr('data-blive-lock') || false,
                 left: event.target.offsetLeft,
                 top: event.target.offsetTop,
                 width: event.target.clientWidth || event.target.offsetWidth,
@@ -474,6 +494,7 @@ export class WorkbenchComponent implements OnInit {
 
         self.workbenchSelectorController = Object.assign(self.workbenchSelectorController, {
             nodeName: target.nodeName,
+            lock: target.lock,
             left: target.left,
             top: target.top,
             width: target.width,
@@ -525,14 +546,15 @@ export class WorkbenchComponent implements OnInit {
     setWid(item, data, type: string) {
         const self = this;
         const num = 3;
+        var am = -(self.workbenchSelectorController.animation ? 1 : 0);
         switch (type.toString()) {
             case 'top':
             case 'button':
-                return this._sanitizer.bypassSecurityTrustStyle(item === 't' ? '0px' : data.height + 'px');
+                return this._sanitizer.bypassSecurityTrustStyle(item === 't' ? am + 0 + 'px' : am + data.height + 'px');
                 break;
             case 'left':
             case 'right':
-                return this._sanitizer.bypassSecurityTrustStyle(item === 'l' ? '0px' : data.width + 'px');
+                return this._sanitizer.bypassSecurityTrustStyle(item === 'l' ? am + 0 + 'px' : data.width + 'px');
                 break;
 
             case 'height':
@@ -641,6 +663,12 @@ export class WorkbenchComponent implements OnInit {
             $(event.target).focus();
 
             /**
+             * 控制效果
+             */
+            self.workbenchSelectorController.animation = true;
+            self.fluoroscopePreviewShowState = false;
+
+            /**
              * 选择编辑并全选文字
              */
             var range = document.createRange();
@@ -660,6 +688,10 @@ export class WorkbenchComponent implements OnInit {
                  * 取消全选节点
                  */
                 window.getSelection().removeAllRanges();
+
+                self.workbenchSelectorController.animation = false;
+                self.fluoroscopePreviewShowState = true;
+
                 return false;
             });
 
@@ -826,7 +858,6 @@ export class WorkbenchComponent implements OnInit {
      */
     onImgAttrChange(data) {
         const self = this;
-        console.log(data);
         $(self.workbenchSelectorController.event['target']).attr({
             'src': data.src,
             'alt': data.alt,

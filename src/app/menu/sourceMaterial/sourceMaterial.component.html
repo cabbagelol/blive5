@@ -1,0 +1,12 @@
+<!-- S 显示dom -->
+<div>
+  <ng-container *ngFor='let i of domString.ldata;let index = index'>
+    <div id='{{i.id}}' [innerHTML]='i' draggable="true" (dragstart)="drag($event)" ></div>
+  </ng-container>
+</div>
+<!-- E 显示dom -->
+
+
+<div id="div1" (drop)="drop($event)" (dragover)="allowDrop($event)">
+
+</div>

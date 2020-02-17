@@ -3,26 +3,53 @@
 -->
 
 <div class="blive-attribute">
+
+    <!-- <button id="increment" (click)="increment()">Increment</button>
+
+    <div>Current Count: {{ count$ | async }}</div>
+
+    <button id="decrement" (click)="decrement()">Decrement</button>
+
+    <button id="reset" (click)="reset()">Reset Counter</button>
+    <button id="reset" (click)="onNodeLock()">Reset Counter</button> -->
+
     <div class="blive-attribute-box card-container">
         <div class="blive-attribute-head blive-attribute-padding">
             <div class="blive-attribute-head-icon">
                 <svg width="6" height="14">
                     <g>
-                        <circle id="svg_1" r="1" fill="#999" cy="1" cx="1"/>
-                        <circle id="svg_2" r="1" fill="#999" cy="1" cx="5"/>
-                        <circle id="svg_3" r="1" fill="#999" cy="8.94585" cx="1.04056"/>
-                        <circle id="svg_4" r="1" fill="#999" cy="8.94585" cx="5.04056"/>
-                        <circle id="svg_5" r="1" fill="#999" cy="5" cx="1"/>
-                        <circle id="svg_6" r="1" fill="#999" cy="5" cx="5"/>
-                        <circle id="svg_7" r="1" fill="#999" cy="12.94585" cx="1.04056"/>
-                        <circle id="svg_8" r="1" fill="#999" cy="12.94585" cx="5.04056"/>
+                        <circle id="svg_1" r="1" fill="#999" cy="1" cx="1" />
+                        <circle id="svg_2" r="1" fill="#999" cy="1" cx="5" />
+                        <circle id="svg_3" r="1" fill="#999" cy="8.94585" cx="1.04056" />
+                        <circle id="svg_4" r="1" fill="#999" cy="8.94585" cx="5.04056" />
+                        <circle id="svg_5" r="1" fill="#999" cy="5" cx="1" />
+                        <circle id="svg_6" r="1" fill="#999" cy="5" cx="5" />
+                        <circle id="svg_7" r="1" fill="#999" cy="12.94585" cx="1.04056" />
+                        <circle id="svg_8" r="1" fill="#999" cy="12.94585" cx="5.04056" />
                     </g>
                 </svg>
             </div>
-            <div class="blive-attribute-head-selector"  nz-dropdown [nzDropdownMenu]="menu1" (nzVisibleChange)="onUpDom()">
-                <nz-tag  [nzMode]="false ? 'default' : 'closeable'"
-                         (nzAfterClose)="handleClose(tag)">测试</nz-tag>
+            <div class="blive-attribute-head-selector" nz-dropdown [nzDropdownMenu]="menu1"
+                (nzVisibleChange)="onUpDom()">
+                <nz-tag [nzMode]="'default'" [nzColor]="'#2db7f5'" *ngIf="panelData.eventOneStatc">
+                    {{data.event.target.nodeName || ""}}
+                    <a target="_new"
+                        :href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/{{data.event.target.nodeName}}">
+                        <i nz-icon nzType="question-circle" nzTheme="outline" nz-tooltip
+                            nzTooltipTitle="通过权威网站阅读此标签详细介绍"></i>
+                    </a>
+                </nz-tag>
+                <nz-tag [nzMode]="'default'" *ngIf="!panelData.eventOneStatc">
+                    空
+                </nz-tag>
+                <nz-tag [nzMode]="'default'" *ngIf="panelData.eventOneStatc && data.event.target.id != ''">
+                    # {{data.event.target.id}}
+                </nz-tag>
             </div>
+            <button nz-button nzType="dashed" (click)='onNodeLock()' class="blive-attribute-head-lock">
+                <i nz-icon nzType="lock" nzTheme="outline" *ngIf='panelData.lock'></i>
+                <i nz-icon nzType="unlock" nzTheme="outline" *ngIf='!panelData.lock'></i>
+            </button>
             <nz-dropdown-menu #menu1="nzDropdownMenu">
                 <ul nz-menu>
                     <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
@@ -43,6 +70,11 @@
                             父节点 <nz-tag>alt + shift + x</nz-tag>
                         </div>
                     </li>
+                    <li nz-menu-item>
+                        <div>
+                            创建组件 (施工中)
+                        </div>
+                    </li>
                     <div style="padding: 5px 10px;background: #f2f2f2;color: #999">
                         操作
                     </div>
@@ -52,66 +84,106 @@
                 </ul>
             </nz-dropdown-menu>
         </div>
-        <nz-tabset [nzTabPosition]="'top'" [nzTabBarGutter]="'2'" [nzSize]="'small'">
+        <!-- <nz-tabset [nzTabPosition]="'top'" [nzTabBarGutter]="'2'" [nzSize]="'small'">
             <nz-tab [nzTitle]="'基础属性'"></nz-tab>
-        </nz-tabset>
+        </nz-tabset> -->
 
-        <div class="scrollable-content">
-            <nz-collapse [nzBordered]="false">
-                <!--S 大小 size-->
-                <nz-collapse-panel
-                    #panelSizePanel
-                    [nzActive]="'大小'"
-                    [ngStyle]="panels[0].customStyle"
-                    [nzExpandedIcon]="panelSize">
-                    <blive-attrbute-size [data]="data" (attrChange)="onNoticeFather()" #sizecomponent></blive-attrbute-size>
-                    <ng-template #panelSize let-active>
-                        <div style="font-size: 12px;color: #888;line-height: .9;">
-                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelSizePanel.nzActive ? 90 : 0"></i>
-                            尺寸
-                        </div>
-                    </ng-template>
-                </nz-collapse-panel>
-                <!--E 大小 size-->
+        <nz-radio-group [(ngModel)]="attrTabs" (ngModelChange)="onAttributeTabs($event)" [nzButtonStyle]="'solid'"
+            class="blive-attribute-tabs">
+            <label nz-radio-button nzValue="0" class="blive-attribute-tabs-item">
+                <i nz-icon nzType="thunderbolt" nzTheme="fill"></i>
+            </label>
+            <label nz-radio-button nzValue="1" class="blive-attribute-tabs-item" [nzDisabled]="!data.event">
+                <i nz-icon nzType="setting" nzTheme="fill"></i>
+            </label>
+            <label nz-radio-button nzValue="2" class="blive-attribute-tabs-item" [nzDisabled]="!data.event">
+                <i nz-icon nzType="profile" nzTheme="fill"></i>
+            </label>
+        </nz-radio-group>
 
-                <!--S 背景 background-->
-                <nz-collapse-panel
-                    #panelBackgroundPanel
-                    [nzActive]="panels[0].active"
-                    [ngStyle]="panels[0].customStyle"
-                    [nzExpandedIcon]="panelBackground">
-                    <blive-attrbute-background></blive-attrbute-background>
-                    <ng-template #panelBackground let-active>
-                        <div style="font-size: 12px;color: #888;line-height: .9;">
-                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelBackgroundPanel.nzActive ? 90 : 0"></i>
-                            背景
-                        </div>
-                    </ng-template>
-                </nz-collapse-panel>
-                <!--E 背景 background-->
+        <div [hidden]="attrTabs != '0'">
+            <div class="scrollable-content" style="
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: calc(100vh - 54px);">
+                <nz-collapse [nzBordered]="false" *ngFor="let i of panelData.attrs">
+                    <!--S 大小 size-->
+                    <nz-collapse-panel #panelSizePanel [ngStyle]="panels.customStyle" [nzExpandedIcon]="panelSize"
+                        *ngIf="i == 'size'">
+                        <blive-attrbute-size [data]="data" (attrChange)="onNoticeFather()" #sizecomponent>
+                        </blive-attrbute-size>
+                        <ng-template #panelSize let-active>
+                            <div class="blive-attribute-panel-title">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow"
+                                    [nzRotate]="panelSizePanel.nzActive ? 90 : 0"></i>
+                                尺寸
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                    <!--E 大小 size-->
 
-                <!--S 外边距 spacing-->
-                <nz-collapse-panel
-                    #panelSpacingPanel
-                    [nzActive]="panels[0].active"
-                    [ngStyle]="panels[0].customStyle"
-                    [nzExpandedIcon]="panelSpacing">
-                    <blive-attrbute-spacing></blive-attrbute-spacing>
-                    <ng-template #panelSpacing let-active>
-                        <div style="font-size: 12px;color: #888;line-height: .9;">
-                            <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow" [nzRotate]="panelSpacingPanel.nzActive ? 90 : 0"></i>
-                            外边距
-                        </div>
-                    </ng-template>
-                </nz-collapse-panel>
-                <!--E 外边距 spacing-->
-            </nz-collapse>
+                    <!--S 背景 background-->
+                    <nz-collapse-panel #panelBackgroundPanel [ngStyle]="panels.customStyle"
+                        [nzExpandedIcon]="panelBackground" *ngIf="i == 'background'">
+                        <blive-attrbute-background [data]="data" #backgroundcomponent></blive-attrbute-background>
+                        <ng-template #panelBackground let-active>
+                            <div class="blive-attribute-panel-title">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow"
+                                    [nzRotate]="panelBackgroundPanel.nzActive ? 90 : 0"></i>
+                                背景
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                    <!--E 背景 background-->
+
+                    <!--S 外边距 spacing-->
+                    <nz-collapse-panel #panelSpacingPanel [ngStyle]="panels.customStyle" [nzExpandedIcon]="panelSpacing"
+                        *ngIf="i == 'spacing'">
+                        <blive-attrbute-spacing></blive-attrbute-spacing>
+                        <ng-template #panelSpacing let-active class="blive-attribute-panel-title">
+                            <div class="blive-attribute-panel-title">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow"
+                                    [nzRotate]="panelSpacingPanel.nzActive ? 90 : 0"></i>
+                                外边距
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                    <!--E 外边距 spacing-->
+
+                    <!--S 文字 spacing-->
+                    <nz-collapse-panel #panelTypographyPanel [ngStyle]="panels.customStyle"
+                        [nzExpandedIcon]="panelTypography" *ngIf="i == 'typography'">
+                        <blive-attrbute-typography [data]="data" (attrChange)="onNoticeFather()" #typographyComponent>
+                        </blive-attrbute-typography>
+                        <ng-template #panelTypography let-active>
+                            <div class="blive-attribute-panel-title">
+                                <i nz-icon nzType="caret-right" class="ant-collapse-arrow blive-panel-arrow"
+                                    [nzRotate]="panelTypographyPanel.nzActive ? 90 : 0"></i>
+                                文字
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                    <!--E 文字 spacing-->
+                </nz-collapse>
+
+                <nz-content *ngIf="panelData.calc <= 0 || panelData.attrs.length <= 0">
+                    <div style="padding: 0 40px;">
+                        <h3><i nz-icon nzType="frown" nzTheme="outline"
+                                style="font-size: 43px;margin: 30px 10px 0 0;"></i><b>暫無屬性支持</b></h3>
+                        <div style="font-size: 12px; color:#888;">通過點擊編輯器內任意元素,在此欄目查看該標籤屬性.</div>
+                        <div style="font-size: 12px; color:#888;">當前標籤沒有任何屬性支持，查閱<a href="#">支持.</a></div>
+                    </div>
+                </nz-content>
+            </div>
         </div>
 
-        <!--<perfect-scrollbar [config]="config" [scrollIndicators]="true">-->
-            <!---->
-        <!--</perfect-scrollbar>-->
+        <blive-attribute-customAttributes [hidden]="attrTabs !='1'" [data]="data" #attributeCustomAttributes>
+        </blive-attribute-customAttributes>
 
-        <!--<nz-result nzStatus="warning" nzTitle="施工中"></nz-result>-->
+        <perfect-scrollbar [config]="config" [scrollIndicators]="true" style="height: calc(100vh - 100px);">
+            <blive-component-attributeGrid [hidden]="attrTabs !='2'" [data]="data" #attributeGridComponent>
+            </blive-component-attributeGrid>
+        </perfect-scrollbar>
+        blive
     </div>
 </div>

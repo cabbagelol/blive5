@@ -1,31 +1,31 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {WorkbenchComponent} from "./workbench.component";
-import {Location} from "@angular/common";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { WorkbenchComponent } from "./workbench.component";
+import { Location } from "@angular/common";
 import util from "../../public/util";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: "app-index",
+  templateUrl: "./index.component.html",
+  styleUrls: ["./index.component.css"]
 })
 export class IndexComponent implements OnInit {
-
   /// 接收工作台数据
   data: any = {};
 
   // @ts-ignore
-  @ViewChild('workbench')
+  @ViewChild("workbench")
   workbench: WorkbenchComponent;
 
-  constructor(
-      private location: Location,
-  ) {}
+  constructor(private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
     const self = this;
     const map = util.getQueryVariable();
-    if (Object.keys(map).length == 0) {
-      self.location.go('edit/?id=' + util.getUUID(16) + '&one=true')
+    const uuid = this.route.snapshot.paramMap.get("uuid");
+
+    if (uuid == '') {
+      self.location.go("edit/" + util.getUUID(16));
     }
   }
 
@@ -44,7 +44,7 @@ export class IndexComponent implements OnInit {
    */
   setMobanToggle(moban: any) {
     this.data = Object.assign(this.data, {
-      'moban': moban
+      moban: moban
     });
     this.workbench.onUpdataWorkbenchMoban();
   }

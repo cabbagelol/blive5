@@ -1,0 +1,11 @@
+
+/*重写颜色选择器样式*/
+.color-picker {
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 30px #0000001f;
+    border-radius: 3px;
+}
+
+.cpPresetColorsClass {
+    background-color: #000;
+}
