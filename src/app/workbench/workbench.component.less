@@ -5,318 +5,318 @@
 
 
 .blive-workbench {
-  background-blend-mode: hard-light;
-  height: 66.66666666666667%;
-  overflow: hidden;
-  width: calc(100% - 300px);
-  /*cursor: grab;*/
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  right: 0;
+    background-blend-mode: hard-light;
+    height: 66.66666666666667%;
+    overflow: hidden;
+    width: 100%;
+    /*cursor: grab;*/
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .blive-workbench a {
-  -webkit-touch-callout: none;
+    -webkit-touch-callout: none;
 }
 
 .blive-workbench-bk {
-  background-color: #f2f2f2;
-  background-image: url(https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg);
-  background-size: 15px;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  height: 66.66666666666667%;
-  opacity: .2;
+    background-color: #f2f2f2;
+    background-image: url(https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg);
+    background-size: 15px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 66.66666666666667%;
+    opacity: .2;
 }
 
 .blive-workbench-box {
-  position: relative;
-  transform: translate(0);
-  /*overflow: hidden;*/
-  /*overflow-y: auto;*/
-  max-width: 2000px;
-  display: inline-grid;
-  transition: width, height .25s;
+    position: relative;
+    transform: translate(0);
+    /*overflow: hidden;*/
+    /*overflow-y: auto;*/
+    max-width: 2000px;
+    display: inline-grid;
+    transition: width, height .25s;
 }
 
 .blive-workbench-box * {
-  cursor: auto !important;
+    cursor: auto !important;
 }
 
 .blive-workbench-box * {
-  cursor: text !important;
+    cursor: text !important;
 }
 
 .blive-workbench-box *::selection {
-  color: #fff;
-  background: #088;
+    color: #fff;
+    background: #088;
 }
 
 .blive-workbench-flex {
-  display: flex
+    display: flex
 }
 
 .blive-workbench-leftbox {
-  width: calc(100% - 300px)
+    width: 100%;
 }
 
 .blive-workbench-attr {
-  position: relative;
-  width: 300px;
-  border-left: 1px solid #f7f7f7;
-  box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
-  z-index: 5;
+    position: relative;
+    width: 300px;
+    border-left: 1px solid #f7f7f7;
+    box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
+    z-index: 5;
 }
 
 /*工作台引导层*/
 .blive-workbench-guide {
-  position: relative;
-  background-color: #f2f2f2;
-  background-size: 15px;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  height: 66.66666666666667%;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 100%;
+    position: relative;
+    background-color: #f2f2f2;
+    background-size: 15px;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    height: 66.66666666666667%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
 }
 
 .blive-workbench-guide > div {
-  margin: 40px 0;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  text-align: center;
-  align-self: center;
-  font-size: 15px;
-  color: #999;
-  text-shadow: 1px 1px 0 #fff;
+    margin: 40px 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    font-size: 15px;
+    color: #999;
+    text-shadow: 1px 1px 0 #fff;
 }
 
 .blive-workbench-guide i {
-  font-size: 20px;
-  margin: 0 10px;
+    font-size: 20px;
+    margin: 0 10px;
 }
 
 .blive-workbench-guide span {
-  display: block;
-  font-size: 12px;
-  color: #999;
-  margin: 10px 0;
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin: 10px 0;
 }
 
 /*选择器*/
 
 #blive-fluoroscopy {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
 }
 
 .blive-fluoroscopy-selectors,
 .blive-fluoroscopy-preview-selectors {
-  position: relative;
+    position: relative;
 }
 
 .blive-fluoroscopy-selectors .span-angle,
 .blive-fluoroscopy-preview-selectors .span-angle {
-  border-radius: 100px;
-  border: 1px solid @selectColor;
-  width: 5px;
-  height: 5px;
-  background-color: #fff;
-  display: block;
-  position: absolute;
-  z-index: 2;
+    border-radius: 100px;
+    border: 1px solid @selectColor;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    z-index: 2;
 }
 
 .blive-fluoroscopy-preview-selectors-nodeName {
-  position: absolute;
-  top: -17px;
-  left: 0;
-  padding: 0px 5px;
-  height: 17px;
-  background-color: @selectColorShallow;
-  color: @selectColor;
-  font-size: 10px;
-  white-space: pre;
+    position: absolute;
+    top: -17px;
+    left: 0;
+    padding: 0px 5px;
+    height: 17px;
+    background-color: @selectColorShallow;
+    color: @selectColor;
+    font-size: 10px;
+    white-space: pre;
 }
 
 .blive-fluoroscopy-selectors-nodeName {
-  cursor: context-menu;
-  position: absolute;
-  z-index: 2;
-  top: -17px;
-  left: 0;
-  height: 17px;
-  font-size: 12px;
-  display: flex;
+    cursor: context-menu;
+    position: absolute;
+    z-index: 2;
+    top: -17px;
+    left: 0;
+    height: 17px;
+    font-size: 12px;
+    display: flex;
 }
 
 .blive-fluoroscopy-selectors-nodeName.nodename-l-0 {
-  background: #858585 !important;
-  color: #ffffff;
+    background: #858585 !important;
+    color: #ffffff;
 }
 
 .blive-fluoroscopy-selectors-nodeName.nodename-l-2 {
-  background: red !important;
-  color: #ffffff;
+    background: red !important;
+    color: #ffffff;
 }
 
 .blive-fluoroscopy-selectors-nodeName.nodename-l-1 {
-  background-color: @selectColor !important;
-  color: #ffffff;
+    background-color: @selectColor !important;
+    color: #ffffff;
 }
 
 .blive-fluoroscopy-selectors-nodeName > div.nodename {
-  padding: 0 5px;
-  white-space: pre;
-  font-size: 10px;
+    padding: 0 5px;
+    white-space: pre;
+    font-size: 10px;
 }
 
 .blive-fluoroscopy-selectors-nodeName-icons {
-  cursor: pointer;
-  border-left: 1px solid #ffffff26;
-  font-size: 12px;
-  display: flex;
+    cursor: pointer;
+    border-left: 1px solid #ffffff26;
+    font-size: 12px;
+    display: flex;
 }
 
 .blive-fluoroscopy-selectors-nodeName-icons > div {
-  display: block;
-  display: block;
-  padding: 0 5px;
-  font-size: 12px;
-  transform: scale(1);
+    display: block;
+    display: block;
+    padding: 0 5px;
+    font-size: 12px;
+    transform: scale(1);
 }
 
 .blive-fluoroscopy-selectors-nodeName-icons > div:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .blive-fluoroscopy-preview-selectors .span-angle {
-  background-color: @selectColor !important;
+    background-color: @selectColor !important;
 }
 
 .span-angle-lt {
-  left: 0;
-  top: 0;
+    left: 0;
+    top: 0;
 }
 
 .span-angle-rt {
-  right: 0;
-  top: 0;
+    right: 0;
+    top: 0;
 }
 
 .span-angle-lb {
-  left: 0;
-  bottom: 0;
+    left: 0;
+    bottom: 0;
 }
 
 .span-angle-rb {
-  right: 0;
-  bottom: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .blive-fluoroscopy-selectors .span-line,
 .blive-fluoroscopy-preview-selectors .span-line {
-  background: @selectColor;
-  position: absolute;
+    background: @selectColor;
+    position: absolute;
 }
 
 .blive-fluoroscopy-preview-selectors .span-line {
-  background: @selectColorShallow !important;
+    background: @selectColorShallow !important;
 }
 
 .span-line-t {
-  width: 100%;
-  height: 1px;
+    width: 100%;
+    height: 1px;
 }
 
 .span-line-b {
-  width: 100%;
-  height: 1px;
+    width: 100%;
+    height: 1px;
 }
 
 .span-line-l {
-  width: 1px;
-  height: 100%;
+    width: 1px;
+    height: 100%;
 }
 
 .span-line-r {
-  width: 1px;
-  height: 100%;
+    width: 1px;
+    height: 100%;
 }
 
 .span-line-x-animation {
-  border-top: 1px solid @selectColor;
-  border-bottom: 1px solid @selectColor;
+    border-top: 1px solid @selectColor;
+    border-bottom: 1px solid @selectColor;
 }
 
 .span-line-y-animation {
-  border-left: 1px solid @selectColor;
-  border-right: 1px solid @selectColor;
+    border-left: 1px solid @selectColor;
+    border-right: 1px solid @selectColor;
 }
 
 /*外边*/
 
 .span-margin {
-  position: absolute;
-  background: rgba(255, 152, 0, 0.18);
+    position: absolute;
+    background: rgba(255, 152, 0, 0.18);
 }
 
 /*内边*/
 
 .span-padding {
-  position: absolute;
-  background: linear-gradient(45deg, rgba(0, 153, 68, .1) 0, rgba(0, 153, 68, .1) 25%, transparent 25%, transparent 50%, rgba(0, 153, 68, .1) 50%, rgba(0, 153, 68, .1) 75%, transparent 75%, transparent);
-  background-size: 10px 10px;
+    position: absolute;
+    background: linear-gradient(45deg, rgba(0, 153, 68, .1) 0, rgba(0, 153, 68, .1) 25%, transparent 25%, transparent 50%, rgba(0, 153, 68, .1) 50%, rgba(0, 153, 68, .1) 75%, transparent 75%, transparent);
+    background-size: 10px 10px;
 }
 
 .span-padding-left {
-  top: 0;
-  left: 0;
+    top: 0;
+    left: 0;
 }
 
 .context-area {
-  background: rgb(190, 200, 200);
-  padding: 32px;
-  text-align: center;
+    background: rgb(190, 200, 200);
+    padding: 32px;
+    text-align: center;
 }
 
 .context-intro {
-  color: #fff;
-  font-size: 14px;
+    color: #fff;
+    font-size: 14px;
 }
 
 /*边框*/
 .span-border {
-  position: absolute;
-  background-color: rgba(255, 0, 0, 0.22);
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.22);
 }
 
 .span-border-left {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .span-border-right {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .span-border-right:after {
-  content: '';
-  position: absolute;
-  top: calc(50% - 1px);
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #039be5;
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #039be5;
 }

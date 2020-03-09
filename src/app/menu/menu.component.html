@@ -1,14 +1,23 @@
-<!--
-    * 菜单
--->
+<!-- * 菜单 -->
 
 <div class="blive-menu">
+
+    <div class="blive-menu-logo">
+        <a href="/">
+            <svg height="50" xmlns="http://www.w3.org/2000/svg" width="50" nzTooltipTitle="首页" nzTooltipPlacement="right" nz-tooltip>
+                <g transform="scale(.4) translate(34, 10)">
+                    <path stroke="#000" d="m21.054845,6.553957c-4.29931,3.25323 -7.53805,6.56319 -10.92111,12.82111c-3.38307,6.25793 -4.74379,9.79716 -6.2871,14.84228c-1.54331,5.04513 -3.8268,17.22095 -3.46909,22.98968c0.35771,5.76873 0.47784,7.85769 2.52966,12.88058c2.05182,5.02289 3.59163,6.633 6.43001,8.94553c2.83838,2.31254 5.04028,4.19811 11.07306,7.35236c6.03278,3.15424 12.59586,5.14369 18.96779,6.15381c1.59299,0.25252 5.71691,0.73565 8.45737,0.63246c2.74046,-0.10319 5.02055,-0.79269 6.61808,-1.6547c3.19506,-1.72403 4.70823,-4.25139 1.16661,-6.95969c-3.54162,-2.7083 -13.14569,-10.50779 -17.65838,-15.04963c-4.51269,-4.54184 -9.46431,-10.56284 -13.53094,-17.97337c-4.06662,-7.41053 -3.21221,-15.01469 -2.34441,-17.21861c0.8678,-2.20392 1.31071,-2.42463 2.34284,-3.27444c1.03213,-0.84981 2.63878,-1.3702 4.4456,-1.43696c1.80682,-0.06676 6.29253,1.24014 8.00418,2.50796c1.71165,1.26782 6.84634,3.11291 10.68547,3.22481c3.83913,0.1119 6.80926,-2.2711 7.77394,-4.36382c0.96468,-2.09272 1.53376,-5.30566 0.12068,-9.26824c-1.41308,-3.96257 -0.7816,-6.06437 -2.79946,-9.02092c-2.01786,-2.95655 -3.76492,-4.77411 -8.32044,-7.30289c-4.55552,-2.52878 -7.06418,-2.32771 -11.38751,-2.55215c-4.32332,-0.22443 -9.7472,2.09823 -11.89685,3.72484z" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#f6f6f6"></path>
+                    <path d="m39.721669,4.606055c4.18919,-1.8919 6.89191,-2.56758 10.27029,-2.97298c3.37838,-0.4054 8.91893,-0.54054 9.05407,0.54054c0.13513,1.08109 -3.24326,2.83783 -4.32434,4.05405c-1.08108,1.21622 -3.10811,3.3784 -4.05406,5.94597c-0.94595,2.56756 -15.13516,-5.67569 -10.94596,-7.56758z" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#f6f6f6"></path>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <div style="width:100%;height: 30px;"><!-- 占位元素 --></div>
     <div class="blive-menu-content">
-        <div class="blive-menu-content-item" nzTooltipTitle="Blive账户" nzTooltipPlacement="right" nz-tooltip>
+        <div class="blive-menu-content-item" style="padding: 10px 20px;" nzTooltipTitle="Blive账户" nzTooltipPlacement="right" nz-tooltip>
             <nz-avatar nzIcon="user"></nz-avatar>
         </div>
-        <div class="blive-menu-content-item" nzTooltipTitle="仪表台" nzTooltipPlacement="right" nz-tooltip
-            routerLink="/dashboard/folder">
+        <div class="blive-menu-content-item" nzTooltipTitle="仪表台" nzTooltipPlacement="right" nz-tooltip routerLink="/dashboard/folder">
             <i nz-icon nzType="home" nzTheme="outline"></i>
         </div>
         <nz-divider></nz-divider>
@@ -18,27 +27,21 @@
         <div class="blive-menu-content-item" nzTooltipTitle="简介分页" nzTooltipPlacement="right" nz-tooltip>
             <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
         </div>
-        <div class="blive-menu-content-item" nzTooltipTitle="图库" nzTooltipPlacement="right" nz-tooltip (click)="onShowWindow('images')">
-            <i class="anticon anticon-unordered-list">
-                <svg _ngcontent-shp-c2="" aria-hidden="true" class="bem-Svg" data-icon="Assetpanel" focusable="false"
-                    height="18" style="display: block; transform: translate(0px, 0px);" viewBox="0 0 20 18" width="20">
-                    <path _ngcontent-shp-c2=""
-                        d="M13.557.736a1 1 0 00-1.23-.701L.749 3.137A1 1 0 00.034 4.36l2.332 8.701a1 1 0 001.23.701L4 13.654V6.003A2 2 0 015.994 4h8.437L13.557.736zM7.007 6h11.986A1 1 0 0120 6.996v10.008a1 1 0 01-1.007.996H7.007A1 1 0 016 17.004V6.996A1 1 0 017.007 6zM18 9.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM8 12l3.5-3 7 7H8v-4z"
-                        fill="currentColor" fill-rule="evenodd"></path>
+        <div class="blive-menu-content-item" nzTooltipTitle="图库" nzTooltipPlacement="right" nz-tooltip>
+            <i nz-icon nzType="anticon anticon-unordered-list">
+                <svg _ngcontent-shp-c2="" aria-hidden="true" class="bem-Svg" data-icon="Assetpanel" focusable="false" height="18" style="display: block; transform: translate(0px, 0px);" viewBox="0 0 20 18" width="20">
+                    <path _ngcontent-shp-c2="" d="M13.557.736a1 1 0 00-1.23-.701L.749 3.137A1 1 0 00.034 4.36l2.332 8.701a1 1 0 001.23.701L4 13.654V6.003A2 2 0 015.994 4h8.437L13.557.736zM7.007 6h11.986A1 1 0 0120 6.996v10.008a1 1 0 01-1.007.996H7.007A1 1 0 016 17.004V6.996A1 1 0 017.007 6zM18 9.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM8 12l3.5-3 7 7H8v-4z" fill="currentColor" fill-rule="evenodd"></path>
                 </svg>
-            </i>  
+            </i>
         </div>
-        <div class="blive-menu-content-item" nzTooltipTitle="历史储存简介" nzTooltipPlacement="right" nz-tooltip
-            (click)="onShowWindow('history')">
+        <div class="blive-menu-content-item" nzTooltipTitle="历史储存简介" nzTooltipPlacement="right" nz-tooltip (click)="onShowWindow('history')">
             <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
         </div>
-        <div class="blive-menu-content-item" nzTooltipTitle="简介模板" nzTooltipPlacement="right" nz-tooltip
-            (click)="onShowWindow('moban')">
+        <div class="blive-menu-content-item" nzTooltipTitle="简介模板" nzTooltipPlacement="right" nz-tooltip (click)="onShowWindow('moban')">
             <i nz-icon nzType="appstore" nzTheme="outline"></i>
         </div>
         <nz-divider></nz-divider>
-        <div class="blive-menu-content-item" nzTooltipTitle="设置" nzTooltipPlacement="right" nz-tooltip
-            (click)="onShowWindow('configure')">
+        <div class="blive-menu-content-item" nzTooltipTitle="设置" nzTooltipPlacement="right" nz-tooltip (click)="onShowWindow('configure')">
             <i nz-icon nzType="setting" nzTheme="outline"></i>
         </div>
         <div class="blive-menu-content-item" nzTooltipTitle="帮助" nzTooltipPlacement="right" nz-tooltip>
@@ -46,11 +49,8 @@
         </div>
     </div>
 </div>
+<!-- #end Blive-Menu -->
 
-<blive-moban-window *ngIf="menu.moban" (close)="onShowWindow('moban')" (mobanData)="setMobanData($event)">
-</blive-moban-window>
-<blive-windwos-configure *ngIf="menu.configure" (close)="onShowWindow('configure')" (mobanData)="setMobanData($event)">
-</blive-windwos-configure>
-<blive-windwos-history *ngIf="menu.history" (close)="onShowWindow('history')" (mobanData)="setMobanData($event)">
-</blive-windwos-history>
-<blive-windwos-images *ngIf="menu.images" (close)="onShowWindow('images')" (mobanData)="setMobanData($event)"></blive-windwos-images>
+<blive-moban-window *ngIf="menu.moban" (close)="onShowWindow('moban')" (mobanData)="setMobanData($event)"></blive-moban-window>
+<blive-windwos-configure *ngIf="menu.configure" (close)="onShowWindow('configure')" (mobanData)="setMobanData($event)"></blive-windwos-configure>
+<blive-windwos-history *ngIf="menu.history" (close)="onShowWindow('history')" (mobanData)="setMobanData($event)"></blive-windwos-history>

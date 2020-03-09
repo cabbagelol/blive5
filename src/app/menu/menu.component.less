@@ -1,33 +1,51 @@
 @import '../../theme.less';
 
 .blive-menu {
-    position: fixed;
-    top: 50px;
-    left: 30px;
-    z-index: 5;
-}
-
-.blive-menu-content {
-    color: #6E747D;
-    padding: 10px 0 10px 10px;
-    border-radius: 0 8px 8px 0;
-    position: fixed;
+    top: 0;
     left: 0;
-    top: 54px;
-    text-align: center;
-    background: #fff;
-    box-shadow: 0 2px 4px 1px rgba(40, 120, 255, 0.08), 0 0 6px 1px rgba(0, 0, 0, 0.08);
-}
+    bottom: 0;
+    z-index: 5;
+    width: 70px;
+    position: fixed;
+    background-color: #fff;
 
-.blive-menu-content nz-divider {
-    margin: 10px 0;
-}
+    &-logo {
+        width: 100%;
+        height: 70px;
+        padding: 10px;
+        overflow: hidden;
+        background-color: #ff86b2;
 
-.blive-menu-content .blive-menu-content-item {
-    padding: 10px 20px;
-    font-size: 20px;
-}
+        > a {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: scale(1);
+            transition: transform .3s;
 
-.blive-menu-content > div:hover{
-    color: @info-color;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &-content {
+        width: 100%;
+        color: #6E747D;
+
+        > div:hover {
+            color: @info-color;
+        }
+
+        nz-divider {
+            margin: 8px 0;
+        }
+
+        &-item {
+            cursor: pointer;
+            font-size: 20px;
+            padding: 10px 25px;
+
+        }
+    }
 }
