@@ -34,7 +34,7 @@
     "express": "^4.17.1",
     "html2canvas": "^1.0.0-rc.5",
     "jquery": "^3.4.1",
-    "jszip": "^3.2.2",
+    "jszip": "^3.7.0",
     "monaco-editor": "^0.19.3",
     "mysql": "^2.18.1",
     "ng-zorro-antd": "^8.5.2",
